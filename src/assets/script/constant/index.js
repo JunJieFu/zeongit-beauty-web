@@ -1,12 +1,17 @@
 import { MenuEnum } from "../model"
-import { mdiHome, mdiSmartCardOutline, mdiLockOutline, mdiApps } from "@mdi/js"
+import {
+  mdiFileFindOutline,
+  mdiAlphaNBoxOutline,
+  mdiStarOutline,
+  mdiImageOutline
+} from "@mdi/js"
 
 export function menuListConstant() {
   return [
-    new MenuEnum("首页", "/", mdiHome),
-    new MenuEnum("个人信息", "/new", mdiSmartCardOutline),
-    new MenuEnum("安全性", "/security", mdiLockOutline),
-    new MenuEnum("应用中心", "/apps", mdiApps)
+    new MenuEnum("发现", "/", mdiFileFindOutline),
+    new MenuEnum("最新", "/new", mdiAlphaNBoxOutline),
+    new MenuEnum("收藏", "/collection", mdiStarOutline),
+    new MenuEnum("作品", "/works", mdiImageOutline)
   ]
 }
 

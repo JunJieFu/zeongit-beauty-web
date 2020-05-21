@@ -23,7 +23,7 @@
       solo
       hide-details
       clearable
-      prepend-inner-icon="mdi-image-search"
+      prepend-inner-icon="mdi-magnify"
       label="搜索"
       v-model="keyword"
       @click:prepend-inner="search"
@@ -41,7 +41,7 @@
           v-show="$vuetify.breakpoint.smAndDown"
           @click="searchShow = !searchShow"
         >
-          <v-icon>mdi-image-search</v-icon>
+          <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </template>
       <span>搜索</span>

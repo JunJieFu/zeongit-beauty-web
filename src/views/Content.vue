@@ -1,0 +1,47 @@
+<template>
+  <div>
+    <v-progress-linear
+      v-show="progress"
+      indeterminate
+      absolute
+      top
+      color="primary"
+      style="z-index: 999"
+    ></v-progress-linear>
+    <Header> </Header>
+    <v-content>
+      <v-divider></v-divider>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-content>
+    <Menu></Menu>
+  </div>
+</template>
+
+<script>
+import { mapMutations, mapState } from "vuex"
+import Menu from "../components/page/Menu"
+import Header from "../components/page/Header"
+import { userService } from "../assets/script/service"
+
+export default {
+  components: {
+    Header,
+    Menu
+  },
+  computed: {
+    ...mapState("menu", ["progress"])
+  },
+  async beforeRouteEnter(to, from, next) {
+    const result = await userService.getInfo()
+    next((vm) => {
+      vm.MSetInfo(result.data)
+    })
+  },
+  methods: {
+    ...mapMutations("user", ["MSetInfo"])
+  }
+}
+</script>
+<style lang="scss" scoped></style>

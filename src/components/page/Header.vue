@@ -3,6 +3,7 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
+          :small="$vuetify.breakpoint.xsOnly"
           @click="collapse = !collapse"
           v-on="on"
           v-show="!searchShow || $vuetify.breakpoint.mdAndUp"
@@ -10,12 +11,14 @@
       </template>
       <span>主菜单</span>
     </v-tooltip>
-    <span
-      class="title ml-2 mr-4"
+    <router-link
+      to="/"
+      class="title mx-4"
       v-show="!searchShow || $vuetify.breakpoint.mdAndUp"
+      style="line-height: 1.5em"
     >
       ZeonGit Beauty
-    </span>
+    </router-link>
     <v-text-field
       class="mr-4"
       v-show="$vuetify.breakpoint.mdAndUp || searchShow"
@@ -33,9 +36,9 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-btn
-          fab
           depressed
           icon
+          :small="$vuetify.breakpoint.xsOnly"
           class="mr-2"
           v-on="on"
           v-show="$vuetify.breakpoint.smAndDown"
@@ -48,7 +51,13 @@
     </v-tooltip>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn fab depressed icon class="mr-2" v-on="on">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          class="mr-2"
+          v-on="on"
+        >
           <v-icon>mdi-bell-outline</v-icon>
         </v-btn>
       </template>
@@ -56,11 +65,31 @@
     </v-tooltip>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn fab depressed icon class="mr-2" v-on="on">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          class="mr-2"
+          v-on="on"
+        >
           <v-icon>mdi-apps</v-icon>
         </v-btn>
       </template>
       <span>应用</span>
+    </v-tooltip>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          class="mr-2"
+          v-on="on"
+        >
+          <v-icon>mdi-skew-more</v-icon>
+        </v-btn>
+      </template>
+      <span>更多</span>
     </v-tooltip>
     <v-menu offset-y :disabled="!info">
       <template v-slot:activator="{ on: menu }">

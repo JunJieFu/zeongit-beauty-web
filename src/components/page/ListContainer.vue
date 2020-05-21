@@ -145,10 +145,12 @@ export default {
       let elWidth = this.$refs.page.clientWidth
       let sourceColAmount = Math.floor(elWidth / this.listConstant.width)
       let defaultWidth = this.listConstant.width
+      let defaultGap = this.listConstant.gap
       let colAmount = 2
       if (sourceColAmount <= 1) {
         colAmount = 2
         defaultWidth = elWidth / 2
+        defaultGap = 8
       } else if (sourceColAmount > 4) {
         colAmount = this.collapse ? sourceColAmount : sourceColAmount - 1
       } else {
@@ -156,8 +158,7 @@ export default {
       }
       let heightList =
         this.list.map(
-          (item) =>
-            (item.height / item.width) * (defaultWidth - this.listConstant.gap)
+          (item) => (item.height / item.width) * (defaultWidth - defaultGap)
         ) || []
       let styleList = []
       const columnHeightList = new Array(colAmount).fill(0)
@@ -166,10 +167,9 @@ export default {
         const minColumnIndex = columnHeightList.indexOf(minColumnHeight)
         const left = defaultWidth * minColumnIndex
         const top = minColumnHeight
-        columnHeightList[minColumnIndex] =
-          heightList[i] + top + this.listConstant.gap
+        columnHeightList[minColumnIndex] = heightList[i] + top + defaultGap
         styleList.push({
-          padding: `${this.listConstant.gap / 2}px`,
+          padding: `${defaultGap / 2}px`,
           transform: `translate(${left}px, ${top}px)`,
           width: defaultWidth + "px"
         })
@@ -187,7 +187,7 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  margin: 0 -4px;
+  margin: 0 -8px;
   .list-content {
     margin: auto;
     position: relative;

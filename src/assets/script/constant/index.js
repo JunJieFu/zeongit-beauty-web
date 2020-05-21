@@ -11,7 +11,11 @@ export function menuListConstant() {
     new MenuEnum("发现", "/", mdiFileFindOutline),
     new MenuEnum("最新", "/new", mdiAlphaNBoxOutline),
     new MenuEnum("收藏", "/collection", mdiStarOutline),
-    new MenuEnum("作品", "/works", mdiImageOutline)
+    new MenuEnum("作品", "/works", mdiImageOutline),
+    new MenuEnum("足迹", "/footprint", mdiImageOutline),
+    new MenuEnum("粉丝", "/follower", mdiImageOutline),
+    new MenuEnum("关注", "/following", mdiImageOutline),
+    new MenuEnum("上传", "/upload", mdiImageOutline)
   ]
 }
 

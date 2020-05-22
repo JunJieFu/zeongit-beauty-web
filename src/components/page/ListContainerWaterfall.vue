@@ -1,5 +1,10 @@
 <template>
-  <div ref="page" class="list-container" v-resize="throttle">
+  <div
+    ref="page"
+    class="list-container"
+    v-resize="throttle"
+    v-scroll="onScroll"
+  >
     <div class="list-content" :style="{ width, height }">
       <div
         class="list-item"
@@ -10,7 +15,11 @@
       >
         <v-hover>
           <template v-slot="{ hover }">
-            <v-card :elevation="hover ? 5 : 1">
+            <v-card
+              :elevation="hover ? 5 : 1"
+              target="_blank"
+              :href="`/#/picture/${item.id}`"
+            >
               <v-card-text class="pa-0">
                 <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
               </v-card-text>
@@ -99,7 +108,9 @@
       </div>
     </div>
     <div class="empty-container" v-if="!list.length">
-      <h2 class="title text-center">你的记事将会显示在此处</h2>
+      <slot>
+        <h2 class="title text-center">你的图片将会显示在此处</h2>
+      </slot>
     </div>
   </div>
 </template>
@@ -111,6 +122,18 @@ import { throttle } from "../../assets/script/util/heighten"
 export default {
   name: "ListContainer",
   props: {
+    pageable: {
+      type: Object,
+      default: () => {}
+    },
+    page: {
+      type: Object,
+      default: () => {}
+    },
+    page2d: {
+      type: Array,
+      default: () => []
+    },
     list: {
       type: Array,
       default: () => []
@@ -127,6 +150,9 @@ export default {
     }
   },
   watch: {
+    list() {
+      this.resize()
+    },
     height(newValue, oldValue) {
       if (newValue && !oldValue) {
         setTimeout(() => (this.transition = true), 0)
@@ -178,8 +204,14 @@ export default {
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
     },
-    show(x) {
-      console.log(x)
+    onScroll({ target }) {
+      const { documentElement } = target
+      const scrollTop = documentElement.scrollTop
+      const scrollBottom =
+        documentElement.scrollHeight - scrollTop - documentElement.clientHeight
+      if (scrollBottom < 300) {
+        this.$emit("change", this.page.number + 2)
+      }
     }
   }
 }

@@ -36,6 +36,19 @@ Vue.prototype.$resultNotify = function(result) {
   })
 }
 
+Vue.prototype.$isMobile = (function() {
+  const userAgentInfo = navigator.userAgent
+  const Agents = [
+    "Android",
+    "iPhone",
+    "SymbianOS",
+    "Windows Phone",
+    "iPad",
+    "iPod"
+  ]
+  return !!Agents.filter((it) => userAgentInfo.indexOf(it) > 0).length
+})()
+
 window.app = new Vue({
   router,
   store,

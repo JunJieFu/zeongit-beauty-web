@@ -17,8 +17,19 @@
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
+      <v-divider></v-divider>
+      <v-list-item class="d-block">
+        <v-chip
+          class="mr-2 my-1"
+          small
+          v-for="item in tagList"
+          :key="item"
+          :to="`/search/${encodeURI(item)}`"
+        >
+          {{ item }}
+        </v-chip>
+      </v-list-item>
     </v-list>
-    <v-divider></v-divider>
     <template v-slot:append>
       <v-divider></v-divider>
       <v-list>
@@ -41,11 +52,13 @@
 <script>
 import { mapMutations } from "vuex"
 import { menuListConstant } from "../../assets/script/constant"
+import { tagService } from "../../assets/script/service"
 
 export default {
   data() {
     return {
-      menuList: menuListConstant()
+      menuList: menuListConstant(),
+      tagList: []
     }
   },
   computed: {
@@ -58,8 +71,16 @@ export default {
       }
     }
   },
+  created() {
+    this.listTagTop30()
+  },
   methods: {
-    ...mapMutations("menu", ["MUpdateCollapse"])
+    ...mapMutations("menu", ["MUpdateCollapse"]),
+    async listTagTop30() {
+      const result = await tagService.listTagTop30()
+      await this.$resultNotify(result)
+      this.tagList = result.data
+    }
   }
 }
 </script>

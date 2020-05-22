@@ -1,6 +1,6 @@
 export default [
   {
-    path: "find/:page?",
+    path: "/search/:keyword/:page?",
     component: () => import("../Index")
   }
 ]

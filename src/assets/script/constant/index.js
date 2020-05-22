@@ -8,7 +8,7 @@ import {
 
 export function menuListConstant() {
   return [
-    new MenuEnum("发现", "/", mdiFileFindOutline),
+    new MenuEnum("发现", "/find", mdiFileFindOutline),
     new MenuEnum("最新", "/new", mdiAlphaNBoxOutline),
     new MenuEnum("收藏", "/collection", mdiStarOutline),
     new MenuEnum("作品", "/works", mdiImageOutline),
@@ -27,5 +27,15 @@ export function listConstant() {
   return {
     gap,
     width
+  }
+}
+export function detailConstant() {
+  const gap = 16
+  const infoWidth = 256
+  const minWidth = 800
+  return {
+    gap,
+    infoWidth,
+    minWidth
   }
 }

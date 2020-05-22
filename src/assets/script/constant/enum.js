@@ -16,5 +16,13 @@ export default {
     FEMALE: "女孩",
     UNKNOWN: "未知",
     INCONVENIENT: "不便透露"
+  }),
+  ListMode: enumProxy({
+    WATERFALL: "瀑布流",
+    NORMAL: "正常"
+  }),
+  ListModeComponentName: enumProxy({
+    WATERFALL: "list-container-waterfall",
+    NORMAL: "list-container-normal"
   })
 }

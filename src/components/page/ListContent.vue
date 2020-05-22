@@ -6,7 +6,7 @@
 export default {
   name: "listContent",
   components: {
-    "list-container": () => import("./ListContainer")
+    "list-container": () => import("./ListContainerWaterfall")
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 export default [
   {
-    path: "/new",
+    path: "/new/:page?",
     component: () => import("../Index")
   }
 ]

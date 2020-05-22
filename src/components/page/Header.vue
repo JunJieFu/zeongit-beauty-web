@@ -77,20 +77,32 @@
       </template>
       <span>应用</span>
     </v-tooltip>
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-        <v-btn
-          depressed
-          icon
-          :small="$vuetify.breakpoint.xsOnly"
-          class="mr-2"
-          v-on="on"
-        >
-          <v-icon>mdi-skew-more</v-icon>
-        </v-btn>
-      </template>
-      <span>更多</span>
-    </v-tooltip>
+
+    <!--    <v-menu offset-y>-->
+    <!--      <template v-slot:activator="{ on: menu }">-->
+    <!--        <v-tooltip bottom>-->
+    <!--          <template v-slot:activator="{ on: tooltip }">-->
+    <!--            <v-btn-->
+    <!--              depressed-->
+    <!--              icon-->
+    <!--              :small="$vuetify.breakpoint.xsOnly"-->
+    <!--              class="mr-2"-->
+    <!--              v-on="Object.assign(menu, tooltip)"-->
+    <!--            >-->
+    <!--              <v-icon>mdi-cog-outline</v-icon>-->
+    <!--            </v-btn>-->
+    <!--          </template>-->
+    <!--          <span>设置</span>-->
+    <!--        </v-tooltip>-->
+    <!--      </template>-->
+    <!--      <v-list class="py-0" :dense="$vuetify.breakpoint.smAndDown">-->
+    <!--        <v-list-item @click="signOut">-->
+    <!--          切换列表显示风格-->
+    <!--        </v-list-item>-->
+    <!--        <v-divider></v-divider>-->
+    <!--      </v-list>-->
+    <!--    </v-menu>-->
+    <header-settings></header-settings>
     <v-menu offset-y :disabled="!info">
       <template v-slot:activator="{ on: menu }">
         <v-tooltip bottom>
@@ -103,7 +115,7 @@
               />
             </v-btn>
           </template>
-          <span>主菜单</span>
+          <span>个人中心</span>
         </v-tooltip>
       </template>
       <v-list class="py-0 user-menu" v-if="info">
@@ -133,6 +145,9 @@
 import { mapMutations, mapState } from "vuex"
 import jsCookie from "js-cookie"
 export default {
+  components: {
+    "header-settings": () => import("./header/Settings")
+  },
   data() {
     return { keyword: "", searchShow: false }
   },
@@ -149,8 +164,8 @@ export default {
   },
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
-    search(e) {
-      console.log(e)
+    search() {
+      this.$router.push(`/search/${this.keyword}`)
     },
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })

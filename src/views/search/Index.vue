@@ -23,7 +23,8 @@ export default {
       loading: false,
       pageable: new Pageable(0, 16),
       page2d: [],
-      currPage: null
+      currPage: null,
+      keyword: null
     }
   },
   computed: {
@@ -39,16 +40,18 @@ export default {
   async beforeRouteEnter(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
     const pageable = new Pageable(to.params.page, 16)
-    const result = await pictureService.pagingByRecommend(pageable)
+    const keyword = to.params.keyword
+    const result = await pictureService.paging(pageable, keyword)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
       vm.pageable = pageable
+      vm.keyword = keyword
       vm.structure(result.data, vm.pageable)
     })
   },
   async beforeRouteUpdate(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.paging(to.params.page)
+    this.paging(to.params.page, to.params.keyword)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next()
   },
@@ -57,23 +60,33 @@ export default {
       if (this.pageable.page === page) {
         return
       }
-      this.$router.push(`/find/${page}`)
+      this.$router.push(`/search/${encodeURI(this.keyword)}/${page}`)
     },
-    async paging(pageIndex) {
+    async paging(pageIndex, keyword = this.keyword) {
       if (
         this.loading ||
         (this.currPage.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
+      if (keyword !== this.keyword) {
+        window.scrollTo(0, 0)
+      }
       this.pageable.page = parseInt(pageIndex || 1) || 1
-      if (this.page2d[this.pageable.page - 1]?.content?.length) {
+      if (
+        this.page2d[this.pageable.page - 1]?.content?.length &&
+        keyword === this.keyword
+      ) {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.pagingByRecommend(this.pageable)
+        const result = await pictureService.paging(this.pageable, keyword)
         this.loading = false
         await this.$resultNotify(result)
+        if (keyword !== this.keyword) {
+          this.keyword = keyword
+          this.page2d = []
+        }
         this.structure(result.data, this.pageable)
       }
     },

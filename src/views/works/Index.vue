@@ -21,9 +21,10 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16),
+      pageable: new Pageable(0, 16, "createDate,desc"),
       page2d: [],
-      currPage: null
+      currPage: null,
+      targetId: null
     }
   },
   computed: {
@@ -38,17 +39,19 @@ export default {
   },
   async beforeRouteEnter(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    const pageable = new Pageable(to.params.page, 16)
-    const result = await pictureService.pagingByRecommend(pageable)
+    const pageable = new Pageable(to.params.page, 16, "createDate,desc")
+    const targetId = to.params.targetId
+    const result = await pictureService.paging(pageable, undefined, targetId)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
       vm.pageable = pageable
+      vm.targetId = targetId
       vm.structure(result.data, vm.pageable)
     })
   },
   async beforeRouteUpdate(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.paging(to.params.page)
+    this.paging(to.params.page, to.params.targetId)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next()
   },
@@ -58,26 +61,40 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page)
+        this.paging(page, this.targetId)
       } else {
-        this.$router.push(`/find/${page}`)
+        this.$router.push(`/works/${encodeURI(this.targetId)}/${page}`)
       }
     },
-    async paging(pageIndex) {
+    async paging(pageIndex, targetId = this.targetId) {
       if (
         this.loading ||
         (this.currPage.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
+      if (targetId !== this.targetId) {
+        window.scrollTo(0, 0)
+      }
       this.pageable.page = parseInt(pageIndex || 1) || 1
-      if (this.page2d[this.pageable.page - 1]?.content?.length) {
+      if (
+        this.page2d[this.pageable.page - 1]?.content?.length &&
+        targetId === this.targetId
+      ) {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.pagingByRecommend(this.pageable)
+        const result = await pictureService.paging(
+          this.pageable,
+          undefined,
+          targetId
+        )
         this.loading = false
         await this.$resultNotify(result)
+        if (targetId !== this.targetId) {
+          this.targetId = targetId
+          this.page2d = []
+        }
         this.structure(result.data, this.pageable)
       }
     },

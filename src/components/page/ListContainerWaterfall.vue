@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import { listConstant } from "../../assets/script/constant"
+import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
 import { throttle } from "../../assets/script/util/heighten"
 
 export default {
@@ -141,12 +141,11 @@ export default {
   },
   data() {
     return {
-      listConstant: listConstant(),
       width: 0,
       height: 0,
       transition: false,
       itemStyleList: [],
-      throttle: throttle(this.resize, 200)
+      throttle: throttle(this.resize, 16)
     }
   },
   watch: {
@@ -169,9 +168,9 @@ export default {
   methods: {
     resize() {
       let elWidth = this.$refs.page.clientWidth
-      let sourceColAmount = Math.floor(elWidth / this.listConstant.width)
-      let defaultWidth = this.listConstant.width
-      let defaultGap = this.listConstant.gap
+      let sourceColAmount = Math.floor(elWidth / LIST_ITEM_WIDTH)
+      let defaultWidth = LIST_ITEM_WIDTH
+      let defaultGap = LIST_GAP
       let colAmount = 2
       if (sourceColAmount <= 1) {
         colAmount = 2
@@ -219,7 +218,7 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  margin: 0 -8px;
+  margin: 4px;
   .list-content {
     margin: auto;
     position: relative;

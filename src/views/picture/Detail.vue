@@ -1,44 +1,56 @@
 <template>
   <div
-    class="mx-auto"
+    class="mx-auto d-flex"
     v-resize="throttle"
     ref="page"
-    style="display: grid;max-width: 1120px"
-    :style="style"
+    style="max-width: 1120px"
+    :class="{ 'pa-4': !$vuetify.breakpoint.xsOnly }"
   >
-    <v-card :style="{ height }" :elevation="0">
-      <div style="height: 100%;width: 100%">
+    <div :style="style">
+      <v-card
+        :elevation="$vuetify.breakpoint.xsOnly ? 0 : 5"
+        :tile="$vuetify.breakpoint.xsOnly"
+      >
         <v-img
           :src="
             $img.secdra(picture ? picture.url : undefined, `specifiedWidth1200`)
           "
-          contain
+          :contain="!$vuetify.breakpoint.xsOnly"
+          :aspect-ratio="
+            $vuetify.breakpoint.xsOnly ? picture.width / picture.height : 1
+          "
+        />
+      </v-card>
+    </div>
+    <div style="width: 256px" class="pl-4 hidden-xs-only">
+      <v-card>
+        <router-link :to="`/works/${picture.user.id}`">GO </router-link>
+        <br />
+        <v-chip
+          class="mr-2 my-1"
+          small
+          v-for="item in picture.tagList"
+          :key="item"
+          :to="`/search/${encodeURI(item)}`"
         >
-        </v-img>
-      </div>
-    </v-card>
-    <v-card>
-      1
-    </v-card>
-    <v-card>
-      1
-    </v-card>
+          {{ item }}
+        </v-chip>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
 import { pictureService } from "../../assets/script/service"
 import { throttle } from "../../assets/script/util/heighten"
-import { detailConstant } from "../../assets/script/constant"
+import { DETAIL_GAP, DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 
 export default {
   data() {
     return {
-      detailConstant: detailConstant(),
       id: null,
       picture: null,
-      throttle: throttle(this.resize, 200),
-      style: {},
+      throttle: throttle(this.resize, 16),
       height: 0
     }
   },
@@ -52,25 +64,21 @@ export default {
       vm.picture = result.data
     })
   },
-  methods: {
-    resize() {
-      let elWidth = this.$refs.page.clientWidth
-      const infoWidth = this.detailConstant.infoWidth
-      const gap = this.detailConstant.gap
-      if (elWidth < this.detailConstant.minWidth) {
-        this.style = {
-          gridTemplateColumns: `100%`,
-          gridGap: gap + "px"
+  computed: {
+    style() {
+      if (this.$vuetify.breakpoint.xsOnly) {
+        return {
+          width: `100%`
         }
-        this.height = elWidth + "px"
       } else {
-        this.style = {
-          gridTemplateColumns: `${elWidth - infoWidth - gap}px ${infoWidth}px`,
-          gridGap: gap + "px"
+        return {
+          width: `calc(100% - ${DETAIL_INFO_WIDTH}px - ${DETAIL_GAP}px)`
         }
-        this.height = elWidth - infoWidth - gap + "px"
       }
     }
+  },
+  methods: {
+    resize() {}
   }
 }
 </script>

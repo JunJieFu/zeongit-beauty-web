@@ -60,7 +60,11 @@ export default {
       if (this.pageable.page === page) {
         return
       }
-      this.$router.push(`/search/${encodeURI(this.keyword)}/${page}`)
+      if (this.mode === this.$enum.ListMode.WATERFALL.key) {
+        this.paging(page, this.keyword)
+      } else {
+        this.$router.push(`/search/${encodeURI(this.keyword)}/${page}`)
+      }
     },
     async paging(pageIndex, keyword = this.keyword) {
       if (

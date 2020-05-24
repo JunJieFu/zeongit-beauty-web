@@ -19,6 +19,11 @@ export const pictureService = {
   },
   get(id) {
     return httpUtil.get("/picture/get", { id })
+  },
+  pagingCollection(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
+    _.page--
+    return httpUtil.get("/collection/paging", _)
   }
 }
 

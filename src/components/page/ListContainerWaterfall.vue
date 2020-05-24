@@ -208,8 +208,8 @@ export default {
       const scrollTop = documentElement.scrollTop
       const scrollBottom =
         documentElement.scrollHeight - scrollTop - documentElement.clientHeight
-      if (scrollBottom < 300) {
-        this.$emit("change", this.page.number + 2)
+      if (scrollBottom < 300 && this.page) {
+        this.$emit("change", this.page?.number + 2)
       }
     }
   }

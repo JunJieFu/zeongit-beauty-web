@@ -1,44 +1,48 @@
 <template>
   <div ref="page" class="list-container" v-resize="throttle">
-    <div
-      v-if="page2d[page.number] && page2d[page.number].content"
-      class="list-content"
-      :style="style"
+    <template
+      v-if="
+        page &&
+          page2d[page.number] &&
+          page2d[page.number].content &&
+          page2d[page.number].content.length
+      "
     >
-      <div
-        class="list-item transition"
-        v-for="(item, index) in page2d[page.number].content"
-        :key="index"
-      >
-        <v-hover>
-          <template v-slot="{ hover }">
-            <v-card
-              :elevation="hover ? 5 : 1"
-              class="d-flex align-center fill-height"
-              target="_blank"
-              :href="`/#/picture/${item.id}`"
-            >
-              <v-card-text class="pa-0">
-                <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
-              </v-card-text>
-            </v-card>
-          </template>
-        </v-hover>
+      <div class="list-content" :style="style">
+        <div
+          class="list-item transition"
+          v-for="(item, index) in page2d[page.number].content"
+          :key="index"
+        >
+          <v-hover>
+            <template v-slot="{ hover }">
+              <v-card
+                :elevation="hover ? 5 : 1"
+                class="d-flex align-center fill-height"
+                target="_blank"
+                :href="`/#/picture/${item.id}`"
+              >
+                <v-card-text class="pa-0">
+                  <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
+                </v-card-text>
+              </v-card>
+            </template>
+          </v-hover>
+        </div>
       </div>
-    </div>
+      <v-pagination
+        :value="pageable.page"
+        :length="page.totalPages"
+        :total-visible="7"
+        @input="change"
+        class="mt-4"
+      ></v-pagination>
+    </template>
     <div class="empty-container" v-else>
       <slot>
         <h2 class="title text-center">你的图片将会显示在此处</h2>
       </slot>
     </div>
-
-    <v-pagination
-      :value="pageable.page"
-      :length="page.totalPages"
-      :total-visible="7"
-      @input="change"
-      class="mt-4"
-    ></v-pagination>
   </div>
 </template>
 

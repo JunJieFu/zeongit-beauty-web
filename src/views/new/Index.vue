@@ -57,7 +57,11 @@ export default {
       if (this.pageable.page === page) {
         return
       }
-      this.$router.push(`/new/${page}`)
+      if (this.mode === this.$enum.ListMode.WATERFALL.key) {
+        this.paging(page)
+      } else {
+        this.$router.push(`/new/${page}`)
+      }
     },
     async paging(pageIndex) {
       if (

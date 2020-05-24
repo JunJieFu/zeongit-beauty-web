@@ -51,13 +51,13 @@
 
 <script>
 import { mapMutations } from "vuex"
-import { menuListConstant } from "../../assets/script/constant"
+import { MENU_LIST_CONSTANT } from "../../assets/script/constant"
 import { tagService } from "../../assets/script/service"
 
 export default {
   data() {
     return {
-      menuList: menuListConstant(),
+      menuList: MENU_LIST_CONSTANT,
       tagList: []
     }
   },

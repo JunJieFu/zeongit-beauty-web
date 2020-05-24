@@ -12,8 +12,8 @@ export const pictureService = {
     _.page--
     return httpUtil.get("/picture/pagingByRecommend", _)
   },
-  paging(pageable, tagList) {
-    let _ = Object.assign({ tagList }, pageable)
+  paging(pageable, tagList, targetId) {
+    let _ = Object.assign({ tagList, targetId }, pageable)
     _.page--
     return httpUtil.get("/picture/paging", _)
   },

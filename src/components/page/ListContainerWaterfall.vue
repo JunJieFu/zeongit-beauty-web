@@ -168,6 +168,7 @@ export default {
   methods: {
     resize() {
       let elWidth = this.$refs.page.clientWidth
+      let elHeight = this.$refs.page.clientHeight
       let sourceColAmount = Math.floor(elWidth / LIST_ITEM_WIDTH)
       let defaultWidth = LIST_ITEM_WIDTH
       let defaultGap = LIST_GAP
@@ -202,6 +203,9 @@ export default {
       this.itemStyleList = styleList
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
+      if (window.innerHeight >= elHeight && this.page) {
+        this.$emit("change", this.page?.number + 2)
+      }
     },
     onScroll({ target }) {
       const { documentElement } = target

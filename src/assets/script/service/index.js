@@ -24,6 +24,11 @@ export const pictureService = {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/collection/paging", _)
+  },
+  pagingFootprint(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
+    _.page--
+    return httpUtil.get("/footprint/paging", _)
   }
 }
 

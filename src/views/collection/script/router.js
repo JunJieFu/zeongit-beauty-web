@@ -1,10 +1,10 @@
 export default [
   {
-    path: "/works/:targetId?/:page?",
+    path: "/collection/:targetId?/:page?",
     component: () => import("../SignIn"),
     children: [
       {
-        path: "/works/:targetId?/:page?",
+        path: "/collection/:targetId?/:page?",
         component: () => import("../Index")
       }
     ]

@@ -35,6 +35,7 @@ export default {
   },
   async beforeRouteEnter(to, from, next) {
     const result = await userService.getInfo()
+    window.app.$store.commit("user/MSetInfo", result.data)
     next((vm) => {
       vm.MSetInfo(result.data)
     })

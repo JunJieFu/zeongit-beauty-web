@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import find from "../views/find/script/router"
 import newRouter from "../views/new/script/router"
 import search from "../views/search/script/router"
+import collection from "../views/collection/script/router"
 import works from "../views/works/script/router"
 import picture from "../views/picture/script/router"
 Vue.use(VueRouter)
@@ -12,7 +13,14 @@ const routes = [
     path: "/",
     name: "content",
     component: () => import("../views/Content"),
-    children: [...find, ...newRouter, ...search, ...works, ...picture]
+    children: [
+      ...find,
+      ...newRouter,
+      ...search,
+      ...collection,
+      ...works,
+      ...picture
+    ]
   }
 ]
 

@@ -28,13 +28,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("menu", ["mode"]),
-    self() {
-      return (
-        !this.$route.params.targetId ||
-        this.$store.state.user.info.id === this.$route.params.targetId
-      )
-    }
+    ...mapState("menu", ["mode"])
   },
   components: {
     "list-container-waterfall": () =>
@@ -51,7 +45,7 @@ export default {
       window.app.$store?.commit("menu/MUpdateProgress", false)
       return next()
     }
-    const result = await pictureService.paging(pageable, undefined, targetId)
+    const result = await pictureService.pagingFootprint(pageable, targetId)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
       vm.pageable = pageable
@@ -99,9 +93,8 @@ export default {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.paging(
+        const result = await pictureService.pagingFootprint(
           this.pageable,
-          undefined,
           targetId
         )
         this.loading = false

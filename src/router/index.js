@@ -5,6 +5,7 @@ import newRouter from "../views/new/script/router"
 import search from "../views/search/script/router"
 import collection from "../views/collection/script/router"
 import works from "../views/works/script/router"
+import footprint from "../views/footprint/script/router"
 import picture from "../views/picture/script/router"
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
       ...search,
       ...collection,
       ...works,
+      ...footprint,
       ...picture
     ]
   }

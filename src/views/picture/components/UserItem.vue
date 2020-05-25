@@ -13,7 +13,7 @@
     </div>
     <v-menu offset-y :disabled="!!info">
       <template v-slot:activator="{ on: onMenu }">
-        <v-btn color="primary" depressed v-on="onMenu">
+        <v-btn color="primary" depressed v-on="onMenu" @click="follow">
           {{
             user.focus === $enum.FollowState.CONCERNED.key ? `已关注` : `关注`
           }}</v-btn
@@ -43,6 +43,13 @@ export default {
   },
   computed: {
     ...mapState("user", ["info"])
+  },
+  methods: {
+    follow() {
+      if (this.info) {
+        this.$emit("follow")
+      }
+    }
   }
 }
 </script>

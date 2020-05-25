@@ -77,56 +77,36 @@
       </template>
       <span>应用</span>
     </v-tooltip>
-
-    <!--    <v-menu offset-y>-->
-    <!--      <template v-slot:activator="{ on: menu }">-->
-    <!--        <v-tooltip bottom>-->
-    <!--          <template v-slot:activator="{ on: tooltip }">-->
-    <!--            <v-btn-->
-    <!--              depressed-->
-    <!--              icon-->
-    <!--              :small="$vuetify.breakpoint.xsOnly"-->
-    <!--              class="mr-2"-->
-    <!--              v-on="Object.assign(menu, tooltip)"-->
-    <!--            >-->
-    <!--              <v-icon>mdi-cog-outline</v-icon>-->
-    <!--            </v-btn>-->
-    <!--          </template>-->
-    <!--          <span>设置</span>-->
-    <!--        </v-tooltip>-->
-    <!--      </template>-->
-    <!--      <v-list class="py-0" :dense="$vuetify.breakpoint.smAndDown">-->
-    <!--        <v-list-item @click="signOut">-->
-    <!--          切换列表显示风格-->
-    <!--        </v-list-item>-->
-    <!--        <v-divider></v-divider>-->
-    <!--      </v-list>-->
-    <!--    </v-menu>-->
     <header-settings></header-settings>
     <v-menu offset-y :disabled="!info">
       <template v-slot:activator="{ on: menu }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
             <v-btn fab depressed icon v-on="Object.assign(menu, tooltip)">
-              <img
-                :src="$img.head(info ? info.avatarUrl : undefined)"
-                width="40"
-                class="head-img"
-              />
+              <div>
+                <v-img
+                  :src="$img.head(info ? info.avatarUrl : undefined)"
+                  width="40"
+                  class="circle"
+                />
+              </div>
             </v-btn>
           </template>
           <span>个人中心</span>
         </v-tooltip>
       </template>
       <v-list class="py-0 user-menu" v-if="info">
-        <v-list-item class="background px-0">
-          <img
+        <v-list-item class="px-0">
+          <v-img
             :src="$img.back(info.background, 'backCard')"
             style="width: 100%"
+            :aspect-ratio="2"
           />
         </v-list-item>
-        <v-list-item class="head-img-item">
-          <img :src="$img.head(info.avatarUrl)" class="head-img" />
+        <v-list-item class="head-img-item justify-center">
+          <div>
+            <v-img :src="$img.head(info.avatarUrl)" class="head-img circle" />
+          </div>
         </v-list-item>
         <v-list-item class="justify-center flex-column">
           <p class="font-weight-black nickname my-2">{{ info.nickname }}</p>
@@ -180,21 +160,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "src/assets/style/color";
-.head-img {
-  border-radius: 50%;
-}
 .user-menu {
   max-width: 100%;
   $size: 380px;
   width: $size;
-  .background {
-    text-align: center;
-    height: $size/2;
-    align-items: end;
-  }
   .head-img-item {
+    $head-size: 100px;
     .head-img {
-      $head-size: 100px;
       height: $head-size;
       width: $head-size;
       margin: (-$head-size/2) auto 0 auto;

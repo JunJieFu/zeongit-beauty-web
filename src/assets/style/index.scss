@@ -36,10 +36,6 @@ img {
   vertical-align: middle;
 }
 
-//弹性盒子
-.flex-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.circle{
+  border-radius: 50%;
 }

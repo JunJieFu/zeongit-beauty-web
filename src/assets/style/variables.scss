@@ -2,3 +2,10 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+
+.v-chip .v-chip__content{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

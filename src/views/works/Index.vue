@@ -8,7 +8,7 @@
       :pageable="pageable"
       @change="changePage"
     ></component>
-    <go-top-fab></go-top-fab>
+    <corner-buttons></corner-buttons>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
       import("../../components/page/ListContainerWaterfall"),
     "list-container-normal": () =>
       import("../../components/page/ListContainerNormal"),
-    "go-top-fab": () => import("../../components/page/GoTopFab")
+    "corner-buttons": () => import("../../components/page/CornerButtons")
   },
   async beforeRouteEnter(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)

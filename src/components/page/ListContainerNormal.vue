@@ -40,7 +40,7 @@
     </template>
     <div class="empty-container" v-else>
       <slot>
-        <h2 class="title text-center">你的图片将会显示在此处</h2>
+        <h2 class="title text-center">您的图片将会显示在此处</h2>
       </slot>
     </div>
   </div>

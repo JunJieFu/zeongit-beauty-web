@@ -1,7 +1,7 @@
 export default [
   {
     path: "/works/:targetId?/:page?",
-    component: () => import("../../footprint/SignIn"),
+    component: () => import("../SignIn"),
     children: [
       {
         path: "/works/:targetId?/:page?",

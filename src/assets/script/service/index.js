@@ -3,6 +3,9 @@ import httpUtil from "../util/http"
 export const userService = {
   getInfo() {
     return httpUtil.get("/userInfo/get", {})
+  },
+  follow(followingId) {
+    return httpUtil.post("/following/focus", { followingId })
   }
 }
 

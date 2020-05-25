@@ -88,7 +88,7 @@
             </v-chip>
           </v-card-text>
           <v-divider></v-divider>
-          <user-item :user="picture.user"></user-item>
+          <user-item :user="picture.user" @follow="follow"></user-item>
         </v-card>
       </div>
       <corner-buttons>
@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { pictureService, userService } from "../../assets/script/service"
 import { throttle } from "../../assets/script/util/heighten"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 import { Pageable } from "../../assets/script/model"
@@ -193,6 +193,13 @@ export default {
         const result = await pictureService.collection(this.id)
         this.$resultNotify(result)
         this.picture.focus = result.data
+      }
+    },
+    async follow() {
+      if (this.info) {
+        const result = await userService.follow(this.picture.user.id)
+        this.$resultNotify(result)
+        this.picture.user.focus = result.data
       }
     }
   }

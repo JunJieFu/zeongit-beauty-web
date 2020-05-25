@@ -75,18 +75,20 @@
           <v-card-text>
             {{ picture.introduction }}
           </v-card-text>
-          <v-divider></v-divider>
-          <v-card-text>
-            <v-chip
-              class="mr-2 my-1"
-              small
-              v-for="item in picture.tagList"
-              :key="item"
-              :to="`/search/${encodeURI(item)}`"
-            >
-              {{ item }}
-            </v-chip>
-          </v-card-text>
+          <template v-if="picture.tagList.length">
+            <v-divider></v-divider>
+            <v-card-text>
+              <v-chip
+                class="mr-2 my-1"
+                small
+                v-for="item in picture.tagList"
+                :key="item"
+                :to="`/search/${encodeURI(item)}`"
+              >
+                {{ item }}
+              </v-chip>
+            </v-card-text>
+          </template>
           <v-divider></v-divider>
           <user-item :user="picture.user" @follow="follow"></user-item>
         </v-card>

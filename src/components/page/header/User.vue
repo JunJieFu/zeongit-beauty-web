@@ -41,6 +41,7 @@
     <sign-in-menu-card
       title="想要成为ZeonGit用户？"
       text="请先登录，才能查看自己的主页。"
+      v-else
     ></sign-in-menu-card>
   </v-menu>
 </template>

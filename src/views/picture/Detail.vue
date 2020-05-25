@@ -39,7 +39,7 @@
           </v-img>
           <v-card-text class="text-right">
             <comment-btn></comment-btn>
-            <collect-btn :picture="picture"></collect-btn>
+            <collect-btn :picture="picture" @collect="collect"></collect-btn>
             <share-btn></share-btn>
             <more-btn></more-btn>
           </v-card-text>
@@ -88,37 +88,33 @@
             </v-chip>
           </v-card-text>
           <v-divider></v-divider>
-          <v-card-text class="d-flex align-center">
-            <div>
-              <v-img
-                :src="$img.head(picture.user.avatarUrl)"
-                width="45"
-                :aspect-ratio="1"
-                class="circle"
-              ></v-img>
-            </div>
-            <div class="ellipsis flex-grow-1 mx-3">
-              {{ picture.user.nickname }}
-            </div>
-            <v-btn color="primary" depressed>
-              {{
-                picture.user.focus === $enum.FollowState.CONCERNED.key
-                  ? `已关注`
-                  : `关注`
-              }}</v-btn
-            >
-          </v-card-text>
+          <user-item :user="picture.user"></user-item>
         </v-card>
       </div>
       <corner-buttons>
-        <v-btn fab color="white" small v-show="$vuetify.breakpoint.xsOnly">
-          <v-icon
-            color="error"
-            v-if="picture.focus === $enum.CollectState.CONCERNED.key"
-            >mdi-star</v-icon
-          >
-          <v-icon v-else>mdi-star-outline</v-icon>
-        </v-btn>
+        <v-menu offset-y :disabled="!!info">
+          <template v-slot:activator="{ on: onMenu }">
+            <v-btn
+              fab
+              color="white"
+              small
+              v-show="$vuetify.breakpoint.xsOnly"
+              v-on="onMenu"
+              @click="collect"
+            >
+              <v-icon
+                color="error"
+                v-if="picture.focus === $enum.CollectState.CONCERNED.key"
+                >mdi-star</v-icon
+              >
+              <v-icon v-else>mdi-star-outline</v-icon>
+            </v-btn>
+          </template>
+          <sign-in-menu-card
+            title="喜欢这张绘画？"
+            text="请先登录，然后才能把这张绘画添加到收藏夹。"
+          ></sign-in-menu-card>
+        </v-menu>
       </corner-buttons>
     </div>
   </div>
@@ -129,24 +125,9 @@ import { pictureService } from "../../assets/script/service"
 import { throttle } from "../../assets/script/util/heighten"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 import { Pageable } from "../../assets/script/model"
+import { mapState } from "vuex"
 
 export default {
-  components: {
-    "corner-buttons": () => import("../../components/page/CornerButtons"),
-    "comment-btn": () => import("./components/CommentBtn"),
-    "collect-btn": () => import("./components/CollectBtn"),
-    "share-btn": () => import("./components/ShareBtn"),
-    "more-btn": () => import("./components/MoreBtn")
-  },
-  data() {
-    return {
-      id: null,
-      picture: null,
-      throttle: throttle(this.resize, 16),
-      height: 0,
-      infoWidth: DETAIL_INFO_WIDTH + "px"
-    }
-  },
   async beforeRouteEnter(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
     const id = to.params.id
@@ -164,6 +145,26 @@ export default {
     this.init()
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next()
+  },
+  components: {
+    "corner-buttons": () => import("../../components/page/CornerButtons"),
+    "user-item": () => import("./components/UserItem"),
+    "comment-btn": () => import("./components/CommentBtn"),
+    "collect-btn": () => import("./components/CollectBtn"),
+    "share-btn": () => import("./components/ShareBtn"),
+    "more-btn": () => import("./components/MoreBtn")
+  },
+  data() {
+    return {
+      id: null,
+      picture: null,
+      throttle: throttle(this.resize, 16),
+      height: 0,
+      infoWidth: DETAIL_INFO_WIDTH + "px"
+    }
+  },
+  computed: {
+    ...mapState("user", ["info"])
   },
   methods: {
     async get(id) {
@@ -186,7 +187,14 @@ export default {
         )
       )
     },
-    resize() {}
+    resize() {},
+    async collect() {
+      if (this.info) {
+        const result = await pictureService.collection(this.id)
+        this.$resultNotify(result)
+        this.picture.focus = result.data
+      }
+    }
   }
 }
 </script>

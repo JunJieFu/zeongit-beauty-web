@@ -1,15 +1,18 @@
 <template>
-  <div v-if="signInShow">登录</div>
+  <v-row class="ma-0 pt-12" justify="center" align="center" v-if="signInShow">
+    <v-col cols="12" sm="7" md="5" lg="4" xl="3">
+      <sign-in-page-card
+        icon="mdi-shoe-print"
+        title="追寻您查走过的足迹"
+        text="请先登录，才能查看到您走过的足迹。"
+      ></sign-in-page-card>
+    </v-col>
+  </v-row>
   <router-view v-else />
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      signInShow: true
-    }
-  },
   async beforeRouteEnter(to, from, next) {
     let signInShow = true
     if (window.app.$store.state.user.info || to.params.targetId) {
@@ -18,6 +21,14 @@ export default {
     next((vm) => {
       vm.signInShow = signInShow
     })
+  },
+  components: {
+    "sign-in-page-card": () => import("../../components/page/SignInPageCard")
+  },
+  data() {
+    return {
+      signInShow: true
+    }
   }
 }
 </script>

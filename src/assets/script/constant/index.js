@@ -3,7 +3,11 @@ import {
   mdiFileFindOutline,
   mdiAlphaNBoxOutline,
   mdiStarOutline,
-  mdiImageOutline
+  mdiImageOutline,
+  mdiShoePrint,
+  mdiAccountHeartOutline,
+  mdiAccountStarOutline,
+  mdiUpload
 } from "@mdi/js"
 
 export const MENU_LIST_CONSTANT = [
@@ -11,10 +15,10 @@ export const MENU_LIST_CONSTANT = [
   new MenuEnum("最新", "/new", mdiAlphaNBoxOutline),
   new MenuEnum("收藏", "/collection", mdiStarOutline),
   new MenuEnum("作品", "/works", mdiImageOutline),
-  new MenuEnum("足迹", "/footprint", mdiImageOutline),
-  new MenuEnum("粉丝", "/follower", mdiImageOutline),
-  new MenuEnum("关注", "/following", mdiImageOutline),
-  new MenuEnum("上传", "/upload", mdiImageOutline)
+  new MenuEnum("足迹", "/footprint", mdiShoePrint),
+  new MenuEnum("粉丝", "/follower", mdiAccountHeartOutline),
+  new MenuEnum("关注", "/following", mdiAccountStarOutline),
+  new MenuEnum("上传", "/upload", mdiUpload)
 ]
 
 export const NOOP = () => {}

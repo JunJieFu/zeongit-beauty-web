@@ -3,7 +3,7 @@
     <div
       class="customize-buttons"
       :style="{
-        bottom: bottom + 'px'
+        transform: `translateY(${-bottom}px)`
       }"
     >
       <slot></slot>

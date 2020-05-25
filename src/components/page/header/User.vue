@@ -1,0 +1,92 @@
+<template>
+  <v-menu offset-y>
+    <template v-slot:activator="{ on: menu }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on: tooltip }">
+          <v-btn fab depressed icon v-on="Object.assign(menu, tooltip)">
+            <div>
+              <v-img
+                :src="$img.head(info ? info.avatarUrl : undefined)"
+                width="40"
+                class="circle"
+              />
+            </div>
+          </v-btn>
+        </template>
+        <span>个人中心</span>
+      </v-tooltip>
+    </template>
+    <v-list class="py-0 user-menu" v-if="info">
+      <v-list-item class="px-0">
+        <v-img
+          :src="$img.back(info.background, 'backCard')"
+          style="width: 100%"
+          :aspect-ratio="2"
+        />
+      </v-list-item>
+      <v-list-item class="head-img-item justify-center">
+        <div>
+          <v-img :src="$img.head(info.avatarUrl)" class="head-img circle" />
+        </div>
+      </v-list-item>
+      <v-list-item class="justify-center flex-column">
+        <p class="font-weight-black nickname my-2">{{ info.nickname }}</p>
+        <p class="introduction  mb-0">{{ info.introduction }}</p>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list-item class="justify-center py-5">
+        <v-btn outlined color="primary" @click="signOut">退出登录</v-btn>
+      </v-list-item>
+    </v-list>
+    <sign-in-menu-card
+      title="想要成为ZeonGit用户？"
+      text="请先登录，才能查看自己的主页。"
+    ></sign-in-menu-card>
+  </v-menu>
+</template>
+
+<script>
+import { mapState } from "vuex"
+import jsCookie from "js-cookie"
+export default {
+  computed: {
+    ...mapState("user", ["info"])
+  },
+  methods: {
+    async signOut() {
+      await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
+      jsCookie.remove("token")
+      this.$router.replace(
+        `/signIn?continue=${encodeURI(this.$route.fullPath)}`
+      )
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+@import "src/assets/style/color";
+.user-menu {
+  max-width: 100%;
+  $size: 380px;
+  width: $size;
+  .head-img-item {
+    $head-size: 100px;
+    .head-img {
+      height: $head-size;
+      width: $head-size;
+      margin: (-$head-size/2) auto 0 auto;
+      border: 3px solid #fff;
+    }
+  }
+  .nickname {
+    color: $font-color-dark;
+    font: 500 16px/22px Google Sans, Roboto, RobotoDraft, Helvetica, Arial,
+      sans-serif;
+  }
+  .introduction {
+    color: $font-color-dark-fade;
+    font: 400 14px/19px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  }
+}
+</style>

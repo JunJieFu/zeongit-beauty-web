@@ -37,6 +37,9 @@ export const pictureService = {
   },
   saveFootprint(pictureId) {
     return httpUtil.post("/footprint/save", { pictureId })
+  },
+  collection(pictureId) {
+    return httpUtil.post("/collection/focus", { pictureId })
   }
 }
 

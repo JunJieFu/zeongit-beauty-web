@@ -7,15 +7,21 @@ import "./assets/style/index.scss"
 import "./assets/style/variables.scss"
 import _enum from "./assets/script/constant/enum"
 import config from "./assets/script/constant/config"
+import * as constant from "./assets/script/constant"
 import filters from "./assets/script/filter"
 import Img from "./assets/script/util/imgUrl"
 import { Notification, Confirm, Prompt } from "./components/global"
+
+Vue.component("sign-in-menu-card", () =>
+  import("./components/page/SignInMenuCard")
+)
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
 Vue.prototype.$img = Img
 Vue.prototype.$enum = _enum
+Vue.prototype.$constant = constant
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
 Vue.prototype.$notify = Notification

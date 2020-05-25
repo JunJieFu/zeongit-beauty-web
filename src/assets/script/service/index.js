@@ -20,6 +20,11 @@ export const pictureService = {
   get(id) {
     return httpUtil.get("/picture/get", { id })
   },
+  pagingRecommendById(pageable, id) {
+    let _ = Object.assign({ id }, pageable)
+    _.page--
+    return httpUtil.get("/picture/pagingRecommendById", _)
+  },
   pagingCollection(pageable, targetId) {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
@@ -29,6 +34,9 @@ export const pictureService = {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/footprint/paging", _)
+  },
+  saveFootprint(pictureId) {
+    return httpUtil.post("/footprint/save", { pictureId })
   }
 }
 

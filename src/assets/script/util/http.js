@@ -37,7 +37,7 @@ export default {
    * @param type
    * @returns {Promise<>}
    */
-  async post(url, body, type = "form-data") {
+  async post(url, body, type = "json") {
     let result = null
     try {
       const response = await axios.post(

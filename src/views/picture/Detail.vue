@@ -98,7 +98,6 @@
           <template v-slot:activator="{ on: onMenu }">
             <v-btn
               fab
-              color="white"
               small
               v-show="$vuetify.breakpoint.xsOnly"
               v-on="onMenu"

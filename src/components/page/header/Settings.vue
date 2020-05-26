@@ -84,6 +84,9 @@ export default {
   watch: {
     modeDialogShow(newVal) {
       if (newVal) this.menuShow = false
+    },
+    darkDialogShow(newVal) {
+      if (newVal) this.menuShow = false
     }
   },
   computed: {

@@ -92,6 +92,18 @@ export default {
   data() {
     return { keyword: "", searchShow: false }
   },
+  watch: {
+    $route: {
+      handler(nweValue) {
+        if (nweValue.fullPath.indexOf("/search") !== -1) {
+          this.keyword = nweValue.params.keyword
+        } else {
+          this.keyword = ""
+        }
+      },
+      immediate: true
+    }
+  },
   computed: {
     collapse: {
       get() {
@@ -106,7 +118,7 @@ export default {
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     search() {
-      this.$router.push(`/search/${this.keyword}`)
+      this.$router.push(`/search/${encodeURI(this.keyword)}`)
     }
   }
 }

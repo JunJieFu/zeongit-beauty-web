@@ -27,22 +27,38 @@ export const pictureService = {
     let _ = Object.assign({ id }, pageable)
     _.page--
     return httpUtil.get("/picture/pagingRecommendById", _)
-  },
-  pagingCollection(pageable, targetId) {
+  }
+}
+
+export const collectionService = {
+  paging(pageable, targetId) {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/collection/paging", _)
   },
-  pagingFootprint(pageable, targetId) {
+  focus(pictureId) {
+    return httpUtil.post("/collection/focus", { pictureId })
+  },
+  pagingUser(pageable, pictureId) {
+    let _ = Object.assign({ pictureId }, pageable)
+    _.page--
+    return httpUtil.get("/collection/pagingUser", _)
+  }
+}
+
+export const footprintService = {
+  paging(pageable, targetId) {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/footprint/paging", _)
   },
-  saveFootprint(pictureId) {
+  save(pictureId) {
     return httpUtil.post("/footprint/save", { pictureId })
   },
-  collection(pictureId) {
-    return httpUtil.post("/collection/focus", { pictureId })
+  pagingUser(pageable, pictureId) {
+    let _ = Object.assign({ pictureId }, pageable)
+    _.page--
+    return httpUtil.get("/footprint/pagingUser", _)
   }
 }
 

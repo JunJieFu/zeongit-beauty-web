@@ -1,6 +1,6 @@
 export default [
   {
-    path: "picture/:id",
+    path: "/picture/:id",
     component: () => import("../Detail")
   }
 ]

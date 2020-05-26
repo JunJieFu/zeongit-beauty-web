@@ -11,7 +11,6 @@
     <v-slide-y-reverse-transition>
       <v-btn
         fab
-        color="white"
         :small="$vuetify.breakpoint.xsOnly"
         @click="$vuetify.goTo(`#app`)"
         v-scroll="onScroll"

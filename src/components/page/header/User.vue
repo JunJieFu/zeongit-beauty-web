@@ -30,8 +30,10 @@
         </div>
       </v-list-item>
       <v-list-item class="justify-center flex-column">
-        <p class="font-weight-black nickname my-2">{{ info.nickname }}</p>
-        <p class="introduction  mb-0">{{ info.introduction }}</p>
+        <p class="font-weight-black text--primary title my-2">
+          {{ info.nickname }}
+        </p>
+        <p class="text--secondary mb-0">{{ info.introduction }}</p>
       </v-list-item>
       <v-divider></v-divider>
       <v-list-item class="justify-center py-5">
@@ -77,17 +79,7 @@ export default {
       height: $head-size;
       width: $head-size;
       margin: (-$head-size/2) auto 0 auto;
-      border: 3px solid #fff;
     }
-  }
-  .nickname {
-    color: $font-color-dark;
-    font: 500 16px/22px Google Sans, Roboto, RobotoDraft, Helvetica, Arial,
-      sans-serif;
-  }
-  .introduction {
-    color: $font-color-dark-fade;
-    font: 400 14px/19px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   }
 }
 </style>

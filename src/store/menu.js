@@ -12,7 +12,8 @@ export default {
     mode: storageUtil.localGet(
       "beauty::menu::mode",
       _enum.ListMode.WATERFALL.key
-    )
+    ),
+    dark: storageUtil.localGet("beauty::menu::dark", false)
   },
   mutations: {
     MUpdateCollapse(state, collapse) {
@@ -25,6 +26,11 @@ export default {
     MUpdateMode(state, mode) {
       storageUtil.localSet("beauty::menu::mode", mode)
       state.mode = mode
+    },
+    MUpdateDark(state, dark) {
+      storageUtil.localSet("beauty::menu::dark", dark)
+      window.app.$vuetify.theme.isDark = dark
+      state.dark = dark
     }
   },
   actions: {}

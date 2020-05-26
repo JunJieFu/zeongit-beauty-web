@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app clipped-left light color="white" elevate-on-scroll>
+  <v-app-bar app clipped-left elevate-on-scroll>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
@@ -22,7 +22,6 @@
     <v-text-field
       class="mr-4"
       v-show="$vuetify.breakpoint.mdAndUp || searchShow"
-      light
       solo
       hide-details
       clearable

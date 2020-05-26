@@ -88,9 +88,6 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/style/color.scss";
 .related {
-  color: $font-color-dark-fade;
-  &:hover {
-    color: $blue;
-  }
+  color: currentColor;
 }
 </style>

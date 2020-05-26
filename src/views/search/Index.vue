@@ -23,6 +23,9 @@ export default {
     await this.paging(this.$route.params.page, this.$route.params.keyword)
     window.app.$store?.commit("menu/MUpdateProgress", false)
   },
+  deactivated() {
+    console.log(this.$route.fullPath)
+  },
   data() {
     return {
       loading: false,

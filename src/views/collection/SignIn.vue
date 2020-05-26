@@ -12,23 +12,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
+  computed: {
+    ...mapState("user", ["info"]),
+    signInShow() {
+      return !(this.info || this.targetId)
+    }
+  },
   components: {
     "sign-in-page-card": () => import("../../components/page/SignInPageCard")
   },
   data() {
     return {
-      signInShow: true
+      targetId: this.$route.params.targetId
     }
-  },
-  async beforeRouteEnter(to, from, next) {
-    let signInShow = true
-    if (window.app.$store.state.user.info || to.params.targetId) {
-      signInShow = false
-    }
-    next((vm) => {
-      vm.signInShow = signInShow
-    })
   }
 }
 </script>

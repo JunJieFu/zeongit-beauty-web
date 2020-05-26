@@ -20,22 +20,12 @@ import { mapState } from "vuex"
 export default {
   async created() {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    const targetId =
+    await this.paging(
+      this.$route.params.page,
       this.$route.params.targetId || window.app.$store.state.user.info?.id
-    if (targetId) {
-      await this.paging(this.$route.params.page, targetId)
-    }
+    )
     window.app.$store?.commit("menu/MUpdateProgress", false)
   },
-  // async beforeRouteUpdate(to, from, next) {
-  //   window.app.$store?.commit("menu/MUpdateProgress", true)
-  //   const targetId = to.params.targetId || window.app.$store.state.user.info?.id
-  //   if (targetId) {
-  //     await this.paging(to.params.page, targetId)
-  //   }
-  //   window.app.$store?.commit("menu/MUpdateProgress", false)
-  //   next()
-  // },
   data() {
     return {
       loading: false,
@@ -55,22 +45,6 @@ export default {
       import("../../components/page/ListContainerNormal"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
-  // async beforeRouteEnter(to, from, next) {
-  //   window.app.$store?.commit("menu/MUpdateProgress", true)
-  //   const pageable = new Pageable(to.params.page, 16, "createDate,desc")
-  //   const targetId = to.params.targetId || window.app.$store.state.user.info?.id
-  //   if (!targetId) {
-  //     window.app.$store?.commit("menu/MUpdateProgress", false)
-  //     return next()
-  //   }
-  //   const result = await collectionService.paging(pageable, targetId)
-  //   window.app.$store?.commit("menu/MUpdateProgress", false)
-  //   next((vm) => {
-  //     vm.pageable = pageable
-  //     vm.targetId = targetId
-  //     vm.structure(result.data, vm.pageable)
-  //   })
-  // },
   methods: {
     changePage(page) {
       if (this.pageable.page === page) {
@@ -84,6 +58,7 @@ export default {
     },
     async paging(pageIndex, targetId = this.targetId) {
       if (
+        !targetId ||
         this.loading ||
         (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {

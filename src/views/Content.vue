@@ -13,7 +13,7 @@
       <v-divider></v-divider>
       <v-container fluid class="pa-0">
         <keep-alive>
-          <router-view :key="encodeURI($route.fullPath)" />
+          <router-view :key="decodeURI($route.fullPath)" />
         </keep-alive>
       </v-container>
     </v-content>

@@ -6,6 +6,7 @@
       :list="page2d.map((it) => it.content).flat()"
       :page="currPage"
       :pageable="pageable"
+      :loading="loading"
       @change="changePage"
     ></component>
     <corner-buttons></corner-buttons>
@@ -18,6 +19,11 @@ import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 
 export default {
+  async created() {
+    window.app.$store?.commit("menu/MUpdateProgress", true)
+    await this.paging(this.$route.params.page)
+    window.app.$store?.commit("menu/MUpdateProgress", false)
+  },
   data() {
     return {
       loading: false,
@@ -36,22 +42,7 @@ export default {
       import("../../components/page/ListContainerNormal"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
-  async beforeRouteEnter(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    const pageable = new Pageable(to.params.page, 16)
-    const result = await pictureService.pagingByRecommend(pageable)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next((vm) => {
-      vm.pageable = pageable
-      vm.structure(result.data, vm.pageable)
-    })
-  },
-  async beforeRouteUpdate(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.paging(to.params.page)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next()
-  },
+
   methods: {
     changePage(page) {
       if (this.pageable.page === page) {
@@ -66,7 +57,7 @@ export default {
     async paging(pageIndex) {
       if (
         this.loading ||
-        (this.currPage.last && this.currPage.number <= pageIndex - 1)
+        (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
@@ -78,17 +69,12 @@ export default {
         const result = await pictureService.pagingByRecommend(this.pageable)
         this.loading = false
         await this.$resultNotify(result)
-        this.structure(result.data, this.pageable)
+        const page = result.data
+        this.currPage = result.data
+        this.page2d.length = this.pageable.page
+        //由于是数组必须用set
+        this.$set(this.page2d, page.number, page)
       }
-    },
-    structure(page, pageable) {
-      this.currPage = page
-      this.page2d.length = Math.min.apply(null, [
-        pageable.page,
-        this.page2d.length
-      ])
-      //由于是数组必须用set
-      this.$set(this.page2d, page.number, page)
     }
   }
 }

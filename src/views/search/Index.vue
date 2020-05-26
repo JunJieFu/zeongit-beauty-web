@@ -18,6 +18,11 @@ import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 
 export default {
+  async created() {
+    window.app.$store?.commit("menu/MUpdateProgress", true)
+    await this.paging(this.$route.params.page, this.$route.params.keyword)
+    window.app.$store?.commit("menu/MUpdateProgress", false)
+  },
   data() {
     return {
       loading: false,
@@ -37,24 +42,6 @@ export default {
       import("../../components/page/ListContainerNormal"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
-  async beforeRouteEnter(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    const pageable = new Pageable(to.params.page, 16)
-    const keyword = to.params.keyword
-    const result = await pictureService.paging(pageable, keyword)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next((vm) => {
-      vm.pageable = pageable
-      vm.keyword = keyword
-      vm.structure(result.data, vm.pageable)
-    })
-  },
-  async beforeRouteUpdate(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.paging(to.params.page, to.params.keyword)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next()
-  },
   methods: {
     changePage(page) {
       if (this.pageable.page === page) {
@@ -69,7 +56,7 @@ export default {
     async paging(pageIndex, keyword = this.keyword) {
       if (
         this.loading ||
-        (this.currPage.last && this.currPage.number <= pageIndex - 1)
+        (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }

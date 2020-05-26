@@ -15,11 +15,7 @@
       >
         <v-hover>
           <template v-slot="{ hover }">
-            <v-card
-              :elevation="hover ? 5 : 1"
-              target="_blank"
-              :href="`/#/picture/${item.id}`"
-            >
+            <v-card :elevation="hover ? 5 : 1" :href="`/#/picture/${item.id}`">
               <v-card-text class="pa-0">
                 <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
               </v-card-text>
@@ -107,7 +103,7 @@
         </v-hover>
       </div>
     </div>
-    <div class="empty-container" v-if="!list.length">
+    <div class="empty-container" v-if="!list.length && !loading">
       <slot>
         <h2 class="title text-center">您的图片将会显示在此处</h2>
       </slot>
@@ -118,8 +114,11 @@
 <script>
 import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
 import { throttle } from "../../assets/script/util/heighten"
+import aliveMixin from "../../assets/script/mixin/alive"
+import { mapState } from "vuex"
 
 export default {
+  mixins: [aliveMixin],
   name: "ListContainer",
   props: {
     pageable: {
@@ -137,6 +136,10 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -159,14 +162,11 @@ export default {
     }
   },
   computed: {
-    collapse: {
-      get() {
-        return this.$store.state.menu.collapse
-      }
-    }
+    ...mapState("menu", ["collapse"])
   },
   methods: {
     resize() {
+      if (!this.alive) return
       let elWidth = this.$refs.page.clientWidth
       let elHeight = this.$refs.page.clientHeight
       let sourceColAmount = Math.floor(elWidth / LIST_ITEM_WIDTH)
@@ -203,11 +203,13 @@ export default {
       this.itemStyleList = styleList
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
-      if (window.innerHeight >= elHeight && this.page) {
+      if (elHeight && window.innerHeight >= elHeight && this.page) {
         this.$emit("change", this.page?.number + 2)
       }
     },
+    // eslint-disable-next-line no-unused-vars
     onScroll({ target }) {
+      if (!this.alive) return
       const { documentElement } = target
       const scrollTop = documentElement.scrollTop
       const scrollBottom =

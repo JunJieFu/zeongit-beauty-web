@@ -123,30 +123,23 @@
 </template>
 
 <script>
-import { pictureService, userService } from "../../assets/script/service"
+import {
+  collectionService,
+  footprintService,
+  pictureService,
+  userService
+} from "../../assets/script/service"
 import { throttle } from "../../assets/script/util/heighten"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
-import { Pageable } from "../../assets/script/model"
+// import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
-
+import aliveMixin from "../../assets/script/mixin/alive"
 export default {
-  async beforeRouteEnter(to, from, next) {
+  mixins: [aliveMixin],
+  created() {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    const id = to.params.id
-    const result = await pictureService.get(id)
+    this.get(this.$route.params.id)
     window.app.$store?.commit("menu/MUpdateProgress", false)
-    next((vm) => {
-      vm.id = id
-      vm.picture = result.data
-      vm.init()
-    })
-  },
-  async beforeRouteUpdate(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.get(to.params.keyword)
-    this.init()
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next()
   },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
@@ -170,29 +163,29 @@ export default {
   },
   methods: {
     async get(id) {
+      window.scrollTo(0, 0)
+      if (this.id === id) return
       this.id = id
       const result = await pictureService.get(id)
       this.picture = result.data
-    },
-    init() {
       this.saveFootprint()
       this.pagingRecommendById()
     },
     saveFootprint() {
-      pictureService.saveFootprint(this.id)
+      footprintService.save(this.id)
     },
     async pagingRecommendById() {
-      console.log(
-        await pictureService.pagingRecommendById(
-          new Pageable(1, 20, "createDate,desc"),
-          this.id
-        )
-      )
+      // console.log(
+      //   await pictureService.pagingRecommendById(
+      //     new Pageable(1, 20, "createDate,desc"),
+      //     this.id
+      //   )
+      // )
     },
     resize() {},
     async collect() {
       if (this.info) {
-        const result = await pictureService.collection(this.id)
+        const result = await collectionService.focus(this.id)
         this.$resultNotify(result)
         this.picture.focus = result.data
       }

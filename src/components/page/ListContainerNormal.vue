@@ -19,7 +19,6 @@
               <v-card
                 :elevation="hover ? 5 : 1"
                 class="d-flex align-center fill-height"
-                target="_blank"
                 :href="`/#/picture/${item.id}`"
               >
                 <v-card-text class="pa-0">
@@ -38,7 +37,7 @@
         class="mt-4"
       ></v-pagination>
     </template>
-    <div class="empty-container" v-else>
+    <div class="empty-container" v-else-if="!loading">
       <slot>
         <h2 class="title text-center">您的图片将会显示在此处</h2>
       </slot>
@@ -49,6 +48,7 @@
 <script>
 import { throttle } from "../../assets/script/util/heighten"
 import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
+import { mapState } from "vuex"
 
 export default {
   name: "ListContainer",
@@ -68,6 +68,10 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
   watch: {
@@ -80,6 +84,9 @@ export default {
       style: null,
       throttle: throttle(this.resize, 16)
     }
+  },
+  computed: {
+    ...mapState("menu", ["collapse"])
   },
   methods: {
     resize() {

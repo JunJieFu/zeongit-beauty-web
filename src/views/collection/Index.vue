@@ -13,11 +13,29 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { collectionService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 
 export default {
+  async created() {
+    window.app.$store?.commit("menu/MUpdateProgress", true)
+    const targetId =
+      this.$route.params.targetId || window.app.$store.state.user.info?.id
+    if (targetId) {
+      await this.paging(this.$route.params.page, targetId)
+    }
+    window.app.$store?.commit("menu/MUpdateProgress", false)
+  },
+  // async beforeRouteUpdate(to, from, next) {
+  //   window.app.$store?.commit("menu/MUpdateProgress", true)
+  //   const targetId = to.params.targetId || window.app.$store.state.user.info?.id
+  //   if (targetId) {
+  //     await this.paging(to.params.page, targetId)
+  //   }
+  //   window.app.$store?.commit("menu/MUpdateProgress", false)
+  //   next()
+  // },
   data() {
     return {
       loading: false,
@@ -37,33 +55,22 @@ export default {
       import("../../components/page/ListContainerNormal"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
-  async beforeRouteEnter(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    const pageable = new Pageable(to.params.page, 16, "createDate,desc")
-    const targetId = to.params.targetId || window.app.$store.state.user.info?.id
-    if (!targetId) {
-      window.app.$store?.commit("menu/MUpdateProgress", false)
-      return next()
-    }
-    const result = await pictureService.pagingCollection(pageable, targetId)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next((vm) => {
-      vm.pageable = pageable
-      vm.targetId = targetId
-      vm.structure(result.data, vm.pageable)
-    })
-  },
-  async beforeRouteUpdate(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    const targetId = to.params.targetId || window.app.$store.state.user.info?.id
-    if (!targetId) {
-      window.app.$store?.commit("menu/MUpdateProgress", false)
-      return next()
-    }
-    this.paging(to.params.page, targetId)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next()
-  },
+  // async beforeRouteEnter(to, from, next) {
+  //   window.app.$store?.commit("menu/MUpdateProgress", true)
+  //   const pageable = new Pageable(to.params.page, 16, "createDate,desc")
+  //   const targetId = to.params.targetId || window.app.$store.state.user.info?.id
+  //   if (!targetId) {
+  //     window.app.$store?.commit("menu/MUpdateProgress", false)
+  //     return next()
+  //   }
+  //   const result = await collectionService.paging(pageable, targetId)
+  //   window.app.$store?.commit("menu/MUpdateProgress", false)
+  //   next((vm) => {
+  //     vm.pageable = pageable
+  //     vm.targetId = targetId
+  //     vm.structure(result.data, vm.pageable)
+  //   })
+  // },
   methods: {
     changePage(page) {
       if (this.pageable.page === page) {
@@ -78,7 +85,7 @@ export default {
     async paging(pageIndex, targetId = this.targetId) {
       if (
         this.loading ||
-        (this.currPage.last && this.currPage.number <= pageIndex - 1)
+        (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
@@ -93,10 +100,7 @@ export default {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.pagingCollection(
-          this.pageable,
-          targetId
-        )
+        const result = await collectionService.paging(this.pageable, targetId)
         this.loading = false
         await this.$resultNotify(result)
         if (targetId !== this.targetId) {

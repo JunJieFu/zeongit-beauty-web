@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { footprintService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 
@@ -45,7 +45,7 @@ export default {
       window.app.$store?.commit("menu/MUpdateProgress", false)
       return next()
     }
-    const result = await pictureService.pagingFootprint(pageable, targetId)
+    const result = await footprintService.paging(pageable, targetId)
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
       vm.pageable = pageable
@@ -72,7 +72,7 @@ export default {
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
         this.paging(page, this.targetId)
       } else {
-        this.$router.push(`/works/${encodeURI(this.targetId)}/${page}`)
+        this.$router.push(`/footprint/${encodeURI(this.targetId)}/${page}`)
       }
     },
     async paging(pageIndex, targetId = this.targetId) {
@@ -93,10 +93,7 @@ export default {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.pagingFootprint(
-          this.pageable,
-          targetId
-        )
+        const result = await footprintService.paging(this.pageable, targetId)
         this.loading = false
         await this.$resultNotify(result)
         if (targetId !== this.targetId) {

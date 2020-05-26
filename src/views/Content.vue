@@ -12,7 +12,9 @@
     <v-content>
       <v-divider></v-divider>
       <v-container fluid class="pa-0">
-        <router-view />
+        <keep-alive>
+          <router-view :key="encodeURI($route.fullPath)" />
+        </keep-alive>
       </v-container>
     </v-content>
     <Menu></Menu>

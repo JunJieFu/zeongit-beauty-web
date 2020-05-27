@@ -4,6 +4,9 @@ export const userService = {
   getInfo() {
     return httpUtil.get("/userInfo/get", {})
   },
+  getByTargetId(targetId) {
+    return httpUtil.get("/userInfo/get", { targetId })
+  },
   follow(followingId) {
     return httpUtil.post("/following/focus", { followingId })
   }

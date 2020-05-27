@@ -20,7 +20,6 @@
       ZeonGit Beauty
     </router-link>
     <v-text-field
-      class="mr-4"
       v-show="$vuetify.breakpoint.mdAndUp || searchShow"
       solo
       hide-details
@@ -38,7 +37,7 @@
           depressed
           icon
           :small="$vuetify.breakpoint.xsOnly"
-          class="mr-2"
+          class="ml-4"
           v-on="on"
           v-show="$vuetify.breakpoint.smAndDown"
           @click="searchShow = !searchShow"
@@ -54,7 +53,7 @@
           depressed
           icon
           :small="$vuetify.breakpoint.xsOnly"
-          class="mr-2"
+          class="ml-2"
           v-on="on"
         >
           <v-icon>mdi-bell-outline</v-icon>
@@ -68,8 +67,8 @@
           depressed
           icon
           :small="$vuetify.breakpoint.xsOnly"
-          class="mr-2"
           v-on="on"
+          class="ml-2"
         >
           <v-icon>mdi-apps</v-icon>
         </v-btn>

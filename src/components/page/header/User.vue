@@ -3,7 +3,13 @@
     <template v-slot:activator="{ on: menu }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on: tooltip }">
-          <v-btn fab depressed icon v-on="Object.assign(menu, tooltip)">
+          <v-btn
+            fab
+            depressed
+            icon
+            v-on="Object.assign(menu, tooltip)"
+            class="ml-2"
+          >
             <div>
               <v-img
                 :src="$img.head(info ? info.avatarUrl : undefined)"

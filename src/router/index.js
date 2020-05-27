@@ -7,6 +7,7 @@ import collection from "../views/collection/script/router"
 import works from "../views/works/script/router"
 import footprint from "../views/footprint/script/router"
 import picture from "../views/picture/script/router"
+import user from "../views/user/script/router"
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,7 +22,8 @@ const routes = [
       ...collection,
       ...works,
       ...footprint,
-      ...picture
+      ...picture,
+      ...user
     ]
   }
 ]

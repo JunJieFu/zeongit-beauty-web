@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="collapse" app clipped>
     <v-divider v-show="$vuetify.breakpoint.lgAndUp"></v-divider>
-    <v-list :dense="$vuetify.breakpoint.smAndDown">
+    <v-list :dense="$vuetify.breakpoint.smAndDown" class="pt-0">
       <v-list-item-group>
         <v-list-item
           color="primary"
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex"
+import { mapMutations, mapState } from "vuex"
 import { MENU_LIST_CONSTANT } from "../../assets/script/constant"
 import { tagService } from "../../assets/script/service"
 
@@ -62,6 +62,7 @@ export default {
     }
   },
   computed: {
+    ...mapState("user", ["info"]),
     collapse: {
       get() {
         return this.$store.state.menu.collapse

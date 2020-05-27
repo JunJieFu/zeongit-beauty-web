@@ -63,8 +63,10 @@
 <script>
 import { mapState } from "vuex"
 import { pictureService } from "../../assets/script/service"
+import aliveMixin from "../../assets/script/mixin/alive"
 
 export default {
+  mixins: [aliveMixin],
   data() {
     return {
       id: this.$route.params.id,
@@ -78,11 +80,20 @@ export default {
   async created() {
     window.scrollTo(0, 0)
     const keepAliveKeys = Object.keys(this.pageAlive)
-    const reg = new RegExp(
-      `^\\/picture\\/${this.$route.params.id}(?:\\/(?=$))?$`,
-      "i"
-    )
-    const key = keepAliveKeys.find((it) => reg.test(it))
+    const regs = [
+      new RegExp(`^\\/picture\\/${this.$route.params.id}(?:\\/(?=$))?$`, "i"),
+      new RegExp(
+        `^\\/picture\\/${this.$route.params.id}\\/footprint(?:\\/(?=$))?$`,
+        "i"
+      ),
+      new RegExp(
+        `^\\/picture\\/${this.$route.params.id}\\/collection(?:\\/(?=$))?$`,
+        "i"
+      )
+    ]
+    const key = keepAliveKeys.find((it) => {
+      return !!regs.filter((reg) => reg.test(it))
+    })
     this.picture = this.pageAlive[key]?.picture
       ? Object.assign({}, this.pageAlive[key]?.picture)
       : null

@@ -1,8 +1,7 @@
 <template>
   <div>
     <div
-      class="mx-auto d-flex"
-      style="max-width: 1120px;"
+      class="page mx-auto d-flex"
       :class="{
         'pa-4': !$vuetify.breakpoint.xsOnly,
         'flex-column': $vuetify.breakpoint.xsOnly
@@ -202,4 +201,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+$page-size: 1120px;
+.page {
+  max-width: $page-size;
+}
+</style>

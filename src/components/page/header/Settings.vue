@@ -7,7 +7,7 @@
             depressed
             icon
             :small="$vuetify.breakpoint.xsOnly"
-            class="mr-2"
+            class="ml-2"
             v-on="Object.assign(menu, tooltip)"
           >
             <v-icon>mdi-cog-outline</v-icon>

@@ -5,7 +5,7 @@ export default [
   },
   {
     path: "/picture/:id/:type",
-    component: () => import("../Info"),
+    component: () => import("../Type"),
     children: [
       {
         path: "/picture/:id/footprint/:page?",

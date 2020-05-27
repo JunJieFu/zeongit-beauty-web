@@ -35,7 +35,7 @@
 
 <script>
 import { mapState } from "vuex"
-import { footprintService } from "../../assets/script/service"
+import { collectionService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 
 export default {
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async paging() {
-      const result = await footprintService.pagingUser(
+      const result = await collectionService.pagingUser(
         new Pageable(1, 20, "createDate,desc"),
         this.id
       )

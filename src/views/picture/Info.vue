@@ -12,13 +12,15 @@
     >
       <v-row class="ma-0">
         <v-col :cols="6" :sm="6" :md="4" :lg="4" class="pa-0">
-          <v-img
-            :src="$img.secdra(picture.url, `specifiedWidth`)"
-            :contain="!$vuetify.breakpoint.xsOnly"
-            :aspect-ratio="
-              $vuetify.breakpoint.xsOnly ? picture.width / picture.height : 1
-            "
-          ></v-img>
+          <router-link :to="`/picture/${id}`" class="d-block">
+            <v-img
+              :src="$img.secdra(picture.url, `specifiedWidth`)"
+              :contain="!$vuetify.breakpoint.xsOnly"
+              :aspect-ratio="
+                $vuetify.breakpoint.xsOnly ? picture.width / picture.height : 1
+              "
+            ></v-img>
+          </router-link>
         </v-col>
         <v-col
           :cols="6"

@@ -16,7 +16,12 @@
           </span>
           <v-menu offset-y :disabled="!!info">
             <template v-slot:activator="{ on: onMenu }">
-              <v-btn color="primary" depressed v-on="onMenu">
+              <v-btn
+                color="primary"
+                depressed
+                v-on="onMenu"
+                @click="$router.push(`/picture/${id}/footprint/1`)"
+              >
                 {{
                   viewer.focus === $enum.FollowState.CONCERNED.key
                     ? `已关注`

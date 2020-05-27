@@ -2,8 +2,6 @@
   <div>
     <div
       class="mx-auto d-flex"
-      v-resize="throttle"
-      ref="page"
       style="max-width: 1120px;"
       :class="{
         'pa-4': !$vuetify.breakpoint.xsOnly,
@@ -60,14 +58,18 @@
             {{ picture.name }}
           </v-card-title>
           <v-card-subtitle>
-            <p class="ma-0">创建于：{{ picture.createDate }}</p>
+            <p class="ma-0">创建于：{{ picture.createDate | ago }}</p>
             <p class="ma-0">
               <span>
-                <router-link to="/">{{ picture.viewAmount }}</router-link>
+                <router-link :to="`/picture/${picture.id}/footprint`">{{
+                  picture.viewAmount
+                }}</router-link>
                 人阅读
               </span>
               <span class="ml-4">
-                <router-link to="/">{{ picture.likeAmount }}</router-link>
+                <router-link :to="`/picture/${picture.id}/collection`">{{
+                  picture.likeAmount
+                }}</router-link>
                 人喜欢
               </span>
             </p>
@@ -128,17 +130,21 @@ import {
   pictureService,
   userService
 } from "../../assets/script/service"
-import { throttle } from "../../assets/script/util/heighten"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 // import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 import aliveMixin from "../../assets/script/mixin/alive"
+
 export default {
   mixins: [aliveMixin],
   created() {
+    window.scrollTo(0, 0)
     window.app.$store?.commit("menu/MUpdateProgress", true)
     this.get(this.$route.params.id)
     window.app.$store?.commit("menu/MUpdateProgress", false)
+  },
+  deactivated() {
+    window.nextVue = this
   },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
@@ -152,7 +158,6 @@ export default {
     return {
       id: null,
       picture: null,
-      throttle: throttle(this.resize, 16),
       height: 0,
       infoWidth: DETAIL_INFO_WIDTH + "px"
     }
@@ -162,8 +167,6 @@ export default {
   },
   methods: {
     async get(id) {
-      window.scrollTo(0, 0)
-      if (this.id === id) return
       this.id = id
       const result = await pictureService.get(id)
       this.picture = result.data
@@ -181,7 +184,6 @@ export default {
       //   )
       // )
     },
-    resize() {},
     async collect() {
       if (this.info) {
         const result = await collectionService.focus(this.id)

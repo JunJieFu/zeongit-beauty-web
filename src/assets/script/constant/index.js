@@ -33,3 +33,5 @@ export const CONTAINER_PADDING = 12
 export const DEFAULT_BTN_HEIGHT = 56
 export const SMALL_BTN_HEIGHT = 40
 export const CORNER_BUTTONS_GAP = 12
+
+export const MAX_KEEP_ALIVE_PAGE = 15

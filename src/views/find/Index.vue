@@ -17,8 +17,10 @@
 import { pictureService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
+import aliveMixin from "../../assets/script/mixin/alive"
 
 export default {
+  mixins: [aliveMixin],
   async created() {
     window.app.$store?.commit("menu/MUpdateProgress", true)
     await this.paging(this.$route.params.page)

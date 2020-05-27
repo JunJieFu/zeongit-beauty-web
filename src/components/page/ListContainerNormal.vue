@@ -108,7 +108,8 @@ export default {
       this.style = {
         gridTemplateColumns: `repeat(${colAmount},${defaultWidth -
           defaultGap}px)`,
-        gridGap: defaultGap + "px"
+        gridGap: defaultGap + "px",
+        padding: defaultGap / 2 + "px" + " " + 0
       }
     },
     change(e) {

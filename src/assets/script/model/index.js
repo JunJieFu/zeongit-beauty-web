@@ -26,6 +26,14 @@ export class Pageable {
   }
 }
 
+export class SignInTipDetail {
+  constructor(icon, title, text) {
+    this.icon = icon
+    this.title = title
+    this.text = text
+  }
+}
+
 export class OptionEnum {
   /**
    * 下拉枚举

@@ -68,5 +68,8 @@ export const footprintService = {
 export const tagService = {
   listTagTop30() {
     return httpUtil.get("/tag/listTagTop30", {})
+  },
+  listTagFrequencyByUserId(targetId) {
+    return httpUtil.get("/tag/listTagFrequencyByUserId", { targetId })
   }
 }

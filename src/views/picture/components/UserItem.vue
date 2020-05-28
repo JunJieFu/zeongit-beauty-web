@@ -1,17 +1,13 @@
 <template>
   <v-card-text class="d-flex align-center">
-    <div>
-      <v-btn fab depressed icon :to="`/user/${user.id}`">
-        <div>
-          <v-img
-            :src="$img.head(user.avatarUrl)"
-            width="45"
-            :aspect-ratio="1"
-            class="circle"
-          ></v-img>
-        </div>
-      </v-btn>
-    </div>
+    <router-link :to="`/user/${user.id}`" class="d-block" v-ripple>
+      <v-img
+        :src="$img.head(user.avatarUrl)"
+        width="45"
+        :aspect-ratio="1"
+        class="circle"
+      ></v-img>
+    </router-link>
     <div class="ellipsis flex-grow-1 mx-3">
       {{ user.nickname }}
     </div>

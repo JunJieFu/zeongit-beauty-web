@@ -13,7 +13,9 @@
       <v-divider></v-divider>
       <v-container fluid class="pa-0">
         <keep-alive :max="15">
-          <router-view :key="decodeURI($route.fullPath)" />
+          <router-view
+            :key="!$route.meta.keep ? decodeURI($route.fullPath) : undefined"
+          />
         </keep-alive>
       </v-container>
     </v-content>

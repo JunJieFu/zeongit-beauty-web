@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="collapse" app clipped>
+  <v-navigation-drawer v-model="collapse" app clipped temporary>
     <v-divider v-show="$vuetify.breakpoint.lgAndUp"></v-divider>
     <v-list :dense="$vuetify.breakpoint.smAndDown" class="pt-0">
       <v-list-item-group>

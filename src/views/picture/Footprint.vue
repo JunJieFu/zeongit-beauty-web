@@ -8,9 +8,17 @@
           v-for="viewer in viewerPage.content"
           :key="viewer.id"
         >
-          <div style="width: 60px">
-            <v-img :src="$img.head(viewer.avatarUrl)" class="circle" />
-          </div>
+          <router-link
+            :to="`/picture/${$route.params.id}/footprint/2`"
+            class="d-block"
+            v-ripple
+          >
+            <v-img
+              :src="$img.head(viewer.avatarUrl)"
+              class="circle"
+              width="60"
+            />
+          </router-link>
           <span class="flex-grow-1 ellipsis px-3">
             {{ viewer.nickname }}
           </span>
@@ -59,6 +67,7 @@ export default {
     }
   },
   async created() {
+    console.log("f")
     this.paging()
   },
   methods: {

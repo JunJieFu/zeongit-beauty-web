@@ -19,6 +19,7 @@
               :aspect-ratio="
                 $vuetify.breakpoint.xsOnly ? picture.width / picture.height : 1
               "
+              v-ripple
             ></v-img>
           </router-link>
         </v-col>
@@ -55,7 +56,9 @@
           </v-card-text>
         </v-col>
       </v-row>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view :key="decodeURI($route.fullPath)"></router-view>
+      </keep-alive>
     </v-card>
   </div>
 </template>
@@ -78,6 +81,7 @@ export default {
     ...mapState("keepAlive", { pageAlive: "page" })
   },
   async created() {
+    console.log("t")
     window.scrollTo(0, 0)
     const keepAliveKeys = Object.keys(this.pageAlive)
     const regs = [
@@ -92,7 +96,7 @@ export default {
       )
     ]
     const key = keepAliveKeys.find((it) => {
-      return !!regs.filter((reg) => reg.test(it))
+      return !!regs.filter((reg) => reg.test(it)).length
     })
     this.picture = this.pageAlive[key]?.picture
       ? Object.assign({}, this.pageAlive[key]?.picture)

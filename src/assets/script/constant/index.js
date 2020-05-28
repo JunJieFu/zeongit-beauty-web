@@ -1,4 +1,4 @@
-import { MenuEnum } from "../model"
+import { MenuEnum, SignInTipDetail } from "../model"
 import {
   mdiFileFindOutline,
   mdiAlphaNBoxOutline,
@@ -35,3 +35,21 @@ export const SMALL_BTN_HEIGHT = 40
 export const CORNER_BUTTONS_GAP = 12
 
 export const MAX_KEEP_ALIVE_PAGE = 15
+
+export const SIGN_IN_TIP_DETAIL_LIST = {
+  collection: new SignInTipDetail(
+    "mdi-star-outline",
+    "您喜爱的作品",
+    "请先登录，才能查看到您收藏的作品。"
+  ),
+  works: new SignInTipDetail(
+    "mdi-image",
+    "您发表过的点点滴滴",
+    "请先登录，才能查看到您上传的作品。"
+  ),
+  footprint: new SignInTipDetail(
+    "mdi-shoe-print",
+    "追寻您查走过的足迹",
+    "请先登录，才能查看到您走过的足迹。"
+  )
+}

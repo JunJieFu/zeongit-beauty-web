@@ -177,8 +177,6 @@ export default {
         colAmount = 2
         defaultWidth = elWidth / 2
         defaultGap = 8
-      } else if (sourceColAmount > 4) {
-        colAmount = this.collapse ? sourceColAmount : sourceColAmount - 1
       } else {
         colAmount = sourceColAmount
       }

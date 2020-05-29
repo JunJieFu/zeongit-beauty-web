@@ -14,7 +14,7 @@
       <v-img :aspect-ratio="2" :src="$img.back(user.background)"></v-img>
       <v-row class="ma-0 ">
         <v-col
-          :cols="6"
+          :cols="12"
           :sm="6"
           :md="4"
           :lg="4"
@@ -29,11 +29,11 @@
           />
         </v-col>
         <v-col
-          :cols="6"
+          :cols="12"
           :sm="6"
           :md="8"
           :lg="8"
-          class="pa-0  justify-center d-flex flex-column"
+          class="pa-0 justify-center d-flex flex-column"
           :class="{ 'pl-5': $vuetify.breakpoint.smAndUp }"
         >
           <v-card-title>

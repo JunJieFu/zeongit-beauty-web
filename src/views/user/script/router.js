@@ -1,8 +1,15 @@
 export default [
   {
-    path: "/user/:id",
-    component: () => import("../Detail")
+    path: "/user/:id?",
+    component: () => import("../SignIn"),
+    children: [
+      {
+        path: "/user/:id",
+        component: () => import("../Detail")
+      }
+    ]
   },
+
   {
     path: "/collection/:targetId?/:page?",
     component: () => import("../SignIn"),

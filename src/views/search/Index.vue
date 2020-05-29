@@ -2,7 +2,6 @@
   <div>
     <component
       :is="$enum.ListModeComponentName[mode].value"
-      :page2d="page2d"
       :list="page2d.map((it) => it.content).flat()"
       :page="currPage"
       :pageable="pageable"
@@ -16,12 +15,12 @@
 import { pictureService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
+import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
+  mixins: [alivePageMixin],
   async created() {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    await this.paging(this.$route.params.page, this.$route.params.keyword)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
+    this.init()
   },
   data() {
     return {
@@ -43,6 +42,12 @@ export default {
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
   methods: {
+    async init() {
+      window.scrollTo(0, 0)
+      this.MUpdateProgress(true)
+      await this.paging(this.$route.params.page, this.$route.params.keyword)
+      this.MUpdateProgress(false)
+    },
     changePage(page) {
       if (this.pageable.page === page) {
         return
@@ -64,29 +69,17 @@ export default {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
-      if (
-        this.page2d[this.pageable.page - 1]?.content?.length &&
-        keyword === this.keyword
-      ) {
-        this.currPage = this.page2d[this.pageable.page - 1]
-      } else {
-        this.loading = true
-        const result = await pictureService.paging(this.pageable, keyword)
-        this.loading = false
-        await this.$resultNotify(result)
-        if (keyword !== this.keyword) {
-          this.keyword = keyword
-          this.page2d = []
-        }
-        this.structure(result.data, this.pageable)
+      this.loading = true
+      const result = await pictureService.paging(this.pageable, keyword)
+      this.loading = false
+      await this.$resultNotify(result)
+      if (keyword !== this.keyword) {
+        this.keyword = keyword
+        this.page2d = []
       }
-    },
-    structure(page, pageable) {
-      this.currPage = page
-      this.page2d.length = Math.min.apply(null, [
-        pageable.page,
-        this.page2d.length
-      ])
+      const page = result.data
+      this.currPage = result.data
+      this.page2d.length = this.pageable.page
       //由于是数组必须用set
       this.$set(this.page2d, page.number, page)
     }

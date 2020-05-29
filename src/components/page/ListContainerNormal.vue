@@ -1,17 +1,10 @@
 <template>
   <div ref="page" class="list-container" v-resize="throttle">
-    <template
-      v-if="
-        page &&
-          page2d[page.number] &&
-          page2d[page.number].content &&
-          page2d[page.number].content.length
-      "
-    >
+    <template v-if="page && page.content.length">
       <div class="list-content" :style="style">
         <div
           class="list-item transition"
-          v-for="(item, index) in page2d[page.number].content"
+          v-for="(item, index) in page.content"
           :key="index"
         >
           <v-hover>
@@ -60,10 +53,6 @@ export default {
     page: {
       type: Object,
       default: () => {}
-    },
-    page2d: {
-      type: Array,
-      default: () => []
     },
     list: {
       type: Array,

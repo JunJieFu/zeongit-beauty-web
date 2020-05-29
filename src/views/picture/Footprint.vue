@@ -67,7 +67,6 @@ export default {
     }
   },
   async created() {
-    console.log("f")
     this.paging()
   },
   methods: {

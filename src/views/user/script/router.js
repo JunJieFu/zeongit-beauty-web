@@ -32,5 +32,25 @@ export default [
         component: () => import("../Footprint")
       }
     ]
+  },
+  {
+    path: "/follower/:targetId?/:page?",
+    component: () => import("../SignIn"),
+    children: [
+      {
+        path: "/follower/:targetId?/:page?",
+        component: () => import("../Follower")
+      }
+    ]
+  },
+  {
+    path: "/following/:targetId?/:page?",
+    component: () => import("../SignIn"),
+    children: [
+      {
+        path: "/following/:targetId?/:page?",
+        component: () => import("../Following")
+      }
+    ]
   }
 ]

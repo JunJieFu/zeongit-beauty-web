@@ -8,28 +8,31 @@
       :pageable="pageable"
       @change="changePage"
     ></component>
-    <corner-buttons> </corner-buttons>
+    <corner-buttons></corner-buttons>
   </div>
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { footprintService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 
 export default {
   async created() {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-    await this.paging(this.$route.params.page, this.$route.params.keyword)
+    await this.paging(
+      this.$route.params.page,
+      this.$route.params.targetId || window.app.$store.state.user.info?.id
+    )
     window.app.$store?.commit("menu/MUpdateProgress", false)
   },
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16),
+      pageable: new Pageable(0, 16, "createDate,desc"),
       page2d: [],
       currPage: null,
-      keyword: null
+      targetId: null
     }
   },
   computed: {
@@ -48,34 +51,35 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.keyword)
+        this.paging(page, this.targetId)
       } else {
-        this.$router.push(`/search/${encodeURI(this.keyword)}/${page}`)
+        this.$router.push(`/footprint/${encodeURI(this.targetId)}/${page}`)
       }
     },
-    async paging(pageIndex, keyword = this.keyword) {
+    async paging(pageIndex, targetId = this.targetId) {
       if (
+        !targetId ||
         this.loading ||
         (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
-      if (keyword !== this.keyword) {
+      if (targetId !== this.targetId) {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
       if (
         this.page2d[this.pageable.page - 1]?.content?.length &&
-        keyword === this.keyword
+        targetId === this.targetId
       ) {
         this.currPage = this.page2d[this.pageable.page - 1]
       } else {
         this.loading = true
-        const result = await pictureService.paging(this.pageable, keyword)
+        const result = await footprintService.paging(this.pageable, targetId)
         this.loading = false
         await this.$resultNotify(result)
-        if (keyword !== this.keyword) {
-          this.keyword = keyword
+        if (targetId !== this.targetId) {
+          this.targetId = targetId
           this.page2d = []
         }
         this.structure(result.data, this.pageable)

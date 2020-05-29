@@ -131,19 +131,13 @@ import {
 } from "../../assets/script/service"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 // import { Pageable } from "../../assets/script/model"
-import { mapState } from "vuex"
-import aliveMixin from "../../assets/script/mixin/alive"
+import { mapMutations, mapState } from "vuex"
+import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
-  mixins: [aliveMixin],
-  created() {
-    window.scrollTo(0, 0)
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    this.get(this.$route.params.id)
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-  },
-  deactivated() {
-    window.nextVue = this
+  mixins: [alivePageMixin],
+  async created() {
+    this.init()
   },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
@@ -165,10 +159,19 @@ export default {
     ...mapState("user", ["info"])
   },
   methods: {
+    ...mapMutations("alive", ["MAddPictureMap"]),
+    async init() {
+      window.scrollTo(0, 0)
+      this.MUpdateProgress(true)
+      //这里不读store里缓存的，直接获取
+      await this.get(this.$route.params.id)
+      this.MUpdateProgress(false)
+    },
     async get(id) {
       this.id = id
       const result = await pictureService.get(id)
       this.picture = result.data
+      this.MAddPictureMap(this.picture)
       this.saveFootprint()
       this.pagingRecommendById()
     },

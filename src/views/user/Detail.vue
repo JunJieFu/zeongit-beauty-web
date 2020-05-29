@@ -33,10 +33,15 @@
           :sm="6"
           :md="8"
           :lg="8"
-          class="pa-0 justify-center d-flex flex-column"
-          :class="{ 'pl-5': $vuetify.breakpoint.smAndUp }"
+          class="pa-0 justify-center d-flex flex-column text-center"
+          :class="{
+            'pl-5': $vuetify.breakpoint.smAndUp,
+            'text-center': $vuetify.breakpoint.xsOnly
+          }"
         >
-          <v-card-title>
+          <v-card-title
+            :class="{ 'justify-center': $vuetify.breakpoint.xsOnly }"
+          >
             {{ user.nickname }}
           </v-card-title>
           <v-card-text>

@@ -14,7 +14,7 @@
     <router-link
       to="/"
       class="title mx-4"
-      v-show="!searchShow || $vuetify.breakpoint.mdAndUp"
+      v-show="!searchShow && $vuetify.breakpoint.mdAndUp"
       style="line-height: 1.5em"
     >
       ZeonGit Beauty
@@ -46,6 +46,22 @@
         </v-btn>
       </template>
       <span>搜索</span>
+    </v-tooltip>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          class="ml-2"
+          v-on="on"
+          @click="refresh"
+          v-show="refreshFunction"
+        >
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
+      </template>
+      <span>刷新</span>
     </v-tooltip>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
@@ -111,12 +127,16 @@ export default {
         this.MUpdateCollapse(val)
       }
     },
-    ...mapState("user", ["info"])
+    ...mapState("user", ["info"]),
+    ...mapState("alive", ["refreshFunction"])
   },
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     search() {
       this.$router.push(`/search/${encodeURI(this.keyword)}`)
+    },
+    refresh() {
+      this.refreshFunction && this.refreshFunction()
     }
   }
 }

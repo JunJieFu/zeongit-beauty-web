@@ -54,10 +54,8 @@
 
 <script>
 import { mapState } from "vuex"
-import aliveMixin from "../../assets/script/mixin/alive"
 import { tagService, userService } from "../../assets/script/service"
 export default {
-  mixins: [aliveMixin],
   created() {
     window.scrollTo(0, 0)
     window.app.$store?.commit("menu/MUpdateProgress", true)

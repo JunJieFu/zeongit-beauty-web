@@ -38,18 +38,28 @@ export const MAX_KEEP_ALIVE_PAGE = 15
 
 export const SIGN_IN_TIP_DETAIL_LIST = {
   collection: new SignInTipDetail(
-    "mdi-star-outline",
+    mdiStarOutline,
     "您喜爱的作品",
     "请先登录，才能查看到您收藏的作品。"
   ),
   works: new SignInTipDetail(
-    "mdi-image",
+    mdiImageOutline,
     "您发表过的点点滴滴",
     "请先登录，才能查看到您上传的作品。"
   ),
   footprint: new SignInTipDetail(
-    "mdi-shoe-print",
+    mdiShoePrint,
     "追寻您查走过的足迹",
     "请先登录，才能查看到您走过的足迹。"
+  ),
+  follower: new SignInTipDetail(
+    mdiAccountHeartOutline,
+    "喜欢您的作品的人",
+    "请先登录，才能查看到您的粉丝。"
+  ),
+  following: new SignInTipDetail(
+    mdiAccountStarOutline,
+    "ta的作品吸引了你",
+    "请先登录，才能查看到您的关注。"
   )
 }

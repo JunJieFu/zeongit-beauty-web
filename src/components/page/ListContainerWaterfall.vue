@@ -129,10 +129,6 @@ export default {
       type: Object,
       default: () => {}
     },
-    page2d: {
-      type: Array,
-      default: () => []
-    },
     list: {
       type: Array,
       default: () => []

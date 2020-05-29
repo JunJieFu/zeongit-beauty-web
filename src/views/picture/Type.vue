@@ -64,12 +64,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapMutations, mapState } from "vuex"
 import { pictureService } from "../../assets/script/service"
-import aliveMixin from "../../assets/script/mixin/alive"
 
 export default {
-  mixins: [aliveMixin],
   data() {
     return {
       id: this.$route.params.id,
@@ -78,36 +76,20 @@ export default {
     }
   },
   computed: {
-    ...mapState("keepAlive", { pageAlive: "page" })
+    ...mapState("alive", ["pictureMap"])
   },
   async created() {
-    console.log("t")
     window.scrollTo(0, 0)
-    const keepAliveKeys = Object.keys(this.pageAlive)
-    const regs = [
-      new RegExp(`^\\/picture\\/${this.$route.params.id}(?:\\/(?=$))?$`, "i"),
-      new RegExp(
-        `^\\/picture\\/${this.$route.params.id}\\/footprint(?:\\/(?=$))?$`,
-        "i"
-      ),
-      new RegExp(
-        `^\\/picture\\/${this.$route.params.id}\\/collection(?:\\/(?=$))?$`,
-        "i"
-      )
-    ]
-    const key = keepAliveKeys.find((it) => {
-      return !!regs.filter((reg) => reg.test(it)).length
-    })
-    this.picture = this.pageAlive[key]?.picture
-      ? Object.assign({}, this.pageAlive[key]?.picture)
-      : null
-    if (!this.picture) this.get(this.$route.params.id)
+    this.picture = this.pictureMap[this.$route.params.id]
+    if (!this.picture) await this.get(this.$route.params.id)
   },
   methods: {
+    ...mapMutations("alive", ["MAddPictureMap"]),
     async get(id) {
       this.id = id
       const result = await pictureService.get(id)
       this.picture = result.data
+      this.MAddPictureMap(this.picture)
     }
   }
 }

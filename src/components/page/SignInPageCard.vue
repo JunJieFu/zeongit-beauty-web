@@ -1,7 +1,7 @@
 <template>
   <v-card :elevation="0" class="mt-12" color="transparent">
     <v-card-title class="justify-center">
-      <v-icon style="font-size: 100px">{{ icon }}</v-icon>
+      <v-icon size="100">{{ icon }}</v-icon>
     </v-card-title>
     <v-card-title class="justify-center">{{ title }} </v-card-title>
     <v-card-text class="text-center">

@@ -11,13 +11,20 @@
       :tile="$vuetify.breakpoint.xsOnly"
       v-if="user"
     >
-      <v-img :aspect-ratio="4" :src="$img.back(user.background)"></v-img>
-      <v-row class="ma-0">
-        <v-col :cols="6" :sm="6" :md="4" :lg="4" class="pa-0">
+      <v-img :aspect-ratio="2" :src="$img.back(user.background)"></v-img>
+      <v-row class="ma-0 ">
+        <v-col
+          :cols="6"
+          :sm="6"
+          :md="4"
+          :lg="4"
+          class="pa-0 "
+          style="margin-top: -40px"
+        >
           <v-img
             :src="$img.head(user.avatarUrl)"
-            class="circle elevation-5"
-            :width="$vuetify.breakpoint.xsOnly ? 80 : 100"
+            class="circle elevation-5 mx-auto"
+            :width="$vuetify.breakpoint.xsOnly ? 100 : 130"
             :aspect-ratio="1"
           />
         </v-col>
@@ -37,6 +44,12 @@
           </v-card-text>
         </v-col>
       </v-row>
+      <v-tabs v-model="tab" class="mt-4">
+        <v-tab>主页</v-tab>
+        <v-tab>粉丝</v-tab>
+        <v-tab>关注</v-tab>
+      </v-tabs>
+      <v-divider></v-divider>
       <v-card-title>
         <v-chip
           class="mr-2 my-1"
@@ -64,7 +77,11 @@ export default {
     window.app.$store?.commit("menu/MUpdateProgress", false)
   },
   data() {
-    return { user: null, tagFrequencyList: [] }
+    return {
+      tab: "",
+      user: null,
+      tagFrequencyList: []
+    }
   },
   computed: {
     ...mapState("user", ["info"])

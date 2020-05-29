@@ -7,7 +7,8 @@ import {
   mdiShoePrint,
   mdiAccountHeartOutline,
   mdiAccountStarOutline,
-  mdiUpload
+  mdiUpload,
+  mdiAccountOutline
 } from "@mdi/js"
 
 export const MENU_LIST_CONSTANT = [
@@ -37,6 +38,11 @@ export const CORNER_BUTTONS_GAP = 12
 export const MAX_KEEP_ALIVE_PAGE = 15
 
 export const SIGN_IN_TIP_DETAIL_LIST = {
+  user: new SignInTipDetail(
+    mdiAccountOutline,
+    "您的Zeongit Beauty主页",
+    "请先登录，才能进入您的Zeongit Beauty主页。"
+  ),
   collection: new SignInTipDetail(
     mdiStarOutline,
     "您喜爱的作品",

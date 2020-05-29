@@ -2,7 +2,6 @@
   <div>
     <component
       :is="$enum.ListModeComponentName[mode].value"
-      :page2d="page2d"
       :list="page2d.map((it) => it.content).flat()"
       :page="currPage"
       :pageable="pageable"
@@ -16,26 +15,24 @@
 import { footprintService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
+import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
+  mixins: [alivePageMixin],
   async created() {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-    await this.paging(
-      this.$route.params.page,
-      this.$route.params.targetId || window.app.$store.state.user.info?.id
-    )
-    window.app.$store?.commit("menu/MUpdateProgress", false)
+    this.init()
   },
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16, "createDate,desc"),
+      pageable: new Pageable(0, 16, "lastModifiedDate,desc"),
       page2d: [],
       currPage: null,
       targetId: null
     }
   },
   computed: {
+    ...mapState("user", ["info"]),
     ...mapState("menu", ["mode"])
   },
   components: {
@@ -46,6 +43,15 @@ export default {
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
   methods: {
+    async init() {
+      window.scrollTo(0, 0)
+      this.MUpdateProgress(true)
+      await this.paging(
+        this.$route.params.page,
+        this.$route.params.targetId || this.info.id
+      )
+      this.MUpdateProgress(false)
+    },
     changePage(page) {
       if (this.pageable.page === page) {
         return
@@ -68,29 +74,17 @@ export default {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
-      if (
-        this.page2d[this.pageable.page - 1]?.content?.length &&
-        targetId === this.targetId
-      ) {
-        this.currPage = this.page2d[this.pageable.page - 1]
-      } else {
-        this.loading = true
-        const result = await footprintService.paging(this.pageable, targetId)
-        this.loading = false
-        await this.$resultNotify(result)
-        if (targetId !== this.targetId) {
-          this.targetId = targetId
-          this.page2d = []
-        }
-        this.structure(result.data, this.pageable)
+      this.loading = true
+      const result = await footprintService.paging(this.pageable, targetId)
+      this.loading = false
+      await this.$resultNotify(result)
+      if (targetId !== this.targetId) {
+        this.targetId = targetId
+        this.page2d = []
       }
-    },
-    structure(page, pageable) {
-      this.currPage = page
-      this.page2d.length = Math.min.apply(null, [
-        pageable.page,
-        this.page2d.length
-      ])
+      const page = result.data
+      this.currPage = result.data
+      this.page2d.length = this.pageable.page
       //由于是数组必须用set
       this.$set(this.page2d, page.number, page)
     }

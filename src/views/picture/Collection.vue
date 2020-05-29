@@ -2,8 +2,8 @@
   <div>
     <v-card-text v-if="collectorPage" class="pa-0">
       <v-list class="py-0">
-        <template v-for="collector in collectorPage.content">
-          <v-divider :key="collector.id"></v-divider>
+        <template v-for="(collector, index) in collectorPage.content">
+          <v-divider :key="index"></v-divider>
           <v-list-item class="py-3" :key="collector.id">
             <div style="width: 60px">
               <v-img :src="$img.head(collector.avatarUrl)" class="circle" />
@@ -37,8 +37,13 @@
 import { mapState } from "vuex"
 import { collectionService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
+import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
+  mixins: [alivePageMixin],
+  async created() {
+    this.init()
+  },
   data() {
     return {
       id: this.$route.params.id,
@@ -51,10 +56,14 @@ export default {
       return this.$parent.picture
     }
   },
-  async created() {
-    this.paging()
-  },
   methods: {
+    async init() {
+      window.scrollTo(0, 0)
+      this.MUpdateProgress(true)
+      //这里不读store里缓存的，直接获取
+      await this.paging()
+      this.MUpdateProgress(false)
+    },
     async paging() {
       const result = await collectionService.pagingUser(
         new Pageable(1, 20, "createDate,desc"),

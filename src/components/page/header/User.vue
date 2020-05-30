@@ -53,8 +53,8 @@
       </v-list-item>
     </v-list>
     <sign-in-menu-card
-      title="想要成为ZeonGit用户？"
-      text="请先登录，才能查看自己的主页。"
+      :title="$internationalization.USER_HOME_SIGN_IN_TITLE"
+      :text="$internationalization.USER_HOME_SIGN_IN_TEXT"
       v-else
     ></sign-in-menu-card>
   </v-menu>

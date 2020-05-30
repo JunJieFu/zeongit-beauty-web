@@ -60,7 +60,9 @@ export default {
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
         this.paging(page, this.targetId)
       } else {
-        this.$router.push(`/follower/${encodeURI(this.targetId)}/${page}`)
+        this.$router.push(
+          `/follower/${encodeURIComponent(this.targetId)}/${page}`
+        )
       }
     },
     async paging(pageIndex, targetId = this.targetId) {

@@ -65,9 +65,7 @@ export default {
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
       jsCookie.remove("token")
-      this.$router.replace(
-        `/signIn?continue=${encodeURI(this.$route.fullPath)}`
-      )
+      location.reload()
     }
   }
 }

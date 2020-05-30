@@ -56,7 +56,7 @@ export default {
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
         this.paging(page, this.keyword)
       } else {
-        this.$router.push(`/search/${encodeURI(this.keyword)}/${page}`)
+        this.$router.push(`/search/${encodeURIComponent(this.keyword)}/${page}`)
       }
     },
     async paging(pageIndex, keyword = this.keyword) {

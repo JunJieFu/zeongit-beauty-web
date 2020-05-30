@@ -56,7 +56,7 @@ export default {
         this.paging(page, this.pictureId)
       } else {
         this.$router.push(
-          `/picture/${encodeURI(this.pictureId)}/footprint/${page}`
+          `/picture/${encodeURIComponent(this.pictureId)}/footprint/${page}`
         )
       }
     },

@@ -123,12 +123,7 @@
 </template>
 
 <script>
-import {
-  collectionService,
-  footprintService,
-  pictureService,
-  userService
-} from "../../assets/script/service"
+import { footprintService, pictureService } from "../../assets/script/service"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 // import { Pageable } from "../../assets/script/model"
 import { mapMutations, mapState } from "vuex"
@@ -143,7 +138,7 @@ export default {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
     "user-item": () => import("./components/UserItem"),
     "comment-btn": () => import("./components/CommentBtn"),
-    "collect-btn": () => import("./components/CollectBtn"),
+    "collect-btn": () => import("../../components/btn/CollectBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn")
   },
@@ -186,19 +181,11 @@ export default {
       //   )
       // )
     },
-    async collect() {
-      if (this.info) {
-        const result = await collectionService.focus(this.id)
-        this.$resultNotify(result)
-        this.picture.focus = result.data
-      }
+    collect({ focus }) {
+      this.picture.focus = focus
     },
-    async follow() {
-      if (this.info) {
-        const result = await userService.follow(this.picture.user.id)
-        this.$resultNotify(result)
-        this.picture.user.focus = result.data
-      }
+    follow({ focus }) {
+      this.picture.user.focus = focus
     }
   }
 }

@@ -5,7 +5,13 @@ export default [
     children: [
       {
         path: "/user/:targetId?",
-        component: () => import("../Type")
+        component: () => import("../Type"),
+        children: [
+          {
+            path: "/user/:targetId?",
+            component: () => import("../Detail")
+          }
+        ]
       }
     ]
   },

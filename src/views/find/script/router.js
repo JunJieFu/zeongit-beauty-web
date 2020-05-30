@@ -2,7 +2,7 @@ export default [
   {
     path: "find/:page?",
     meta: {
-      keepLevel: 0
+      keepAlive: true
     },
     component: () => import("../Index")
   }

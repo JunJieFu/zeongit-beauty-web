@@ -56,6 +56,7 @@
           </v-card-text>
         </v-col>
       </v-row>
+      <v-divider></v-divider>
       <keep-alive :max="15">
         <router-view :key="decodeURI($route.fullPath)" />
       </keep-alive>

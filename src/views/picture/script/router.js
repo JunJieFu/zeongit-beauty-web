@@ -9,16 +9,10 @@ export default [
     children: [
       {
         path: "/picture/:id/footprint/:page?",
-        component: () => import("../Footprint"),
-        meta: {
-          level: 1
-        }
+        component: () => import("../Footprint")
       },
       {
         path: "/picture/:id/collection/:page?",
-        meta: {
-          level: 1
-        },
         component: () => import("../Collection")
       }
     ]

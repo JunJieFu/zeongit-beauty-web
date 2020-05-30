@@ -4,10 +4,10 @@ export default {
       ? "http://localhost:12085"
       : "http://www.secdra.com",
   host: process.env.NODE_ENV === "development" ? "/api" : "/",
-  account:
+  accountHost:
     process.env.NODE_ENV === "development"
-      ? "http://localhost:12180/#/signIn"
-      : "http://account.secdra.com/signIn",
+      ? "http://localhost:12180/#"
+      : "http://account.secdra.com",
   qiniuImg: "http://secdraimg.secdra.com",
   qiniuHead: "http://secdrahead.secdra.com",
   qiniuBack: "http://secdraback.secdra.com",

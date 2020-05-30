@@ -81,6 +81,7 @@
           >关注</v-tab
         >
       </v-tabs>
+      <v-divider></v-divider>
       <keep-alive :max="15">
         <router-view :key="decodeURI($route.fullPath)" />
       </keep-alive>

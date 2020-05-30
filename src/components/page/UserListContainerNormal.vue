@@ -2,7 +2,6 @@
   <div v-if="page && page.content.length">
     <v-list class="py-0">
       <div v-for="item in page.content" :key="item.id">
-        <v-divider></v-divider>
         <v-list-item class="py-3">
           <router-link class="d-block" :to="`/user/${item.id}`">
             <v-img :src="$img.head(item.avatarUrl)" class="circle" width="60" />
@@ -12,8 +11,8 @@
           </span>
           <follow-btn :user="item" @follow="follow"></follow-btn>
         </v-list-item>
+        <v-divider></v-divider>
       </div>
-      <v-divider></v-divider>
     </v-list>
     <v-pagination
       :value="pageable.page"

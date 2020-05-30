@@ -53,9 +53,9 @@
         </v-col>
       </v-row>
       <v-card-title class="d-flex justify-end">
-        <follow-btn :user="user"></follow-btn>
+        <follow-icon-btn :user="user" v-if="!self"></follow-icon-btn>
         <share-btn></share-btn>
-        <more-btn></more-btn>
+        <more-btn v-if="!self"></more-btn>
       </v-card-title>
       <v-tabs class="mt-4" v-model="type">
         <v-tab
@@ -94,7 +94,7 @@ import { userService } from "../../assets/script/service"
 
 export default {
   components: {
-    "follow-btn": () => import("./components/FollowBtn"),
+    "follow-icon-btn": () => import("../../components/btn/FollowIconBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn")
   },

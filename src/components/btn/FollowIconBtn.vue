@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import { NOOP } from "../../../assets/script/constant"
+import { NOOP } from "../../assets/script/constant"
 import { mapState } from "vuex"
-import { userService } from "../../../assets/script/service"
+import { userService } from "../../assets/script/service"
 
 export default {
   props: {
@@ -46,7 +46,7 @@ export default {
     }
   },
   components: {
-    "sign-in-menu-card": () => import("../../../components/page/SignInMenuCard")
+    "sign-in-menu-card": () => import("../page/SignInMenuCard")
   },
   computed: {
     ...mapState("user", ["info"])

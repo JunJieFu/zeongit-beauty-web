@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 2, "lastModifiedDate,desc"),
+      pageable: new Pageable(0, 16, "lastModifiedDate,desc"),
       currPage: null,
       pictureId: null
     }

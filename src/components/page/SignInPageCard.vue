@@ -9,7 +9,12 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions class="justify-center">
-      <v-btn outlined color="primary">登录</v-btn>
+      <v-btn
+        outlined
+        color="primary"
+        :href="`${$config.account}?continue=${encodeURIComponent(href)}`"
+        >登录</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -28,6 +33,11 @@ export default {
     text: {
       type: String,
       default: ""
+    }
+  },
+  computed: {
+    href() {
+      return window.location.href
     }
   }
 }

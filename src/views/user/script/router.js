@@ -5,9 +5,6 @@ export default [
     children: [
       {
         path: "/user/:targetId?",
-        meta: {
-          keep: true
-        },
         component: () => import("../Type")
       }
     ]
@@ -18,9 +15,6 @@ export default [
     children: [
       {
         path: "/upload",
-        meta: {
-          keep: true
-        },
         component: () => import("../Upload")
       }
     ]
@@ -65,9 +59,6 @@ export default [
         children: [
           {
             path: "/follower/:targetId?/:page?",
-            meta: {
-              keep: true
-            },
             component: () => import("../Follower")
           }
         ]
@@ -84,9 +75,6 @@ export default [
         children: [
           {
             path: "/following/:targetId?/:page?",
-            meta: {
-              keep: true
-            },
             component: () => import("../Following")
           }
         ]

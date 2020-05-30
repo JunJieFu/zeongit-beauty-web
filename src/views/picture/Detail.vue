@@ -84,7 +84,7 @@
                 small
                 v-for="item in picture.tagList"
                 :key="item"
-                :to="`/search/${encodeURI(item)}`"
+                :to="`/search/${encodeURIComponent(item)}`"
               >
                 {{ item }}
               </v-chip>

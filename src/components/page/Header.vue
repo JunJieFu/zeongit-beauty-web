@@ -133,7 +133,7 @@ export default {
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     search() {
-      this.$router.push(`/search/${encodeURI(this.keyword)}`)
+      this.$router.push(`/search/${encodeURIComponent(this.keyword)}`)
     },
     refresh() {
       this.refreshFunction && this.refreshFunction()

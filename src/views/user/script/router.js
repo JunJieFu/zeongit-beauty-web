@@ -13,6 +13,19 @@ export default [
     ]
   },
   {
+    path: "/upload",
+    component: () => import("../SignIn"),
+    children: [
+      {
+        path: "/upload",
+        meta: {
+          keep: true
+        },
+        component: () => import("../Upload")
+      }
+    ]
+  },
+  {
     path: "/collection/:targetId?/:page?",
     component: () => import("../SignIn"),
     children: [

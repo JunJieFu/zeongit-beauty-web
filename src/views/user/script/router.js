@@ -1,15 +1,17 @@
 export default [
   {
-    path: "/user/:id?",
+    path: "/user/:targetId?",
     component: () => import("../SignIn"),
     children: [
       {
-        path: "/user/:id",
-        component: () => import("../Detail")
+        path: "/user/:targetId?",
+        meta: {
+          keep: true
+        },
+        component: () => import("../Type")
       }
     ]
   },
-
   {
     path: "/collection/:targetId?/:page?",
     component: () => import("../SignIn"),
@@ -46,7 +48,16 @@ export default [
     children: [
       {
         path: "/follower/:targetId?/:page?",
-        component: () => import("../Follower")
+        component: () => import("../Type"),
+        children: [
+          {
+            path: "/follower/:targetId?/:page?",
+            meta: {
+              keep: true
+            },
+            component: () => import("../Follower")
+          }
+        ]
       }
     ]
   },
@@ -56,7 +67,16 @@ export default [
     children: [
       {
         path: "/following/:targetId?/:page?",
-        component: () => import("../Following")
+        component: () => import("../Type"),
+        children: [
+          {
+            path: "/following/:targetId?/:page?",
+            meta: {
+              keep: true
+            },
+            component: () => import("../Following")
+          }
+        ]
       }
     ]
   }

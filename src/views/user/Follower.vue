@@ -1,20 +1,21 @@
 <template>
   <div>
-    <component
-      :is="$enum.ListModeComponentName[mode].value"
-      :list="page2d.map((it) => it.content).flat()"
-      :page="currPage"
-      :pageable="pageable"
-      @change="changePage"
-    ></component>
+    <v-card-text v-if="currPage" class="pa-0">
+      <user-list-container-normal
+        :page="currPage"
+        :pageable="pageable"
+        :loading="loading"
+        @change="changePage"
+      ></user-list-container-normal>
+    </v-card-text>
     <corner-buttons></corner-buttons>
   </div>
 </template>
 
 <script>
-import { collectionService } from "../../assets/script/service"
-import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
+import { userService } from "../../assets/script/service"
+import { Pageable } from "../../assets/script/model"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
@@ -22,25 +23,24 @@ export default {
   async created() {
     this.init()
   },
+  components: {
+    "corner-buttons": () => import("../../components/page/CornerButtons"),
+    "user-list-container-normal": () =>
+      import("../../components/page/UserListContainerNormal")
+  },
   data() {
     return {
+      id: this.$route.params.id,
       loading: false,
-      pageable: new Pageable(0, 16, "createDate,desc"),
-      page2d: [],
       currPage: null,
-      targetId: null
+      pageable: new Pageable(0, 2, "createDate,desc")
     }
   },
   computed: {
     ...mapState("user", ["info"]),
-    ...mapState("menu", ["mode"])
-  },
-  components: {
-    "list-container-waterfall": () =>
-      import("../../components/page/ListContainerWaterfall"),
-    "list-container-normal": () =>
-      import("../../components/page/ListContainerNormal"),
-    "corner-buttons": () => import("../../components/page/CornerButtons")
+    user() {
+      return this.$parent.user
+    }
   },
   methods: {
     async init() {
@@ -59,7 +59,7 @@ export default {
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
         this.paging(page, this.targetId)
       } else {
-        this.$router.push(`/works/${encodeURI(this.targetId)}/${page}`)
+        this.$router.push(`/follower/${encodeURI(this.targetId)}/${page}`)
       }
     },
     async paging(pageIndex, targetId = this.targetId) {
@@ -75,7 +75,7 @@ export default {
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
       this.loading = true
-      const result = await collectionService.paging(this.pageable, targetId)
+      const result = await userService.pagingFollower(this.pageable, targetId)
       this.loading = false
       await this.$resultNotify(result)
       if (targetId !== this.targetId) {
@@ -91,5 +91,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped></style>

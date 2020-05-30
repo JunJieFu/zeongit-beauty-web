@@ -11,11 +11,14 @@ export default [
         path: "/picture/:id/footprint/:page?",
         component: () => import("../Footprint"),
         meta: {
-          keep: true
+          level: 1
         }
       },
       {
         path: "/picture/:id/collection/:page?",
+        meta: {
+          level: 1
+        },
         component: () => import("../Collection")
       }
     ]

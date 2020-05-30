@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16),
+      pageable: new Pageable(0, 2),
       page2d: [],
       currPage: null
     }

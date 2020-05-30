@@ -14,9 +14,11 @@
       <v-container fluid class="pa-0">
         <keep-alive :max="15">
           <router-view
-            :key="!$route.meta.keep ? decodeURI($route.fullPath) : undefined"
+            v-if="$route.meta.keepLevel === 0"
+            :key="decodeURI($route.fullPath)"
           />
         </keep-alive>
+        <router-view v-if="$route.meta.keepLevel !== 0" />
       </v-container>
     </v-content>
     <Menu></Menu>

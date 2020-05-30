@@ -1,4 +1,4 @@
-import { mapMutations } from "vuex"
+import { mapMutations, mapState } from "vuex"
 
 export default {
   data() {
@@ -6,13 +6,16 @@ export default {
       alive: true
     }
   },
+  computed: {
+    ...mapState("alive", ["refreshFunction"])
+  },
   activated() {
     this.alive = true
     this.MUpdateRefreshFunction(this.init)
   },
   deactivated() {
     this.alive = false
-    this.MUpdateRefreshFunction(null)
+    if (this.init === this.refreshFunction) this.MUpdateRefreshFunction(null)
   },
   methods: {
     ...mapMutations("alive", ["MUpdateRefreshFunction"]),

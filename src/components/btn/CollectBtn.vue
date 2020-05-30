@@ -23,8 +23,8 @@
       </v-tooltip>
     </template>
     <sign-in-menu-card
-      title="喜欢这张绘画？"
-      text="请先登录，然后才能把这张绘画添加到收藏夹。"
+      :title="$internationalization.COLLECT_SIGN_IN_TITLE"
+      :text="$internationalization.COLLECT_SIGN_IN_TEXT"
     ></sign-in-menu-card>
   </v-menu>
 </template>

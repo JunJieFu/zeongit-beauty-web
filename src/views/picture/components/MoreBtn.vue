@@ -29,8 +29,8 @@
       </v-list-item>
     </v-list>
     <sign-in-menu-card
-      title="需要更多操作？"
-      text="请先登录，才能获得更多操作。"
+      :title="$internationalization.MORE_SIGN_IN_TITLE"
+      :text="$internationalization.MORE_SIGN_IN_TEXT"
       v-else
     ></sign-in-menu-card>
   </v-menu>

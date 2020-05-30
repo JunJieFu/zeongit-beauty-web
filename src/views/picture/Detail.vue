@@ -94,30 +94,7 @@
           <user-item :user="picture.user" @follow="follow"></user-item>
         </v-card>
       </div>
-      <corner-buttons>
-        <v-menu offset-y :disabled="!!info">
-          <template v-slot:activator="{ on: onMenu }">
-            <v-btn
-              fab
-              small
-              v-show="$vuetify.breakpoint.xsOnly"
-              v-on="onMenu"
-              @click="collect"
-            >
-              <v-icon
-                color="error"
-                v-if="picture.focus === $enum.CollectState.CONCERNED.key"
-                >mdi-star</v-icon
-              >
-              <v-icon v-else>mdi-star-outline</v-icon>
-            </v-btn>
-          </template>
-          <sign-in-menu-card
-            title="喜欢这张绘画？"
-            text="请先登录，然后才能把这张绘画添加到收藏夹。"
-          ></sign-in-menu-card>
-        </v-menu>
-      </corner-buttons>
+      <corner-buttons> </corner-buttons>
     </div>
   </div>
 </template>

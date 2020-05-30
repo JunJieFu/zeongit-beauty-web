@@ -67,5 +67,10 @@ export const SIGN_IN_TIP_DETAIL_LIST = {
     mdiAccountStarOutline,
     "ta的作品吸引了你",
     "请先登录，才能查看到您的关注。"
+  ),
+  upload: new SignInTipDetail(
+    mdiUpload,
+    "您有新的作品",
+    "请先登录，才能让别人欣赏到你的新作品。"
   )
 }

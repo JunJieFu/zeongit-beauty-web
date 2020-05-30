@@ -56,8 +56,8 @@
           </v-card-text>
         </v-col>
       </v-row>
-      <keep-alive>
-        <router-view :key="decodeURI($route.fullPath)"></router-view>
+      <keep-alive :max="15">
+        <router-view :key="decodeURI($route.fullPath)" />
       </keep-alive>
     </v-card>
   </div>
@@ -68,23 +68,30 @@ import { mapMutations, mapState } from "vuex"
 import { pictureService } from "../../assets/script/service"
 
 export default {
+  async created() {
+    this.init()
+  },
   data() {
     return {
       id: this.$route.params.id,
-      picture: null,
-      viewerPage: null
+      picture: null
     }
   },
   computed: {
     ...mapState("alive", ["pictureMap"])
   },
-  async created() {
-    window.scrollTo(0, 0)
-    this.picture = this.pictureMap[this.$route.params.id]
-    if (!this.picture) await this.get(this.$route.params.id)
+  watch: {
+    "$route.params.id"() {
+      this.init()
+    }
   },
   methods: {
     ...mapMutations("alive", ["MAddPictureMap"]),
+    async init() {
+      window.scrollTo(0, 0)
+      this.picture = this.pictureMap[this.$route.params.id]
+      if (!this.picture) await this.get(this.$route.params.id)
+    },
     async get(id) {
       this.id = id
       const result = await pictureService.get(id)

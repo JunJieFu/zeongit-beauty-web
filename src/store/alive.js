@@ -18,7 +18,7 @@ export default {
     },
     MAddUserMap(state, user) {
       if (user) {
-        state.pictureMap[user.id] = user
+        state.userMap[user.id] = user
       }
     },
     MUpdateRefreshFunction(state, fun) {

@@ -44,7 +44,6 @@ import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
 import { mapState } from "vuex"
 
 export default {
-  name: "ListContainer",
   props: {
     pageable: {
       type: Object,

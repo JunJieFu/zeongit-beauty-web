@@ -5,6 +5,7 @@
       :list="page2d.map((it) => it.content).flat()"
       :page="currPage"
       :pageable="pageable"
+      :loading="loading"
       @change="changePage"
     ></component>
     <corner-buttons> </corner-buttons>
@@ -25,7 +26,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16),
+      pageable: new Pageable(0, 2),
       page2d: [],
       currPage: null,
       keyword: null

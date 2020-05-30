@@ -9,6 +9,16 @@ export const userService = {
   },
   follow(followingId) {
     return httpUtil.post("/following/focus", { followingId })
+  },
+  pagingFollower(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
+    _.page--
+    return httpUtil.get("/follower/paging", _)
+  },
+  pagingFollowing(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
+    _.page--
+    return httpUtil.get("/following/paging", _)
   }
 }
 

@@ -21,8 +21,8 @@
               </v-btn>
             </template>
             <sign-in-menu-card
-              title="想要关注这个画师？"
-              text="请先登录，然后才能成为该画师的粉丝。"
+              :title="$internationalization.FOLLOW_SIGN_IN_TITLE"
+              :text="$internationalization.FOLLOW_SIGN_IN_TEXT"
             ></sign-in-menu-card>
           </v-menu>
         </v-list-item>

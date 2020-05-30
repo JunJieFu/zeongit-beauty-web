@@ -1,0 +1,52 @@
+<template>
+  <v-menu offset-y>
+    <template v-slot:activator="{ on: onMenu }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on: onTooltip }">
+          <v-btn
+            fab
+            text
+            class="mx-2"
+            :x-small="$vuetify.breakpoint.xsOnly"
+            v-on="Object.assign(onTooltip, onMenu)"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <span>更多</span>
+      </v-tooltip>
+    </template>
+    <v-list dense v-if="info">
+      <v-list-item>
+        <v-list-item-content>
+          加入黑名单
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-content>
+          举报
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+    <sign-in-menu-card
+      title="需要更多操作？"
+      text="请先登录，才能获得更多操作。"
+      v-else
+    ></sign-in-menu-card>
+  </v-menu>
+</template>
+
+<script>
+import { mapState } from "vuex"
+
+export default {
+  components: {
+    "sign-in-menu-card": () => import("../../../components/page/SignInMenuCard")
+  },
+  computed: {
+    ...mapState("user", ["info"])
+  }
+}
+</script>
+
+<style scoped></style>

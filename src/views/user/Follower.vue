@@ -34,7 +34,7 @@ export default {
       id: this.$route.params.id,
       loading: false,
       currPage: null,
-      pageable: new Pageable(0, 2, "createDate,desc")
+      pageable: new Pageable(0, 16, "createDate,desc")
     }
   },
   computed: {

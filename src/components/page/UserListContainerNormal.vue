@@ -10,21 +10,7 @@
           <span class="flex-grow-1 ellipsis px-3">
             {{ item.nickname }}
           </span>
-          <v-menu offset-y :disabled="!!info">
-            <template v-slot:activator="{ on: onMenu }">
-              <v-btn color="primary" depressed v-on="onMenu">
-                {{
-                  item.focus === $enum.FollowState.CONCERNED.key
-                    ? `已关注`
-                    : `关注`
-                }}
-              </v-btn>
-            </template>
-            <sign-in-menu-card
-              :title="$internationalization.FOLLOW_SIGN_IN_TITLE"
-              :text="$internationalization.FOLLOW_SIGN_IN_TEXT"
-            ></sign-in-menu-card>
-          </v-menu>
+          <follow-btn :user="item" @follow="follow"></follow-btn>
         </v-list-item>
       </div>
       <v-divider></v-divider>
@@ -39,7 +25,7 @@
   </div>
   <div class="empty-container" v-else-if="!loading">
     <slot>
-      <h2 class="title text-center">您的图片将会显示在此处</h2>
+      <h2 class="title text-center"></h2>
     </slot>
   </div>
 </template>
@@ -48,6 +34,9 @@
 import { mapState } from "vuex"
 
 export default {
+  components: {
+    "follow-btn": () => import("../btn/FollowBtn")
+  },
   props: {
     pageable: {
       type: Object,
@@ -78,6 +67,9 @@ export default {
   methods: {
     change(e) {
       this.$emit("change", e)
+    },
+    follow(data) {
+      this.$emit("follow", data)
     }
   }
 }

@@ -6,6 +6,7 @@
         :pageable="pageable"
         :loading="loading"
         @change="changePage"
+        @follow="follow"
       ></user-list-container-normal>
     </v-card-text>
     <corner-buttons></corner-buttons>
@@ -80,13 +81,12 @@ export default {
       await this.$resultNotify(result)
       if (targetId !== this.targetId) {
         this.targetId = targetId
-        this.page2d = []
       }
-      const page = result.data
       this.currPage = result.data
-      this.page2d.length = this.pageable.page
-      //由于是数组必须用set
-      this.$set(this.page2d, page.number, page)
+    },
+    follow({ detail, focus }) {
+      let row = this.currPage.content.find((it) => it.id === detail.id)
+      row.focus = focus
     }
   }
 }

@@ -1,0 +1,47 @@
+<template>
+  <v-menu offset-y :disabled="!!info">
+    <template v-slot:activator="{ on: onMenu }">
+      <v-btn color="primary" depressed v-on="onMenu" @click="onClick">
+        {{
+          user.focus === $enum.FollowState.CONCERNED.key ? `已关注` : `关注`
+        }}</v-btn
+      >
+    </template>
+    <sign-in-menu-card
+      :title="$internationalization.FOLLOW_SIGN_IN_TITLE"
+      :text="$internationalization.FOLLOW_SIGN_IN_TEXT"
+    ></sign-in-menu-card>
+  </v-menu>
+</template>
+
+<script>
+import { NOOP } from "../../assets/script/constant"
+import { mapState } from "vuex"
+import { userService } from "../../assets/script/service"
+
+export default {
+  props: {
+    user: {
+      type: Object,
+      default: NOOP
+    }
+  },
+  components: {
+    "sign-in-menu-card": () => import("../page/SignInMenuCard")
+  },
+  computed: {
+    ...mapState("user", ["info"])
+  },
+  methods: {
+    async onClick() {
+      if (this.info) {
+        const result = await userService.follow(this.user.id)
+        await this.$resultNotify(result)
+        this.$emit("follow", { detail: this.user, focus: result.data })
+      }
+    }
+  }
+}
+</script>
+
+<style scoped></style>

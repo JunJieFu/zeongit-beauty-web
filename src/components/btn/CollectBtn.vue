@@ -30,8 +30,9 @@
 </template>
 
 <script>
-import { NOOP } from "../../../assets/script/constant"
+import { NOOP } from "../../assets/script/constant"
 import { mapState } from "vuex"
+import { collectionService } from "../../assets/script/service"
 
 export default {
   props: {
@@ -41,15 +42,17 @@ export default {
     }
   },
   components: {
-    "sign-in-menu-card": () => import("../../../components/page/SignInMenuCard")
+    "sign-in-menu-card": () => import("../page/SignInMenuCard")
   },
   computed: {
     ...mapState("user", ["info"])
   },
   methods: {
-    onClick() {
+    async onClick() {
       if (this.info) {
-        this.$emit("collect")
+        const result = await collectionService.focus(this.picture.id)
+        await this.$resultNotify(result)
+        this.$emit("collect", { detail: this.picture, focus: result.data })
       }
     }
   }

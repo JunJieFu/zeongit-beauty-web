@@ -36,6 +36,7 @@
 <script>
 import { NOOP } from "../../../assets/script/constant"
 import { mapState } from "vuex"
+import { userService } from "../../../assets/script/service"
 
 export default {
   props: {
@@ -51,9 +52,11 @@ export default {
     ...mapState("user", ["info"])
   },
   methods: {
-    onClick() {
+    async onClick() {
       if (this.info) {
-        this.$emit("collect")
+        const result = await userService.follow(this.user.id)
+        await this.$resultNotify(result)
+        this.$emit("follow", { detail: this.user, focus: result.data })
       }
     }
   }

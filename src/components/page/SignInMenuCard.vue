@@ -7,7 +7,9 @@
       <v-btn
         outlined
         color="primary"
-        :href="`${$config.account}?continue=${encodeURIComponent(href)}`"
+        :href="
+          `${$config.accountHost}/signIn?continue=${encodeURIComponent(href)}`
+        "
         >登录</v-btn
       >
     </v-card-actions>

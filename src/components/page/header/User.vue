@@ -31,15 +31,21 @@
         />
       </v-list-item>
       <v-list-item class="head-img-item justify-center">
-        <div>
+        <router-link to="/user" class="d-block">
           <v-img :src="$img.head(info.avatarUrl)" class="head-img circle" />
-        </div>
+        </router-link>
       </v-list-item>
       <v-list-item class="justify-center flex-column">
         <p class="font-weight-black text--primary title my-2">
           {{ info.nickname }}
         </p>
         <p class="text--secondary mb-0">{{ info.introduction }}</p>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list-item class="justify-center py-5">
+        <v-btn outlined color="primary" :href="$config.accountHost"
+          >管理我的账号</v-btn
+        >
       </v-list-item>
       <v-divider></v-divider>
       <v-list-item class="justify-center py-5">

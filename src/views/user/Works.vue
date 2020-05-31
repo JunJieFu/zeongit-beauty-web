@@ -7,7 +7,27 @@
       :pageable="pageable"
       :loading="loading"
       @change="changePage"
-    ></component>
+    >
+      <v-row class="ma-0" justify="center" align="center">
+        <v-col cols="12" sm="7" md="5" lg="4" xl="3">
+          <empty-picture-list-card
+            :icon="$constant.EMPTY_TIP_DETAIL_LIST.works.icon"
+            :title="
+              $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.works.title]
+            "
+            :text="
+              $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.works.text]
+            "
+            :btn-desc="
+              $internationalization[
+                $constant.EMPTY_TIP_DETAIL_LIST.works.btnDesc
+              ]
+            "
+            :to="$constant.EMPTY_TIP_DETAIL_LIST.works.to"
+          ></empty-picture-list-card>
+        </v-col>
+      </v-row>
+    </component>
     <corner-buttons></corner-buttons>
   </div>
 </template>
@@ -20,6 +40,15 @@ import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
   mixins: [alivePageMixin],
+  components: {
+    "list-container-waterfall": () =>
+      import("../../components/page/ListContainerWaterfall"),
+    "list-container-normal": () =>
+      import("../../components/page/ListContainerNormal"),
+    "empty-picture-list-card": () =>
+      import("../../components/page/EmptyPictureListCard"),
+    "corner-buttons": () => import("../../components/page/CornerButtons")
+  },
   async created() {
     this.init()
   },
@@ -42,20 +71,13 @@ export default {
       )
     }
   },
-  components: {
-    "list-container-waterfall": () =>
-      import("../../components/page/ListContainerWaterfall"),
-    "list-container-normal": () =>
-      import("../../components/page/ListContainerNormal"),
-    "corner-buttons": () => import("../../components/page/CornerButtons")
-  },
   methods: {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
       await this.paging(
         this.$route.params.page,
-        this.$route.params.targetId || this.info.id
+        this.$route.params.targetId || this.info?.id
       )
       this.MUpdateProgress(false)
     },

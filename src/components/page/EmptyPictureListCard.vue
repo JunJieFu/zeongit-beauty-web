@@ -1,5 +1,5 @@
 <template>
-  <v-card :elevation="0" class="mt-12" color="transparent">
+  <v-card :elevation="0" class="my-12" color="transparent">
     <v-card-title class="justify-center">
       <v-icon size="100">{{ icon }}</v-icon>
     </v-card-title>
@@ -7,10 +7,12 @@
     <v-card-text class="text-center">
       {{ text }}
     </v-card-text>
-    <v-divider></v-divider>
-    <v-card-actions class="justify-center">
-      <v-btn outlined color="primary" :to="to">{{ btnDesc }}</v-btn>
-    </v-card-actions>
+    <template v-if="btnDesc && to">
+      <v-divider></v-divider>
+      <v-card-actions class="justify-center">
+        <v-btn outlined color="primary" :to="to">{{ btnDesc }}</v-btn>
+      </v-card-actions>
+    </template>
   </v-card>
 </template>
 

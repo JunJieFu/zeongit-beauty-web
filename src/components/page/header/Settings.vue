@@ -66,6 +66,9 @@
           </v-card-text>
         </v-card>
       </v-dialog>
+      <v-list-item to="/feedback">
+        反馈
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>

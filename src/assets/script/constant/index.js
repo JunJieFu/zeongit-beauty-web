@@ -1,4 +1,4 @@
-import { MenuEnum, SignInTipDetail } from "../model"
+import { EmptyTipDetail, MenuEnum, SignInTipDetail } from "../model"
 import {
   mdiHomeOutline,
   mdiFileFindOutline,
@@ -9,7 +9,8 @@ import {
   mdiAccountHeartOutline,
   mdiAccountStarOutline,
   mdiUploadOutline,
-  mdiAccountOutline
+  mdiAccountOutline,
+  mdiMagnify
 } from "@mdi/js"
 
 export const MENU_LIST_CONSTANT = [
@@ -42,37 +43,80 @@ export const MAX_KEEP_ALIVE_PAGE = 15
 export const SIGN_IN_TIP_DETAIL_LIST = {
   user: new SignInTipDetail(
     mdiAccountOutline,
-    "您的Zeongit Beauty主页",
-    "请先登录，才能进入您的Zeongit Beauty主页。"
+    "HOME_PAGE_SIGN_IN_TITLE",
+    "HOME_PAGE_SIGN_IN_TEXT"
   ),
   collection: new SignInTipDetail(
     mdiStarOutline,
-    "您喜爱的作品",
-    "请先登录，才能查看到您收藏的作品。"
+    "COLLECT_PAGE_SIGN_IN_TITLE",
+    "COLLECT_PAGE_SIGN_IN_TEXT"
   ),
   works: new SignInTipDetail(
     mdiImageOutline,
-    "您发表过的点点滴滴",
-    "请先登录，才能查看到您上传的作品。"
+    "WORKS_PAGE_SIGN_IN_TITLE",
+    "WORKS_PAGE_SIGN_IN_TEXT"
   ),
   footprint: new SignInTipDetail(
     mdiShoePrint,
-    "追寻您查走过的足迹",
-    "请先登录，才能查看到您走过的足迹。"
+    "FOOTPRINT_PAGE_SIGN_IN_TITLE",
+    "FOOTPRINT_PAGE_SIGN_IN_TEXT"
   ),
   follower: new SignInTipDetail(
     mdiAccountHeartOutline,
-    "喜欢您的作品的人",
-    "请先登录，才能查看到您的粉丝。"
+    "FOLLOWER_PAGE_SIGN_IN_TITLE",
+    "FOLLOWER_PAGE_SIGN_IN_TEXT"
   ),
   following: new SignInTipDetail(
     mdiAccountStarOutline,
-    "ta的作品吸引了你",
-    "请先登录，才能查看到您的关注。"
+    "FOLLOWING_PAGE_SIGN_IN_TITLE",
+    "FOLLOWING_PAGE_SIGN_IN_TEXT"
   ),
   upload: new SignInTipDetail(
     mdiUploadOutline,
-    "您有新的作品",
-    "请先登录，才能让别人欣赏到你的新作品。"
+    "UPLOAD_PAGE_SIGN_IN_TITLE",
+    "UPLOAD_PAGE_SIGN_IN_TEXT"
+  )
+}
+
+export const EMPTY_TIP_DETAIL_LIST = {
+  find: new EmptyTipDetail(
+    mdiFileFindOutline,
+    "FIND_EMPTY_TITLE",
+    "FIND_EMPTY_TEXT",
+    "FIND_EMPTY_BTN_DESC",
+    "/feedback"
+  ),
+  new: new EmptyTipDetail(
+    mdiAlphaNBoxOutline,
+    "NEW_EMPTY_TITLE",
+    "NEW_EMPTY_TEXT",
+    "NEW_EMPTY_BTN_DESC",
+    "/feedback"
+  ),
+  search: new EmptyTipDetail(
+    mdiMagnify,
+    "SEARCH_EMPTY_TITLE",
+    "SEARCH_EMPTY_TEXT"
+  ),
+  collection: new EmptyTipDetail(
+    mdiStarOutline,
+    "COLLECTION_EMPTY_TITLE",
+    "COLLECTION_EMPTY_TEXT",
+    "COLLECTION_EMPTY_BTN_DESC",
+    "/find"
+  ),
+  works: new EmptyTipDetail(
+    mdiImageOutline,
+    "WORKS_EMPTY_TITLE",
+    "WORKS_EMPTY_TEXT",
+    "WORKS_EMPTY_BTN_DESC",
+    "/upload"
+  ),
+  footprint: new EmptyTipDetail(
+    mdiShoePrint,
+    "FOOTPRINT_EMPTY_TITLE",
+    "FOOTPRINT_EMPTY_TEXT",
+    "FOOTPRINT_EMPTY_BTN_DESC",
+    "/find"
   )
 }

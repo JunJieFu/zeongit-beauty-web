@@ -6,6 +6,7 @@ import newRouter from "../views/new/script/router"
 import search from "../views/search/script/router"
 import picture from "../views/picture/script/router"
 import user from "../views/user/script/router"
+import feedback from "../views/feedback/script/router"
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,7 +14,15 @@ const routes = [
     path: "/",
     name: "content",
     component: () => import("../views/Content"),
-    children: [...home, ...find, ...newRouter, ...search, ...picture, ...user]
+    children: [
+      ...home,
+      ...find,
+      ...newRouter,
+      ...search,
+      ...picture,
+      ...user,
+      ...feedback
+    ]
   }
 ]
 

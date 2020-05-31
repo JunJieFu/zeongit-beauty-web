@@ -34,15 +34,13 @@ export class SignInTipDetail {
   }
 }
 
-export class OptionEnum {
-  /**
-   * 下拉枚举
-   * @param {String,Number}label
-   * @param {*}value
-   */
-  constructor(label = 0, value = null) {
-    this.label = label
-    this.value = value
+export class EmptyTipDetail {
+  constructor(icon, title, text, btnDesc, to) {
+    this.icon = icon
+    this.title = title
+    this.text = text
+    this.btnDesc = btnDesc
+    this.to = to
   }
 }
 
@@ -57,28 +55,5 @@ export class MenuEnum {
     this.label = label
     this.path = path
     this.icon = icon
-  }
-}
-
-export class ColumnEnum {
-  /**
-   * 表列枚举
-   * @param value
-   * @param text
-   * @param width
-   * @param visibility
-   */
-  constructor(value, text, width, visibility = true) {
-    this.value = value
-    this.text = text
-    this.width = width
-    this.visibility = visibility
-  }
-}
-
-export class SignInForm {
-  constructor() {
-    this.phone = null
-    this.password = null
   }
 }

@@ -1,4 +1,10 @@
 module.exports = {
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
+      args[0].title = "Zeongit Beauty"
+      return args
+    })
+  },
   transpileDependencies: ["vuetify"],
   devServer: {
     port: 12181, // 端口

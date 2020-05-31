@@ -40,6 +40,11 @@ export const pictureService = {
     let _ = Object.assign({ id }, pageable)
     _.page--
     return httpUtil.get("/picture/pagingRecommendById", _)
+  },
+  pagingByFollowing(pageable) {
+    let _ = Object.assign({}, pageable)
+    _.page--
+    return httpUtil.get("/picture/pagingByFollowing", _)
   }
 }
 

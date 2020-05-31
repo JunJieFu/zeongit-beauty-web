@@ -7,7 +7,27 @@
       :pageable="pageable"
       :loading="loading"
       @change="changePage"
-    ></component>
+    >
+      <v-row class="ma-0" justify="center" align="center">
+        <v-col cols="12" sm="7" md="5" lg="4" xl="3">
+          <empty-picture-list-card
+            :icon="$constant.EMPTY_TIP_DETAIL_LIST.find.icon"
+            :title="
+              $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.find.title]
+            "
+            :text="
+              $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.find.text]
+            "
+            :btn-desc="
+              $internationalization[
+                $constant.EMPTY_TIP_DETAIL_LIST.find.btnDesc
+              ]
+            "
+            :to="$constant.EMPTY_TIP_DETAIL_LIST.find.to"
+          ></empty-picture-list-card>
+        </v-col>
+      </v-row>
+    </component>
     <corner-buttons></corner-buttons>
   </div>
 </template>
@@ -39,6 +59,8 @@ export default {
       import("../../components/page/ListContainerWaterfall"),
     "list-container-normal": () =>
       import("../../components/page/ListContainerNormal"),
+    "empty-picture-list-card": () =>
+      import("../../components/page/EmptyPictureListCard"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
   methods: {

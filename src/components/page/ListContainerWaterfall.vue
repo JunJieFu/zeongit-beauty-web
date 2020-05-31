@@ -103,10 +103,8 @@
         </v-hover>
       </div>
     </div>
-    <div class="empty-container" v-if="!list.length && !loading">
-      <slot>
-        <h2 class="title text-center">您的图片将会显示在此处</h2>
-      </slot>
+    <div class="mt-12" v-if="!list.length && !loading">
+      <slot> </slot>
     </div>
   </div>
 </template>
@@ -197,7 +195,12 @@ export default {
       this.itemStyleList = styleList
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
-      if (elHeight && window.innerHeight >= elHeight && this.page) {
+      if (
+        elHeight &&
+        window.innerHeight >= elHeight &&
+        this.page &&
+        !this.page.last
+      ) {
         this.$emit("change", this.page?.number + 2)
       }
     },
@@ -232,9 +235,5 @@ export default {
       position: absolute;
     }
   }
-}
-
-.empty-container {
-  margin-top: 20vh;
 }
 </style>

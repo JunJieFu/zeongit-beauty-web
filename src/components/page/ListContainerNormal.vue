@@ -30,10 +30,8 @@
         class="mt-4"
       ></v-pagination>
     </template>
-    <div class="empty-container" v-else-if="!loading">
-      <slot>
-        <h2 class="title text-center">您的图片将会显示在此处</h2>
-      </slot>
+    <div class="mt-12" v-else-if="!loading">
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -121,9 +119,5 @@ export default {
       flex-direction: column;
     }
   }
-}
-
-.empty-container {
-  margin-top: 20vh;
 }
 </style>

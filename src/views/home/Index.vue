@@ -8,28 +8,48 @@
       <v-card-title class="justify-center">
         已关注用户的作品
       </v-card-title>
-      <v-card-text class="px-0">
+      <v-card-text class="px-0 pb-0">
         <list-container :list="followingPictureList"></list-container>
       </v-card-text>
+      <v-card-actions v-if="followingPictureList.length" class="justify-center">
+        <v-btn color="primary" depressed outlined rounded class="px-6"
+          >查看更多</v-btn
+        >
+      </v-card-actions>
       <v-divider></v-divider>
     </template>
-
     <template v-if="findList.length">
       <v-card-title class="justify-center">
         推荐作品
       </v-card-title>
-      <v-card-text class="px-0">
+      <v-card-text class="px-0 pb-0">
         <list-container :list="findList"></list-container>
       </v-card-text>
+      <v-card-actions v-if="findList.length" class="justify-center">
+        <v-btn
+          color="primary"
+          depressed
+          outlined
+          rounded
+          class="px-6"
+          to="/find"
+          >查看更多</v-btn
+        >
+      </v-card-actions>
       <v-divider></v-divider>
     </template>
     <template v-if="newList.length">
       <v-card-title class="justify-center">
         最新作品
       </v-card-title>
-      <v-card-text class="px-0">
+      <v-card-text class="px-0 pb-0">
         <list-container :list="newList"></list-container>
       </v-card-text>
+      <v-card-actions v-if="newList.length" class="justify-center">
+        <v-btn color="primary" depressed outlined rounded class="px-6" to="/new"
+          >查看更多</v-btn
+        >
+      </v-card-actions>
     </template>
   </v-card>
 </template>

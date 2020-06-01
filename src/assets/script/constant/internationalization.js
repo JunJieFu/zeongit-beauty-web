@@ -55,3 +55,15 @@ export const WORKS_EMPTY_BTN_DESC = "我要上传"
 export const FOOTPRINT_EMPTY_TITLE = "没有作品"
 export const FOOTPRINT_EMPTY_TEXT = "观赏过的作品我们都会有所记录。"
 export const FOOTPRINT_EMPTY_BTN_DESC = "前往发现"
+
+export const PICTURE_FOOTPRINT_EMPTY_TITLE = "图片没有任何足迹"
+export const PICTURE_FOOTPRINT_EMPTY_TEXT = "您可以成为第一个留下脚印的人。"
+export const PICTURE_FOOTPRINT_EMPTY_BTN_DESC = "留下脚印"
+
+export const PICTURE_COLLECTION_EMPTY_TITLE = "图片没有任何收藏"
+export const PICTURE_COLLECTION_EMPTY_TEXT = "您可以成为第一个收藏的人。"
+export const PICTURE_COLLECTION_EMPTY_BTN_DESC = "前往收藏"
+
+export const FOLLOWER_EMPTY_TITLE = "没有粉丝"
+
+export const FOLLOWING_EMPTY_TITLE = "没有关注"

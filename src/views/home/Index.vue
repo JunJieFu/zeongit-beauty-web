@@ -4,26 +4,33 @@
     :max-width="$constant.LIST_ITEM_WIDTH * 5 + $constant.DETAIL_GAP * 2"
     class="mx-auto"
   >
-    <v-card-title v-if="followingPictureList.length" class="justify-center">
-      已关注用户的作品
-    </v-card-title>
-    <v-card-text class="px-0">
-      <list-container :list="followingPictureList"></list-container>
-    </v-card-text>
-    <v-divider v-if="followingPictureList.length"></v-divider>
-    <v-card-title v-if="findList.length" class="justify-center">
-      推荐作品
-    </v-card-title>
-    <v-card-text class="px-0">
-      <list-container :list="findList"></list-container>
-    </v-card-text>
-    <v-divider v-if="findList.length"></v-divider>
-    <v-card-title v-if="newList.length" class="justify-center">
-      最新作品
-    </v-card-title>
-    <v-card-text class="px-0">
-      <list-container :list="newList"></list-container>
-    </v-card-text>
+    <template v-if="followingPictureList.length">
+      <v-card-title class="justify-center">
+        已关注用户的作品
+      </v-card-title>
+      <v-card-text class="px-0">
+        <list-container :list="followingPictureList"></list-container>
+      </v-card-text>
+      <v-divider></v-divider>
+    </template>
+
+    <template v-if="findList.length">
+      <v-card-title class="justify-center">
+        推荐作品
+      </v-card-title>
+      <v-card-text class="px-0">
+        <list-container :list="findList"></list-container>
+      </v-card-text>
+      <v-divider></v-divider>
+    </template>
+    <template v-if="newList.length">
+      <v-card-title class="justify-center">
+        最新作品
+      </v-card-title>
+      <v-card-text class="px-0">
+        <list-container :list="newList"></list-container>
+      </v-card-text>
+    </template>
   </v-card>
 </template>
 

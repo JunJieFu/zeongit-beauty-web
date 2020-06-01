@@ -7,7 +7,20 @@
         :loading="loading"
         @change="changePage"
         @follow="follow"
-      ></user-list-container-normal>
+      >
+        <v-row class="ma-0" justify="center" align="center">
+          <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
+            <empty-picture-list-card
+              :icon="$constant.EMPTY_TIP_DETAIL_LIST.following.icon"
+              :title="
+                $internationalization[
+                  $constant.EMPTY_TIP_DETAIL_LIST.following.title
+                ]
+              "
+            ></empty-picture-list-card>
+          </v-col>
+        </v-row>
+      </user-list-container-normal>
     </v-card-text>
     <corner-buttons></corner-buttons>
   </div>
@@ -26,6 +39,8 @@ export default {
   },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
+    "empty-picture-list-card": () =>
+      import("../../components/page/EmptyPictureListCard"),
     "user-list-container-normal": () =>
       import("../../components/page/UserListContainerNormal")
   },

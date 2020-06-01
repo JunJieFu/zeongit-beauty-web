@@ -22,8 +22,8 @@
       class="mt-4"
     ></v-pagination>
   </div>
-  <div class="mt-12" v-else-if="!loading">
-    <slot> </slot>
+  <div v-else-if="!loading">
+    <slot></slot>
   </div>
 </template>
 

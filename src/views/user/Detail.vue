@@ -1,32 +1,114 @@
 <template>
   <div>
-    <v-card-text>
-      <v-chip
-        class="mr-2 my-1"
-        small
-        v-for="(item, index) in tagFrequency"
-        :key="index"
-        :to="`/search/${encodeURIComponent(item.name)}`"
-      >
-        {{ item.name }} ({{ item.amount }})
-      </v-chip>
+    <template v-if="tagFrequency.length">
+      <v-card-title>
+        标签
+      </v-card-title>
+      <v-card-text>
+        <v-chip
+          class="mr-2 my-1"
+          small
+          v-for="(item, index) in tagFrequency"
+          :key="index"
+          :to="`/search/${encodeURIComponent(item.name)}`"
+        >
+          {{ item.name }} ({{ item.amount }})
+        </v-chip>
+      </v-card-text>
+      <v-divider></v-divider>
+    </template>
+    <v-card-title>
+      作品
+    </v-card-title>
+    <v-card-text :class="{ 'px-0': worksList.length, 'pb-0': true }">
+      <list-container :list="worksList" :loading="worksLoading">
+        <v-row class="ma-0" justify="center" align="center">
+          <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
+            <empty-picture-list-card
+              :icon="$constant.EMPTY_TIP_DETAIL_LIST.works.icon"
+              :title="
+                $internationalization[
+                  $constant.EMPTY_TIP_DETAIL_LIST.works.title
+                ]
+              "
+            ></empty-picture-list-card>
+          </v-col>
+        </v-row>
+      </list-container>
     </v-card-text>
+    <v-card-actions v-if="worksList.length" class="justify-center">
+      <v-btn
+        color="primary"
+        depressed
+        outlined
+        rounded
+        class="px-6"
+        :to="`/works/${targetId}`"
+        >查看更多</v-btn
+      >
+    </v-card-actions>
+    <v-divider></v-divider>
+    <v-card-title>
+      收藏
+    </v-card-title>
+    <v-card-text :class="{ 'px-0': collectionList.length, 'pb-0': true }">
+      <list-container :list="collectionList" :loading="collectionLoading">
+        <v-row class="ma-0" justify="center" align="center">
+          <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
+            <empty-picture-list-card
+              :icon="$constant.EMPTY_TIP_DETAIL_LIST.collection.icon"
+              :title="
+                $internationalization[
+                  $constant.EMPTY_TIP_DETAIL_LIST.collection.title
+                ]
+              "
+            ></empty-picture-list-card>
+          </v-col>
+        </v-row>
+      </list-container>
+    </v-card-text>
+    <v-card-actions v-if="worksList.length" class="justify-center">
+      <v-btn
+        color="primary"
+        depressed
+        outlined
+        rounded
+        class="px-6"
+        :to="`/collection/${targetId}`"
+        >查看更多</v-btn
+      >
+    </v-card-actions>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import { tagService } from "../../assets/script/service"
+import {
+  collectionService,
+  pictureService,
+  tagService
+} from "../../assets/script/service"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
+import { Pageable } from "../../assets/script/model"
 export default {
   mixins: [alivePageMixin],
+  components: {
+    "empty-picture-list-card": () =>
+      import("../../components/page/EmptyPictureListCard"),
+    "list-container": () => import("../../components/page/ListContainer")
+  },
   async created() {
     this.init()
   },
   data() {
     return {
       targetId: null,
-      tagFrequency: []
+      tagFrequency: [],
+      pageable: new Pageable(0, 10, "createDate,desc"),
+      worksList: [],
+      worksLoading: false,
+      collectionList: [],
+      collectionLoading: false
     }
   },
   computed: {
@@ -37,14 +119,28 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
+      this.targetId = this.$route.params.targetId || this.info.id
       //这里不读store里缓存的，直接获取
       await this.listTagFrequencyByUserId(this.$route.params.targetId)
+      this.pagingWorks(this.$route.params.targetId)
+      this.pagingCollection(this.$route.params.targetId)
       this.MUpdateProgress(false)
     },
     async listTagFrequencyByUserId(id) {
-      this.id = id
       const result = await tagService.listTagFrequencyByUserId(id)
       this.tagFrequency = result.data
+    },
+    async pagingWorks(id) {
+      this.worksLoading = true
+      const result = await pictureService.paging(this.pageable, undefined, id)
+      this.worksLoading = false
+      this.worksList = result?.data?.content || []
+    },
+    async pagingCollection(id) {
+      this.collectionLoading = true
+      const result = await collectionService.paging(this.pageable, id)
+      this.collectionLoading = false
+      this.collectionList = result?.data?.content || []
     }
   }
 }

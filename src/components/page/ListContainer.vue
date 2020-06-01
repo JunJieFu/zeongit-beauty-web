@@ -1,6 +1,6 @@
 <template>
   <div ref="page" class="list-container" v-resize="throttle">
-    <div class="list-content" :style="style">
+    <div class="list-content" :style="style" v-if="list.length">
       <div
         class="list-item transition"
         v-for="(item, index) in list"
@@ -24,6 +24,9 @@
         </v-hover>
       </div>
     </div>
+    <div v-else-if="!loading">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -36,6 +39,10 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

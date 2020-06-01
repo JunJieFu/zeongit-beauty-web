@@ -131,7 +131,6 @@ export default {
       if (!this.user) await this.get(this.$route.params.targetId)
     },
     async get(id) {
-      this.id = id
       const result = await userService.getByTargetId(id)
       this.user = result.data
       this.MAddUserMap(this.user)

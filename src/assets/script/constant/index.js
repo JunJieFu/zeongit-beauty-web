@@ -48,6 +48,11 @@ export const SIGN_IN_TIP_DETAIL_LIST = {
     "HOME_PAGE_SIGN_IN_TITLE",
     "HOME_PAGE_SIGN_IN_TEXT"
   ),
+  followingNew: new SignInTipDetail(
+    mdiAccountMultipleOutline,
+    "FOLLOWING_NEW_PAGE_SIGN_IN_TITLE",
+    "FOLLOWING_NEW_PAGE_SIGN_IN_TEXT"
+  ),
   collection: new SignInTipDetail(
     mdiStarOutline,
     "COLLECT_PAGE_SIGN_IN_TITLE",

@@ -3,6 +3,7 @@ import {
   mdiHomeOutline,
   mdiFileFindOutline,
   mdiAlphaNBoxOutline,
+  mdiAccountMultipleOutline,
   mdiStarOutline,
   mdiImageOutline,
   mdiShoePrint,
@@ -15,8 +16,9 @@ import {
 
 export const MENU_LIST_CONSTANT = [
   new MenuEnum("首页", "/", mdiHomeOutline),
-  new MenuEnum("发现", "/find", mdiFileFindOutline),
-  new MenuEnum("最新", "/new", mdiAlphaNBoxOutline),
+  new MenuEnum("猜你喜欢", "/find", mdiFileFindOutline),
+  new MenuEnum("本站最新", "/new", mdiAlphaNBoxOutline),
+  new MenuEnum("关注最新", "/followingNew", mdiAccountMultipleOutline),
   new MenuEnum("收藏", "/collection", mdiStarOutline),
   new MenuEnum("作品", "/works", mdiImageOutline),
   new MenuEnum("足迹", "/footprint", mdiShoePrint),
@@ -97,6 +99,13 @@ export const EMPTY_TIP_DETAIL_LIST = {
     mdiMagnify,
     "SEARCH_EMPTY_TITLE",
     "SEARCH_EMPTY_TEXT"
+  ),
+  followingNew: new EmptyTipDetail(
+    mdiAccountMultipleOutline,
+    "FOLLOWING_NEW_EMPTY_TITLE",
+    "FOLLOWING_NEW_EMPTY_TEXT",
+    "FOLLOWING_NEW_EMPTY_BTN_DESC",
+    "/find"
   ),
   collection: new EmptyTipDetail(
     mdiStarOutline,

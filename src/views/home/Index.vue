@@ -12,7 +12,13 @@
         <list-container :list="followingPictureList"></list-container>
       </v-card-text>
       <v-card-actions v-if="followingPictureList.length" class="justify-center">
-        <v-btn color="primary" depressed outlined rounded class="px-6"
+        <v-btn
+          color="primary"
+          depressed
+          outlined
+          rounded
+          class="px-6"
+          to="/followingNew"
           >查看更多</v-btn
         >
       </v-card-actions>

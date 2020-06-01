@@ -26,6 +26,16 @@ export default [
     ]
   },
   {
+    path: "/followingNew/:targetId?/:page?",
+    component: () => import("../SignIn"),
+    children: [
+      {
+        path: "/followingNew/:targetId?/:page?",
+        component: () => import("../FollowingNew")
+      }
+    ]
+  },
+  {
     path: "/collection/:targetId?/:page?",
     component: () => import("../SignIn"),
     children: [

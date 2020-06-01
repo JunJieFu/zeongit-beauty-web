@@ -67,7 +67,7 @@
         </v-row>
       </list-container>
     </v-card-text>
-    <v-card-actions v-if="worksList.length" class="justify-center">
+    <v-card-actions v-if="collectionList.length" class="justify-center">
       <v-btn
         color="primary"
         depressed

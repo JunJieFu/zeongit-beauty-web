@@ -43,6 +43,11 @@ export const NEW_EMPTY_BTN_DESC = "我要反馈"
 export const SEARCH_EMPTY_TITLE = "什么都搜不到哦"
 export const SEARCH_EMPTY_TEXT = "您可以再换一些标签搜索哦。"
 
+export const FOLLOWING_NEW_EMPTY_TITLE = "没有作品"
+export const FOLLOWING_NEW_EMPTY_TEXT =
+  "您可以前往发现浏览一些系统推荐给您的作品哦。"
+export const FOLLOWING_NEW_EMPTY_BTN_DESC = "前往发现"
+
 export const COLLECTION_EMPTY_TITLE = "没有作品"
 export const COLLECTION_EMPTY_TEXT =
   "您可以前往发现浏览一些系统推荐给您的作品哦。"

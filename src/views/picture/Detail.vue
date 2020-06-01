@@ -169,7 +169,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$page-size: 1120px;
+@import "src/assets/style/config";
 .page {
   max-width: $page-size;
 }

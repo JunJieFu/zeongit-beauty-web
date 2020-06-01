@@ -14,6 +14,10 @@ export const HOME_PAGE_SIGN_IN_TITLE = "您的Zeongit Beauty主页"
 export const HOME_PAGE_SIGN_IN_TEXT =
   "请先登录，才能进入您的Zeongit Beauty主页。"
 
+export const FOLLOWING_NEW_PAGE_SIGN_IN_TITLE = "您关注用户的最新作品"
+export const FOLLOWING_NEW_PAGE_SIGN_IN_TEXT =
+  "请先登录，才能查看到您关注用户的最新作品。"
+
 export const COLLECT_PAGE_SIGN_IN_TITLE = "您喜爱的作品"
 export const COLLECT_PAGE_SIGN_IN_TEXT = "请先登录，才能查看到您收藏的作品。"
 

@@ -118,5 +118,21 @@ export const EMPTY_TIP_DETAIL_LIST = {
     "FOOTPRINT_EMPTY_TEXT",
     "FOOTPRINT_EMPTY_BTN_DESC",
     "/find"
-  )
+  ),
+  pictureFootprint: new EmptyTipDetail(
+    mdiShoePrint,
+    "PICTURE_FOOTPRINT_EMPTY_TITLE",
+    "PICTURE_FOOTPRINT_EMPTY_TEXT",
+    "PICTURE_FOOTPRINT_EMPTY_BTN_DESC",
+    "/picture/"
+  ),
+  pictureCollection: new EmptyTipDetail(
+    mdiStarOutline,
+    "PICTURE_COLLECTION_EMPTY_TITLE",
+    "PICTURE_COLLECTION_EMPTY_TEXT",
+    "PICTURE_COLLECTION_EMPTY_BTN_DESC",
+    "/picture/"
+  ),
+  follower: new EmptyTipDetail(mdiAccountHeartOutline, "FOLLOWER_EMPTY_TITLE"),
+  following: new EmptyTipDetail(mdiAccountStarOutline, "FOLLOWING_EMPTY_TITLE")
 }

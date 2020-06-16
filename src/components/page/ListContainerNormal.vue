@@ -12,7 +12,7 @@
               <v-card
                 :elevation="hover ? 5 : 1"
                 class="d-flex align-center fill-height"
-                :href="`/#/picture/${item.id}`"
+                :to="`/picture/${item.id}`"
               >
                 <v-card-text class="pa-0">
                   <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>

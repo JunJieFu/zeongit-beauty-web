@@ -41,6 +41,9 @@ export default [
     children: [
       {
         path: "/collection/:targetId?/:page?",
+        meta: {
+          keepAlive: true
+        },
         component: () => import("../Collection")
       }
     ]
@@ -51,6 +54,9 @@ export default [
     children: [
       {
         path: "/works/:targetId?/:page?",
+        meta: {
+          keepAlive: true
+        },
         component: () => import("../Works")
       }
     ]
@@ -61,6 +67,9 @@ export default [
     children: [
       {
         path: "/footprint/:targetId?/:page?",
+        meta: {
+          keepAlive: true
+        },
         component: () => import("../Footprint")
       }
     ]

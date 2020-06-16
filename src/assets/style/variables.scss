@@ -2,10 +2,31 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+@import '~vuetify/src/styles/main.sass';
 
+.v-img{
+  vertical-align: middle;
+}
 
 .v-chip .v-chip__content{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.theme--dark{
+  $color: #121212;
+  &.v-app-bar.v-toolbar.v-sheet{
+    background-color: $color !important;
+  }
+  &.v-navigation-drawer{
+    background-color: $color !important;
+  }
+}
+
+.theme--light{
+  $color: #ffffff;
+  &.v-app-bar.v-toolbar.v-sheet{
+    background-color: $color !important;
+  }
 }

@@ -15,7 +15,7 @@
       >
         <v-hover>
           <template v-slot="{ hover }">
-            <v-card :elevation="hover ? 5 : 1" :href="`/#/picture/${item.id}`">
+            <v-card :elevation="hover ? 5 : 1" :to="`/picture/${item.id}`">
               <v-card-text class="pa-0">
                 <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
               </v-card-text>

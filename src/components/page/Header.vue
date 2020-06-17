@@ -77,20 +77,7 @@
       </template>
       <span>消息</span>
     </v-tooltip>
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-        <v-btn
-          depressed
-          icon
-          :small="$vuetify.breakpoint.xsOnly"
-          v-on="on"
-          class="ml-2"
-        >
-          <v-icon>mdi-apps</v-icon>
-        </v-btn>
-      </template>
-      <span>应用</span>
-    </v-tooltip>
+    <header-apps></header-apps>
     <header-settings></header-settings>
     <header-user></header-user>
   </v-app-bar>
@@ -101,6 +88,7 @@ import { mapMutations, mapState } from "vuex"
 export default {
   components: {
     "header-settings": () => import("./header/Settings"),
+    "header-apps": () => import("./header/Apps"),
     "header-user": () => import("./header/User")
   },
   data() {

@@ -87,7 +87,7 @@ export default {
         this.paging(page, this.targetId)
       } else {
         this.$router.push(
-          `/FollowingNew/${encodeURIComponent(this.targetId)}/${page}`
+          `/followingNew/${encodeURIComponent(this.targetId)}/${page}`
         )
       }
     },

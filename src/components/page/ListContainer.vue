@@ -15,7 +15,7 @@
             >
               <v-card-text class="pa-0">
                 <v-img
-                  :src="$img.secdra(item.url, `specifiedWidth`)"
+                  :src="$imageUrl.picture(item.url, `specifiedWidth`)"
                   :aspect-ratio="1"
                 ></v-img>
               </v-card-text>

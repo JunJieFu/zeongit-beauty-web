@@ -15,7 +15,7 @@
         >
           <v-img
             :src="
-              $img.secdra(
+              $imageUrl.picture(
                 picture ? picture.url : undefined,
                 `specifiedWidth1200`
               )

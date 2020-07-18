@@ -10,7 +10,7 @@ import config from "./assets/script/constant/config"
 import * as constant from "./assets/script/constant"
 import * as internationalization from "./assets/script/constant/internationalization"
 import filters from "./assets/script/filter"
-import Img from "./assets/script/util/imgUrl"
+import imageUrl from "./assets/script/util/imageUrl"
 import { Notification, Confirm, Prompt } from "./components/global"
 
 Vue.component("sign-in-menu-card", () =>
@@ -20,7 +20,7 @@ Vue.component("sign-in-menu-card", () =>
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
-Vue.prototype.$img = Img
+Vue.prototype.$imageUrl = imageUrl
 Vue.prototype.$enum = _enum
 Vue.prototype.$constant = constant
 Vue.prototype.$internationalization = internationalization

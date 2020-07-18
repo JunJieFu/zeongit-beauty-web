@@ -13,7 +13,7 @@
     >
       <v-img
         :aspect-ratio="$vuetify.breakpoint.xsOnly ? 2 : 3"
-        :src="$img.back(user.background)"
+        :src="$imageUrl.background(user.background)"
       ></v-img>
       <v-row class="ma-0 ">
         <v-col
@@ -25,7 +25,7 @@
           style="margin-top: -40px"
         >
           <v-img
-            :src="$img.head(user.avatarUrl)"
+            :src="$imageUrl.avatar(user.avatarUrl)"
             class="circle elevation-5 mx-auto"
             :width="$vuetify.breakpoint.xsOnly ? 100 : 130"
             :aspect-ratio="1"

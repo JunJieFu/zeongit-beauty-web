@@ -1,8 +1,7 @@
-import moment from "moment"
 import dateUtil from "../util/date"
 export default {
-  date(date, formatString = "YYYY-MM-DD hh:mm:ss") {
-    return moment(date).format(formatString)
+  date(date, formatString) {
+    return dateUtil.format(date, formatString)
   },
   toFixed(number, fractionDigits = 2, showNaN) {
     let _number = number * 1

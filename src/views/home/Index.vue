@@ -1,7 +1,8 @@
 <template>
-  <v-card
-    :elevation="0"
-    :max-width="$constant.LIST_ITEM_WIDTH * 5 + $constant.DETAIL_GAP * 2"
+  <div
+    :style="{
+      maxWidth: $constant.LIST_ITEM_WIDTH * 5 + $constant.DETAIL_GAP * 2 + 'px'
+    }"
     class="mx-auto"
   >
     <template v-if="followingPictureList.length">
@@ -57,7 +58,7 @@
         >
       </v-card-actions>
     </template>
-  </v-card>
+  </div>
 </template>
 
 <script>

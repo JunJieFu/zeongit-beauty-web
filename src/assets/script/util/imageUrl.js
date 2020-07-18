@@ -82,7 +82,7 @@ export default {
     }
   },
   background(url, type, is) {
-    if (!this.BACK_TYPE.includes(type))
+    if (!this.BACKGROUND_TYPE.includes(type))
       throw new Error(`背景样式${type}不符合规则`)
     if (url) {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url

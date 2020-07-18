@@ -12,7 +12,7 @@
           >
             <div>
               <v-img
-                :src="$img.head(info ? info.avatarUrl : undefined)"
+                :src="$imageUrl.avatar(info ? info.avatarUrl : undefined)"
                 width="40"
                 class="circle"
               />
@@ -25,14 +25,17 @@
     <v-list class="py-0 user-menu" v-if="info">
       <v-list-item class="px-0">
         <v-img
-          :src="$img.back(info.background, 'backCard')"
+          :src="$imageUrl.background(info.background, 'backCard')"
           style="width: 100%"
           :aspect-ratio="2"
         />
       </v-list-item>
       <v-list-item class="head-img-item justify-center">
         <router-link to="/user" class="d-block">
-          <v-img :src="$img.head(info.avatarUrl)" class="head-img circle" />
+          <v-img
+            :src="$imageUrl.avatar(info.avatarUrl)"
+            class="head-img circle"
+          />
         </router-link>
       </v-list-item>
       <v-list-item class="justify-center flex-column">

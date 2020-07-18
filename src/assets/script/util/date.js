@@ -28,11 +28,11 @@ export default {
     return date
   },
 
-  format(date = new Date(), formatString) {
-    if (formatString) {
+  format(date, formatString = "YYYY-MM-DD") {
+    if (date) {
       return moment(date).format(formatString)
     }
-    return date
+    return ""
   },
 
   differTo(date = new Date(), defaultDate = new Date()) {

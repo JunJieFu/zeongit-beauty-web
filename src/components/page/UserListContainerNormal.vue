@@ -4,7 +4,11 @@
       <div v-for="item in page.content" :key="item.id">
         <v-list-item class="py-3">
           <router-link class="d-block" :to="`/user/${item.id}`">
-            <v-img :src="$img.head(item.avatarUrl)" class="circle" width="60" />
+            <v-img
+              :src="$imageUrl.avatar(item.avatarUrl)"
+              class="circle"
+              width="60"
+            />
           </router-link>
           <span class="flex-grow-1 ellipsis px-3">
             {{ item.nickname }}

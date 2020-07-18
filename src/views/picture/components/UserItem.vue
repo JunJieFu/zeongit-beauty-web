@@ -2,7 +2,7 @@
   <v-card-text class="d-flex align-center">
     <router-link :to="`/user/${user.id}`" class="d-block" v-ripple>
       <v-img
-        :src="$img.head(user.avatarUrl)"
+        :src="$imageUrl.avatar(user.avatarUrl)"
         width="45"
         :aspect-ratio="1"
         class="circle"

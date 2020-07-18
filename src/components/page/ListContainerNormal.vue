@@ -15,7 +15,9 @@
                 :href="`/#/picture/${item.id}`"
               >
                 <v-card-text class="pa-0">
-                  <v-img :src="$img.secdra(item.url, `specifiedWidth`)"></v-img>
+                  <v-img
+                    :src="$imageUrl.picture(item.url, `specifiedWidth`)"
+                  ></v-img>
                 </v-card-text>
               </v-card>
             </template>

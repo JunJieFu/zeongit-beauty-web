@@ -31,6 +31,9 @@ export default [
     children: [
       {
         path: "/followingNew/:targetId?/:page?",
+        meta: {
+          keepAlive: true
+        },
         component: () => import("../FollowingNew")
       }
     ]

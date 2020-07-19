@@ -35,6 +35,16 @@ import { mapState } from "vuex"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
+  props: {
+    page: {
+      type: [String, Number],
+      default: 1
+    },
+    keyword: {
+      type: [String, undefined],
+      default: undefined
+    }
+  },
   mixins: [alivePageMixin],
   async created() {
     this.init()
@@ -44,8 +54,7 @@ export default {
       loading: false,
       pageable: new Pageable(0, 16),
       page2d: [],
-      currPage: null,
-      keyword: null
+      currPage: null
     }
   },
   computed: {
@@ -64,7 +73,7 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.$route.params.page, this.$route.params.keyword)
+      await this.paging(this.page, this.keyword)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -93,7 +102,6 @@ export default {
       this.loading = false
       await this.$resultNotify(result)
       if (keyword !== this.keyword) {
-        this.keyword = keyword
         this.page2d = []
       }
       const page = result.data

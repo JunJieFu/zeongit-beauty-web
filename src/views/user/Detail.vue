@@ -104,7 +104,7 @@ export default {
     return {
       targetId: null,
       tagFrequency: [],
-      pageable: new Pageable(0, 10, "createDate,desc"),
+      pageable: new Pageable(0, 8, "createDate,desc"),
       worksList: [],
       worksLoading: false,
       collectionList: [],

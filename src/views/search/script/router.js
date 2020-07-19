@@ -4,6 +4,7 @@ export default [
     meta: {
       keepAlive: true
     },
-    component: () => import("../Index")
+    component: () => import("../Index"),
+    props: true
   }
 ]

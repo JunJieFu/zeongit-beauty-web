@@ -122,7 +122,7 @@ export default {
       this.targetId = this.$route.params.targetId || this.info.id
       //这里不读store里缓存的，直接获取
       await this.listTagFrequencyByUserId(this.$route.params.targetId)
-      this.pagingWorks(this.$route.params.targetId)
+      this.pagingWorks(this.$route.params.targetId || this.info.id)
       this.pagingCollection(this.$route.params.targetId)
       this.MUpdateProgress(false)
     },

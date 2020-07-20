@@ -4,9 +4,7 @@
       <v-card-title>
         <span class="headline">{{ title }}</span>
       </v-card-title>
-      <v-card-text>
-        {{ text }}
-      </v-card-text>
+      <v-card-text v-html="text"> </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="warning" text @click="close">

@@ -1,19 +1,21 @@
 <template>
-  <v-tooltip bottom>
-    <template v-slot:activator="{ on }">
-      <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click="onClick" v-on="on">
-        <v-icon color="error">mdi-delete-outline</v-icon>
-      </v-btn>
-    </template>
-    <span>删除图片</span>
-  </v-tooltip>
+  <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click.stop="onClick">
+    <v-tooltip top>
+      <template v-slot:activator="{ on }">
+        <v-icon color="error" v-on="on">mdi-delete-outline</v-icon>
+      </template>
+      <span>删除图片</span>
+    </v-tooltip>
+  </v-btn>
 </template>
 
 <script>
 export default {
   methods: {
     async onClick() {
-      await this.$confirm({ text: "您确定删除该图片吗？" })
+      await this.$confirm({
+        text: "您确定删除该图片吗？<br />注意：删除后不能恢复！"
+      })
       this.$emit("remove")
     }
   }

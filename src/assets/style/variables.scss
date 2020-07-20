@@ -30,3 +30,14 @@
     background-color: $color !important;
   }
 }
+
+.v-btn--fab{
+  .v-btn__content{
+    height: 100%;
+    width: 100%;
+    .v-icon{
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

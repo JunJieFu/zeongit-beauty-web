@@ -102,7 +102,7 @@
           v-if="picture && picture.user.id === info.id"
         >
           <template v-slot:activator>
-            <v-tooltip bottom :disabled="$isMobile">
+            <v-tooltip top :disabled="$isMobile">
               <template v-slot:activator="{ on }">
                 <v-btn
                   v-on="on"
@@ -126,7 +126,7 @@
             </v-tooltip>
           </template>
           <remove-btn></remove-btn>
-          <privacy-btn :picture="picture"></privacy-btn>
+          <privacy-btn :picture="picture" @privacy="privacy"></privacy-btn>
           <edit-btn></edit-btn>
         </v-speed-dial>
       </corner-buttons>
@@ -201,6 +201,10 @@ export default {
     },
     follow({ focus }) {
       this.picture.user.focus = focus
+    },
+    privacy({ privacy }) {
+      this.picture.privacy = privacy
+      this.settingsVisible = false
     }
   }
 }

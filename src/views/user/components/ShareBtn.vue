@@ -16,7 +16,10 @@
         <span>分享</span>
       </v-tooltip>
     </template>
-    <v-list dense>
+    <v-list
+      :dense="$vuetify.breakpoint.smAndDown"
+      :width="$constant.MENU_LIST_WIDTH"
+    >
       <v-list-item>
         <v-list-item-content>
           QQ空间

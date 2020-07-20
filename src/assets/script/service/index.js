@@ -28,13 +28,16 @@ export const pictureService = {
     _.page--
     return httpUtil.get("/picture/pagingByRecommend", _)
   },
-  paging(pageable, tagList, targetId) {
-    let _ = Object.assign({ tagList, targetId }, pageable)
+  paging(pageable, tagList) {
+    let _ = Object.assign({ tagList }, pageable)
     _.page--
     return httpUtil.get("/picture/paging", _)
   },
   get(id) {
     return httpUtil.get("/picture/get", { id })
+  },
+  hide(id) {
+    return httpUtil.post("/picture/hide", { id })
   },
   pagingRecommendById(pageable, id) {
     let _ = Object.assign({ id }, pageable)
@@ -61,6 +64,14 @@ export const collectionService = {
     let _ = Object.assign({ pictureId }, pageable)
     _.page--
     return httpUtil.get("/collection/pagingUser", _)
+  }
+}
+
+export const worksService = {
+  paging(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
+    _.page--
+    return httpUtil.get("/works/paging", _)
   }
 }
 

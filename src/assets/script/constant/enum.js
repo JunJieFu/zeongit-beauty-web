@@ -17,6 +17,10 @@ export default {
     UNKNOWN: "未知",
     INCONVENIENT: "不便透露"
   }),
+  PrivacyState: enumProxy({
+    PUBLIC: "公开",
+    PRIVATE: "隐藏"
+  }),
   CollectState: enumProxy({
     CONCERNED: "已关注",
     STRANGE: "未关注",

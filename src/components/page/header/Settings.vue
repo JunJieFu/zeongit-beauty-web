@@ -16,8 +16,15 @@
         <span>设置</span>
       </v-tooltip>
     </template>
-    <v-list class="py-0" :dense="$vuetify.breakpoint.smAndDown" width="160">
-      <v-dialog v-model="modeDialogShow" max-width="280">
+    <v-list
+      class="py-0"
+      :dense="$vuetify.breakpoint.smAndDown"
+      :width="$constant.MENU_LIST_WIDTH"
+    >
+      <v-dialog
+        v-model="modeDialogShow"
+        :max-width="$constant.SETTINGS_DIALOG_MAX_WIDTH"
+      >
         <template v-slot:activator="{ on: mode }">
           <v-list-item v-on="mode">
             切换列表显示风格
@@ -42,7 +49,10 @@
           </v-card-text>
         </v-card>
       </v-dialog>
-      <v-dialog v-model="darkDialogShow" max-width="280">
+      <v-dialog
+        v-model="darkDialogShow"
+        :max-width="$constant.SETTINGS_DIALOG_MAX_WIDTH"
+      >
         <template v-slot:activator="{ on: mode }">
           <v-list-item v-on="mode">
             切换主题

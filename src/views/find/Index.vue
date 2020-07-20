@@ -43,6 +43,12 @@ export default {
   async created() {
     this.init()
   },
+  props: {
+    page: {
+      type: [String, Number],
+      default: 1
+    }
+  },
   data() {
     return {
       loading: false,
@@ -67,7 +73,7 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.$route.params.page)
+      await this.paging(this.page)
       this.MUpdateProgress(false)
     },
     changePage(page) {

@@ -1,6 +1,6 @@
 <template>
   <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click.stop="onClick">
-    <v-tooltip top>
+    <v-tooltip top :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-fab-transition>
           <v-icon

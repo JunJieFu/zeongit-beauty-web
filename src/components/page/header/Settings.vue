@@ -1,7 +1,7 @@
 <template>
   <v-menu offset-y v-model="menuShow">
     <template v-slot:activator="{ on: menu }">
-      <v-tooltip bottom>
+      <v-tooltip bottom :disabled="$isMobile">
         <template v-slot:activator="{ on: tooltip }">
           <v-btn
             depressed

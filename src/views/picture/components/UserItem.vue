@@ -1,6 +1,6 @@
 <template>
   <v-card-text class="d-flex align-center">
-    <router-link :to="`/user/${user.id}`" class="d-block" v-ripple>
+    <router-link :to="`/user/${user.id}`" class="d-block">
       <v-img
         :src="$imageUrl.avatar(user.avatarUrl)"
         width="45"

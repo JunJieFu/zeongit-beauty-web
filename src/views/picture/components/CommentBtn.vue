@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip bottom>
+  <v-tooltip bottom :disabled="$isMobile">
     <template v-slot:activator="{ on }">
       <v-btn
         fab

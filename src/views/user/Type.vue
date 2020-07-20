@@ -58,28 +58,9 @@
         <more-btn v-if="!self"></more-btn>
       </v-card-title>
       <v-tabs class="mt-4" v-model="type">
-        <v-tab
-          :to="
-            `/user${$route.params.targetId ? '/' + $route.params.targetId : ''}`
-          "
-          >主页</v-tab
-        >
-        <v-tab
-          :to="
-            `/follower${
-              $route.params.targetId ? '/' + $route.params.targetId : ''
-            }`
-          "
-          >粉丝</v-tab
-        >
-        <v-tab
-          :to="
-            `/following${
-              $route.params.targetId ? '/' + $route.params.targetId : ''
-            }`
-          "
-          >关注</v-tab
-        >
+        <v-tab :to="`/user${targetId ? '/' + targetId : ''}`">主页</v-tab>
+        <v-tab :to="`/follower${targetId ? '/' + targetId : ''}`">粉丝</v-tab>
+        <v-tab :to="`/following${targetId ? '/' + targetId : ''}`">关注</v-tab>
       </v-tabs>
       <v-divider></v-divider>
       <keep-alive :max="15">
@@ -94,12 +75,19 @@ import { mapMutations, mapState } from "vuex"
 import { userService } from "../../assets/script/service"
 
 export default {
+  props: {
+    targetId: {
+      type: [String, null, undefined],
+      default: undefined
+    }
+  },
   components: {
     "follow-icon-btn": () => import("../../components/btn/FollowIconBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn")
   },
   async created() {
+    console.log(this.targetId)
     this.init()
   },
   data() {
@@ -112,14 +100,11 @@ export default {
     ...mapState("user", ["info"]),
     ...mapState("alive", ["userMap"]),
     self() {
-      return (
-        !this.$route.params.targetId ||
-        this.info?.id === parseInt(this.$route.params.targetId)
-      )
+      return !this.targetId || this.info?.id === parseInt(this.targetId)
     }
   },
   watch: {
-    "$route.params.targetId"() {
+    targetId() {
       this.init()
     }
   },
@@ -127,8 +112,8 @@ export default {
     ...mapMutations("alive", ["MAddUserMap"]),
     async init() {
       window.scrollTo(0, 0)
-      this.user = this.userMap[this.$route.params.targetId]
-      if (!this.user) await this.get(this.$route.params.targetId)
+      this.user = this.userMap[this.targetId]
+      if (!this.user) await this.get(this.targetId)
     },
     async get(id) {
       const result = await userService.getByTargetId(id)

@@ -19,6 +19,12 @@
 import { mapState } from "vuex"
 
 export default {
+  props: {
+    targetId: {
+      type: [String, null, undefined],
+      default: undefined
+    }
+  },
   computed: {
     ...mapState("user", ["info"]),
     signInShow() {
@@ -30,11 +36,6 @@ export default {
   },
   components: {
     "sign-in-page-card": () => import("../../components/page/SignInPageCard")
-  },
-  data() {
-    return {
-      targetId: this.$route.params.targetId
-    }
   }
 }
 </script>

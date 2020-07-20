@@ -100,9 +100,14 @@ export default {
   async created() {
     this.init()
   },
+  props: {
+    targetId: {
+      type: [String, null, undefined],
+      default: undefined
+    }
+  },
   data() {
     return {
-      targetId: null,
       tagFrequency: [],
       pageable: new Pageable(0, 8, "createDate,desc"),
       worksList: [],
@@ -119,11 +124,10 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      this.targetId = this.$route.params.targetId || this.info.id
       //这里不读store里缓存的，直接获取
-      await this.listTagFrequencyByUserId(this.$route.params.targetId)
-      this.pagingWorks(this.$route.params.targetId || this.info.id)
-      this.pagingCollection(this.$route.params.targetId)
+      await this.listTagFrequencyByUserId(this.targetId || this.info.id)
+      this.pagingWorks(this.targetId || this.info.id)
+      this.pagingCollection(this.targetId || this.info.id)
       this.MUpdateProgress(false)
     },
     async listTagFrequencyByUserId(id) {

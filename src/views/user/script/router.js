@@ -45,6 +45,7 @@ export default [
   },
   {
     path: "/collection/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
@@ -52,12 +53,14 @@ export default [
         meta: {
           keepAlive: true
         },
+        props: true,
         component: () => import("../Collection")
       }
     ]
   },
   {
     path: "/works/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
@@ -65,12 +68,14 @@ export default [
         meta: {
           keepAlive: true
         },
+        props: true,
         component: () => import("../Works")
       }
     ]
   },
   {
     path: "/footprint/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
@@ -78,6 +83,7 @@ export default [
         meta: {
           keepAlive: true
         },
+        props: true,
         component: () => import("../Footprint")
       }
     ]

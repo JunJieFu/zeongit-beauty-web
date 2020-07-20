@@ -24,14 +24,14 @@
       <list-container :list="worksList" :loading="worksLoading">
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
-            <empty-picture-list-card
+            <tips-page-card
               :icon="$constant.EMPTY_TIP_DETAIL_LIST.works.icon"
               :title="
                 $internationalization[
                   $constant.EMPTY_TIP_DETAIL_LIST.works.title
                 ]
               "
-            ></empty-picture-list-card>
+            ></tips-page-card>
           </v-col>
         </v-row>
       </list-container>
@@ -55,14 +55,14 @@
       <list-container :list="collectionList" :loading="collectionLoading">
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
-            <empty-picture-list-card
+            <tips-page-card
               :icon="$constant.EMPTY_TIP_DETAIL_LIST.collection.icon"
               :title="
                 $internationalization[
                   $constant.EMPTY_TIP_DETAIL_LIST.collection.title
                 ]
               "
-            ></empty-picture-list-card>
+            ></tips-page-card>
           </v-col>
         </v-row>
       </list-container>
@@ -93,8 +93,7 @@ import { Pageable } from "../../assets/script/model"
 export default {
   mixins: [alivePageMixin],
   components: {
-    "empty-picture-list-card": () =>
-      import("../../components/page/EmptyPictureListCard"),
+    "tips-page-card": () => import("../../components/page/TipsPageCard"),
     "list-container": () => import("../../components/page/ListContainer")
   },
   async created() {

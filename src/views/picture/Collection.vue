@@ -10,7 +10,7 @@
       >
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
-            <empty-picture-list-card
+            <tips-page-card
               :icon="$constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.icon"
               :title="
                 $internationalization[
@@ -27,10 +27,8 @@
                   $constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.btnDesc
                 ]
               "
-              :to="
-                $constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.to + pictureId
-              "
-            ></empty-picture-list-card>
+              :to="$constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.to + id"
+            ></tips-page-card>
           </v-col>
         </v-row>
       </user-list-container-normal>
@@ -73,8 +71,7 @@ export default {
   },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
-    "empty-picture-list-card": () =>
-      import("../../components/page/EmptyPictureListCard"),
+    "tips-page-card": () => import("../../components/page/TipsPageCard"),
     "user-list-container-normal": () =>
       import("../../components/page/UserListContainerNormal")
   },

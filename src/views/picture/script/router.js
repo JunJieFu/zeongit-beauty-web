@@ -2,22 +2,29 @@ export default [
   {
     path: "/picture/:id",
     props: true,
-    component: () => import("../Detail")
-  },
-  {
-    path: "/picture/:id/:type",
-    props: true,
-    component: () => import("../Type"),
+    component: () => import("../Assert"),
     children: [
       {
-        path: "/picture/:id/footprint/:page?",
+        path: "/picture/:id",
         props: true,
-        component: () => import("../Footprint")
+        component: () => import("../Detail")
       },
       {
-        path: "/picture/:id/collection/:page?",
+        path: "/picture/:id/:type",
         props: true,
-        component: () => import("../Collection")
+        component: () => import("../Type"),
+        children: [
+          {
+            path: "/picture/:id/footprint/:page?",
+            props: true,
+            component: () => import("../Footprint")
+          },
+          {
+            path: "/picture/:id/collection/:page?",
+            props: true,
+            component: () => import("../Collection")
+          }
+        ]
       }
     ]
   }

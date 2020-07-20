@@ -142,9 +142,6 @@ import alivePageMixin from "../../assets/script/mixin/alivePage"
 
 export default {
   mixins: [alivePageMixin],
-  async created() {
-    this.init()
-  },
   components: {
     "corner-buttons": () => import("../../components/page/CornerButtons"),
     "user-item": () => import("./components/UserItem"),
@@ -156,9 +153,17 @@ export default {
     "privacy-btn": () => import("./components/PrivacyBtn"),
     "edit-btn": () => import("./components/EditBtn")
   },
+  async created() {
+    this.init()
+  },
+  props: {
+    id: {
+      type: [String, null, undefined],
+      default: undefined
+    }
+  },
   data() {
     return {
-      id: null,
       picture: null,
       height: 0,
       infoWidth: DETAIL_INFO_WIDTH + "px",
@@ -174,7 +179,7 @@ export default {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
       //这里不读store里缓存的，直接获取
-      await this.get(this.$route.params.id)
+      await this.get(this.id)
       this.MUpdateProgress(false)
     },
     async get(id) {

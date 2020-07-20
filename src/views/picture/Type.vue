@@ -72,9 +72,14 @@ export default {
   async created() {
     this.init()
   },
+  props: {
+    id: {
+      type: [String, null, undefined],
+      default: undefined
+    }
+  },
   data() {
     return {
-      id: this.$route.params.id,
       picture: null
     }
   },
@@ -82,7 +87,7 @@ export default {
     ...mapState("alive", ["pictureMap"])
   },
   watch: {
-    "$route.params.id"() {
+    id() {
       this.init()
     }
   },
@@ -90,11 +95,10 @@ export default {
     ...mapMutations("alive", ["MAddPictureMap"]),
     async init() {
       window.scrollTo(0, 0)
-      this.picture = this.pictureMap[this.$route.params.id]
-      if (!this.picture) await this.get(this.$route.params.id)
+      this.picture = this.pictureMap[this.id]
+      if (!this.picture) await this.get(this.id)
     },
     async get(id) {
-      this.id = id
       const result = await pictureService.get(id)
       this.picture = result.data
       this.MAddPictureMap(this.picture)

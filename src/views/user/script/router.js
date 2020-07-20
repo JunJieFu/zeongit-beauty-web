@@ -2,14 +2,17 @@ export default [
   {
     path: "/user/:targetId?",
     component: () => import("../SignIn"),
+    props: true,
     children: [
       {
         path: "/user/:targetId?",
         component: () => import("../Type"),
+        props: true,
         children: [
           {
             path: "/user/:targetId?",
-            component: () => import("../Detail")
+            component: () => import("../Detail"),
+            props: true
           }
         ]
       }

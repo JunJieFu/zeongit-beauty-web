@@ -90,14 +90,17 @@ export default [
   },
   {
     path: "/follower/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
         path: "/follower/:targetId?/:page?",
+        props: true,
         component: () => import("../Type"),
         children: [
           {
             path: "/follower/:targetId?/:page?",
+            props: true,
             component: () => import("../Follower")
           }
         ]
@@ -106,14 +109,17 @@ export default [
   },
   {
     path: "/following/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
         path: "/following/:targetId?/:page?",
+        props: true,
         component: () => import("../Type"),
         children: [
           {
             path: "/following/:targetId?/:page?",
+            props: true,
             component: () => import("../Following")
           }
         ]

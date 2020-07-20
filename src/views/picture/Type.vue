@@ -65,8 +65,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex"
-import { pictureService } from "../../assets/script/service"
+import { NOOP } from "../../assets/script/constant"
 
 export default {
   async created() {
@@ -76,32 +75,10 @@ export default {
     id: {
       type: [String, null, undefined],
       default: undefined
-    }
-  },
-  data() {
-    return {
-      picture: null
-    }
-  },
-  computed: {
-    ...mapState("alive", ["pictureMap"])
-  },
-  watch: {
-    id() {
-      this.init()
-    }
-  },
-  methods: {
-    ...mapMutations("alive", ["MAddPictureMap"]),
-    async init() {
-      window.scrollTo(0, 0)
-      this.picture = this.pictureMap[this.id]
-      if (!this.picture) await this.get(this.id)
     },
-    async get(id) {
-      const result = await pictureService.get(id)
-      this.picture = result.data
-      this.MAddPictureMap(this.picture)
+    picture: {
+      type: [Object],
+      default: NOOP
     }
   }
 }

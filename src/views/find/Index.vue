@@ -10,7 +10,7 @@
     >
       <v-row class="ma-0" justify="center" align="center">
         <v-col cols="12" sm="7" md="5" lg="4" xl="3">
-          <empty-picture-list-card
+          <tips-page-card
             :icon="$constant.EMPTY_TIP_DETAIL_LIST.find.icon"
             :title="
               $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.find.title]
@@ -24,7 +24,7 @@
               ]
             "
             :to="$constant.EMPTY_TIP_DETAIL_LIST.find.to"
-          ></empty-picture-list-card>
+          ></tips-page-card>
         </v-col>
       </v-row>
     </component>
@@ -65,8 +65,7 @@ export default {
       import("../../components/page/ListContainerWaterfall"),
     "list-container-normal": () =>
       import("../../components/page/ListContainerNormal"),
-    "empty-picture-list-card": () =>
-      import("../../components/page/EmptyPictureListCard"),
+    "tips-page-card": () => import("../../components/page/TipsPageCard"),
     "corner-buttons": () => import("../../components/page/CornerButtons")
   },
   methods: {

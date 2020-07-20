@@ -16,7 +16,11 @@
         <span>更多</span>
       </v-tooltip>
     </template>
-    <v-list dense v-if="info">
+    <v-list
+      :dense="$vuetify.breakpoint.smAndDown"
+      :width="$constant.MENU_LIST_WIDTH"
+      v-if="info"
+    >
       <v-list-item>
         <v-list-item-content>
           加入黑名单

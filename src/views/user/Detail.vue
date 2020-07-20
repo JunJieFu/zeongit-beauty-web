@@ -85,7 +85,7 @@
 import { mapMutations, mapState } from "vuex"
 import {
   collectionService,
-  pictureService,
+  worksService,
   tagService
 } from "../../assets/script/service"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
@@ -132,7 +132,7 @@ export default {
     },
     async pagingWorks(id) {
       this.worksLoading = true
-      const result = await pictureService.paging(this.pageable, undefined, id)
+      const result = await worksService.paging(this.pageable, id)
       this.worksLoading = false
       this.worksList = result?.data?.content || []
     },

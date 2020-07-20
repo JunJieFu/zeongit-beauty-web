@@ -30,6 +30,12 @@ import {
 } from "../../assets/script/constant"
 
 export default {
+  props: {
+    heighten: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       show: false
@@ -37,7 +43,7 @@ export default {
   },
   computed: {
     bottom() {
-      if (this.show) {
+      if (this.show && this.heighten) {
         if (this.$vuetify.breakpoint.xsOnly) {
           return SMALL_BTN_HEIGHT + CORNER_BUTTONS_GAP
         } else {
@@ -63,8 +69,8 @@ export default {
   display: flex;
   flex-direction: column;
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 16px;
+  right: 16px;
   .customize-buttons {
     transition: 0.3s;
     position: absolute;

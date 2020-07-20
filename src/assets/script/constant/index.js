@@ -42,6 +42,9 @@ export const CORNER_BUTTONS_GAP = 12
 
 export const MAX_KEEP_ALIVE_PAGE = 15
 
+export const MENU_LIST_WIDTH = "160"
+export const SETTINGS_DIALOG_MAX_WIDTH = "280"
+
 export const SIGN_IN_TIP_DETAIL_LIST = {
   user: new SignInTipDetail(
     mdiAccountOutline,

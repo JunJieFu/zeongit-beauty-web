@@ -94,7 +94,42 @@
           <user-item :user="picture.user" @follow="follow"></user-item>
         </v-card>
       </div>
-      <corner-buttons> </corner-buttons>
+      <corner-buttons>
+        <v-speed-dial
+          v-model="settingsVisible"
+          direction="left"
+          transition="scale-transition"
+          v-if="picture && picture.user.id === info.id"
+        >
+          <template v-slot:activator>
+            <v-tooltip bottom :disabled="$isMobile">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  v-on="on"
+                  v-model="settingsVisible"
+                  fab
+                  :small="$vuetify.breakpoint.xsOnly"
+                >
+                  <v-fab-transition>
+                    <v-icon style="position: absolute" v-show="settingsVisible"
+                      >mdi-close</v-icon
+                    >
+                  </v-fab-transition>
+                  <v-fab-transition>
+                    <v-icon style="position: absolute" v-show="!settingsVisible"
+                      >mdi-cog-outline</v-icon
+                    >
+                  </v-fab-transition>
+                </v-btn>
+              </template>
+              <span>设置</span>
+            </v-tooltip>
+          </template>
+          <remove-btn></remove-btn>
+          <privacy-btn :picture="picture"></privacy-btn>
+          <edit-btn></edit-btn>
+        </v-speed-dial>
+      </corner-buttons>
     </div>
   </div>
 </template>
@@ -102,7 +137,6 @@
 <script>
 import { footprintService, pictureService } from "../../assets/script/service"
 import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
-// import { Pageable } from "../../assets/script/model"
 import { mapMutations, mapState } from "vuex"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
 
@@ -117,14 +151,18 @@ export default {
     "comment-btn": () => import("./components/CommentBtn"),
     "collect-btn": () => import("../../components/btn/CollectBtn"),
     "share-btn": () => import("./components/ShareBtn"),
-    "more-btn": () => import("./components/MoreBtn")
+    "more-btn": () => import("./components/MoreBtn"),
+    "remove-btn": () => import("./components/RemoveBtn"),
+    "privacy-btn": () => import("./components/PrivacyBtn"),
+    "edit-btn": () => import("./components/EditBtn")
   },
   data() {
     return {
       id: null,
       picture: null,
       height: 0,
-      infoWidth: DETAIL_INFO_WIDTH + "px"
+      infoWidth: DETAIL_INFO_WIDTH + "px",
+      settingsVisible: false
     }
   },
   computed: {

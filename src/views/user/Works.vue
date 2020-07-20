@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { worksService } from "../../assets/script/service"
 import { Pageable } from "../../assets/script/model"
 import { mapState } from "vuex"
 import alivePageMixin from "../../assets/script/mixin/alivePage"
@@ -104,11 +104,7 @@ export default {
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
       this.loading = true
-      const result = await pictureService.paging(
-        this.pageable,
-        undefined,
-        targetId
-      )
+      const result = await worksService.paging(this.pageable, targetId)
       this.loading = false
       await this.$resultNotify(result)
       if (targetId !== this.targetId) {

@@ -1,18 +1,18 @@
 export default [
   {
     path: "/user/:targetId?",
-    component: () => import("../SignIn"),
     props: true,
+    component: () => import("../SignIn"),
     children: [
       {
         path: "/user/:targetId?",
-        component: () => import("../Type"),
         props: true,
+        component: () => import("../Type"),
         children: [
           {
             path: "/user/:targetId?",
-            component: () => import("../Detail"),
-            props: true
+            props: true,
+            component: () => import("../Detail")
           }
         ]
       }
@@ -30,10 +30,12 @@ export default [
   },
   {
     path: "/followingNew/:targetId?/:page?",
+    props: true,
     component: () => import("../SignIn"),
     children: [
       {
         path: "/followingNew/:targetId?/:page?",
+        props: true,
         meta: {
           keepAlive: true
         },

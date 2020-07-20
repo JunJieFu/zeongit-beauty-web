@@ -98,7 +98,7 @@
         v-model="settingsVisible"
         direction="left"
         transition="scale-transition"
-        v-if="picture && picture.user.id === info.id"
+        v-if="picture && info && picture.user.id === info.id"
       >
         <template v-slot:activator>
           <v-tooltip top :disabled="$isMobile">
@@ -155,7 +155,7 @@ export default {
       default: undefined
     },
     picture: {
-      type: [Object],
+      type: Object,
       default: NOOP
     }
   },

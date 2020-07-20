@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left elevate-on-scroll>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
           :small="$vuetify.breakpoint.xsOnly"
@@ -31,7 +31,7 @@
       @keyup.enter="search"
     />
     <v-spacer />
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-btn
           depressed
@@ -47,7 +47,7 @@
       </template>
       <span>搜索</span>
     </v-tooltip>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-btn
           depressed
@@ -63,7 +63,7 @@
       </template>
       <span>刷新</span>
     </v-tooltip>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-btn
           depressed

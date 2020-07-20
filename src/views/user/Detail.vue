@@ -109,7 +109,7 @@ export default {
   data() {
     return {
       tagFrequency: [],
-      pageable: new Pageable(0, 8, "createDate,desc"),
+      pageable: new Pageable(0, 8),
       worksList: [],
       worksLoading: false,
       collectionList: [],

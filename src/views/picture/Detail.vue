@@ -196,7 +196,7 @@ export default {
     async pagingRecommendById() {
       // console.log(
       //   await pictureService.pagingRecommendById(
-      //     new Pageable(1, 20, "createDate,desc"),
+      //     new Pageable(),
       //     this.id
       //   )
       // )

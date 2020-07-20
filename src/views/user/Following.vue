@@ -58,7 +58,7 @@ export default {
     return {
       loading: false,
       currPage: null,
-      pageable: new Pageable(0, 16, "createDate,desc")
+      pageable: new Pageable()
     }
   },
   computed: {

@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16, "createDate,desc"),
+      pageable: new Pageable(),
       page2d: [],
       currPage: null
     }

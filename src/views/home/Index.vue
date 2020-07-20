@@ -75,7 +75,7 @@ export default {
   },
   data: function() {
     return {
-      pageable: new Pageable(0, 10, "createDate,desc"),
+      pageable: new Pageable(0, 10),
       followingPictureList: [],
       findList: [],
       newList: []

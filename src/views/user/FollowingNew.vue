@@ -56,13 +56,22 @@ export default {
   async created() {
     this.init()
   },
+  props: {
+    targetId: {
+      type: [String, null, undefined],
+      default: undefined
+    },
+    page: {
+      type: [String, Number],
+      default: 1
+    }
+  },
   data() {
     return {
       loading: false,
       pageable: new Pageable(0, 16, "createDate,desc"),
       page2d: [],
-      currPage: null,
-      targetId: null
+      currPage: null
     }
   },
   computed: {
@@ -73,10 +82,7 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(
-        this.$route.params.page,
-        this.$route.params.targetId || this.info?.id
-      )
+      await this.paging(this.page, this.targetId || this.info?.id)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -84,10 +90,12 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.targetId)
+        this.paging(page, this.targetId || this.info?.id)
       } else {
         this.$router.push(
-          `/followingNew/${encodeURIComponent(this.targetId)}/${page}`
+          `/followingNew/${encodeURIComponent(
+            this.targetId || this.info?.id
+          )}/${page}`
         )
       }
     },
@@ -111,7 +119,6 @@ export default {
       this.loading = false
       await this.$resultNotify(result)
       if (targetId !== this.targetId) {
-        this.targetId = targetId
         this.page2d = []
       }
       const page = result.data

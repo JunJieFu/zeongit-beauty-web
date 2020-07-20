@@ -44,8 +44,8 @@ export const pictureService = {
     _.page--
     return httpUtil.get("/picture/pagingRecommendById", _)
   },
-  pagingByFollowing(pageable) {
-    let _ = Object.assign({}, pageable)
+  pagingByFollowing(pageable, targetId) {
+    let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/picture/pagingByFollowing", _)
   }

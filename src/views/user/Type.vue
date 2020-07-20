@@ -87,7 +87,6 @@ export default {
     "more-btn": () => import("./components/MoreBtn")
   },
   async created() {
-    console.log(this.targetId)
     this.init()
   },
   data() {

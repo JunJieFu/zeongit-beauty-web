@@ -50,12 +50,21 @@ export default {
   async created() {
     this.init()
   },
+  props: {
+    id: {
+      type: [String, null, undefined],
+      default: undefined
+    },
+    page: {
+      type: [String, Number],
+      default: 1
+    }
+  },
   data() {
     return {
       loading: false,
       pageable: new Pageable(0, 16, "lastModifiedDate,desc"),
-      currPage: null,
-      pictureId: null
+      currPage: null
     }
   },
   computed: {
@@ -73,7 +82,7 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.$route.params.page, this.$route.params.id)
+      await this.paging(this.page, this.id)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -81,14 +90,14 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.pictureId)
+        this.paging(page, this.id)
       } else {
         this.$router.push(
-          `/picture/${encodeURIComponent(this.pictureId)}/footprint/${page}`
+          `/picture/${encodeURIComponent(this.id)}/footprint/${page}`
         )
       }
     },
-    async paging(pageIndex, pictureId = this.pictureId) {
+    async paging(pageIndex, pictureId) {
       if (
         !pictureId ||
         this.loading ||
@@ -96,17 +105,11 @@ export default {
       ) {
         return
       }
-      if (pictureId !== this.pictureId) {
-        window.scrollTo(0, 0)
-      }
       this.pageable.page = parseInt(pageIndex || 1) || 1
       this.loading = true
       const result = await footprintService.pagingUser(this.pageable, pictureId)
       this.loading = false
       await this.$resultNotify(result)
-      if (pictureId !== this.pictureId) {
-        this.pictureId = pictureId
-      }
       this.currPage = result.data
     },
     follow({ detail, focus }) {

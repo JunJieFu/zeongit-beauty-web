@@ -55,7 +55,6 @@ export default {
     resize() {
       if (!this.$refs.page) return
       let elWidth = this.$refs.page.clientWidth
-      console.log(elWidth)
       let sourceColAmount = Math.floor(elWidth / LIST_ITEM_WIDTH)
       let defaultWidth = LIST_ITEM_WIDTH
       let defaultGap = LIST_GAP

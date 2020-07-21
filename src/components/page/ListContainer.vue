@@ -1,5 +1,5 @@
 <template>
-  <div ref="page" class="list-container" v-resize="throttle">
+  <div ref="page" class="list-container ma-1" v-resize="throttle">
     <div class="list-content" :style="style" v-if="list.length">
       <div
         class="list-item transition"
@@ -55,6 +55,7 @@ export default {
     resize() {
       if (!this.$refs.page) return
       let elWidth = this.$refs.page.clientWidth
+      console.log(elWidth)
       let sourceColAmount = Math.floor(elWidth / LIST_ITEM_WIDTH)
       let defaultWidth = LIST_ITEM_WIDTH
       let defaultGap = LIST_GAP
@@ -79,7 +80,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  margin: 4px;
   .list-content {
     display: grid;
     justify-content: center;

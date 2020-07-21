@@ -1,7 +1,7 @@
 <template>
   <div
     ref="page"
-    class="list-container"
+    class="list-container ma-1"
     v-resize="throttle"
     v-scroll="onScroll"
   >
@@ -223,7 +223,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  margin: 4px;
   .list-content {
     margin: auto;
     position: relative;

@@ -20,7 +20,7 @@
     <v-card-title>
       作品
     </v-card-title>
-    <v-card-text :class="{ 'px-0': worksList.length, 'pb-0': true }">
+    <v-card-text class="pa-0">
       <list-container :list="worksList" :loading="worksLoading">
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
@@ -51,7 +51,7 @@
     <v-card-title>
       收藏
     </v-card-title>
-    <v-card-text :class="{ 'px-0': collectionList.length, 'pb-0': true }">
+    <v-card-text class="pa-0">
       <list-container :list="collectionList" :loading="collectionLoading">
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">

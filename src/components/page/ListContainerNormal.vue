@@ -1,5 +1,5 @@
 <template>
-  <div ref="page" class="list-container" v-resize="throttle">
+  <div ref="page" class="list-container ma-1" v-resize="throttle">
     <template v-if="page && page.content.length">
       <div class="list-content" :style="style">
         <div
@@ -111,7 +111,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  margin: 4px;
   .list-content {
     display: grid;
     justify-content: center;

@@ -75,13 +75,16 @@ export default {
   },
   computed: {
     ...mapState("user", ["info"]),
-    ...mapState("menu", ["mode"])
+    ...mapState("menu", ["mode"]),
+    realTargetId() {
+      return this.targetId || this.info?.id
+    }
   },
   methods: {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.page, this.targetId || this.info?.id)
+      await this.paging(this.page, this.realTargetId)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -89,16 +92,14 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.targetId || this.info?.id)
+        this.paging(page, this.realTargetId)
       } else {
         this.$router.push(
-          `/footprint/${encodeURIComponent(
-            this.targetId || this.info?.id
-          )}/${page}`
+          `/footprint/${encodeURIComponent(this.realTargetId)}/${page}`
         )
       }
     },
-    async paging(pageIndex, targetId = this.targetId) {
+    async paging(pageIndex, targetId = this.realTargetId) {
       if (
         !targetId ||
         this.loading ||
@@ -106,7 +107,7 @@ export default {
       ) {
         return
       }
-      if (targetId !== this.targetId) {
+      if (targetId !== this.realTargetId) {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
@@ -114,7 +115,7 @@ export default {
       const result = await footprintService.paging(this.pageable, targetId)
       this.loading = false
       await this.$resultNotify(result)
-      if (targetId !== this.targetId) {
+      if (targetId !== this.realTargetId) {
         this.page2d = []
       }
       const page = result.data

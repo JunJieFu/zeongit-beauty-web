@@ -116,7 +116,10 @@ export default {
     }
   },
   computed: {
-    ...mapState("user", ["info"])
+    ...mapState("user", ["info"]),
+    realTargetId() {
+      return this.targetId || this.info?.id
+    }
   },
   methods: {
     ...mapMutations("alive", ["MAddUserMap"]),
@@ -124,9 +127,9 @@ export default {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
       //这里不读store里缓存的，直接获取
-      await this.listTagFrequencyByUserId(this.targetId || this.info.id)
-      this.pagingWorks(this.targetId || this.info.id)
-      this.pagingCollection(this.targetId || this.info.id)
+      await this.listTagFrequencyByUserId(this.realTargetId)
+      this.pagingWorks(this.realTargetId)
+      this.pagingCollection(this.realTargetId)
       this.MUpdateProgress(false)
     },
     async listTagFrequencyByUserId(id) {

@@ -61,13 +61,16 @@ export default {
     }
   },
   computed: {
-    ...mapState("user", ["info"])
+    ...mapState("user", ["info"]),
+    realTargetId() {
+      return this.targetId || this.info?.id
+    }
   },
   methods: {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.page, this.targetId || this.info.id)
+      await this.paging(this.page, this.realTargetId)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -75,16 +78,14 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.targetId || this.info.id)
+        this.paging(page, this.realTargetId)
       } else {
         this.$router.push(
-          `/following/${encodeURIComponent(
-            this.targetId || this.info.id
-          )}/${page}`
+          `/following/${encodeURIComponent(this.realTargetId)}/${page}`
         )
       }
     },
-    async paging(pageIndex, targetId = this.targetId) {
+    async paging(pageIndex, targetId = this.realTargetId) {
       if (
         !targetId ||
         this.loading ||
@@ -92,7 +93,7 @@ export default {
       ) {
         return
       }
-      if (targetId !== this.targetId) {
+      if (targetId !== this.realTargetId) {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
@@ -100,9 +101,6 @@ export default {
       const result = await userService.pagingFollowing(this.pageable, targetId)
       this.loading = false
       await this.$resultNotify(result)
-      if (targetId !== this.targetId) {
-        this.targetId = targetId
-      }
       this.currPage = result.data
     },
     follow({ detail, focus }) {

@@ -53,7 +53,11 @@
         </v-col>
       </v-row>
       <v-card-title class="d-flex justify-end">
-        <follow-icon-btn :user="user" v-if="!self"></follow-icon-btn>
+        <follow-icon-btn
+          :user="user"
+          v-if="!self"
+          @follow="follow"
+        ></follow-icon-btn>
         <share-btn></share-btn>
         <more-btn v-if="!self"></more-btn>
       </v-card-title>
@@ -118,6 +122,9 @@ export default {
       const result = await userService.getByTargetId(id)
       this.user = result.data
       this.MAddUserMap(this.user)
+    },
+    follow({ focus }) {
+      this.user.focus = focus
     }
   }
 }

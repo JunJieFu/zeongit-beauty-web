@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
     <v-progress-linear
       v-show="progress"
       indeterminate
@@ -8,21 +8,18 @@
       color="primary"
       style="z-index: 999"
     ></v-progress-linear>
-    <Header> </Header>
-    <v-content>
-      <v-divider></v-divider>
-      <v-container fluid class="pa-0">
-        <keep-alive :max="15">
-          <router-view
-            v-if="$route.meta.keepAlive"
-            :key="decodeURI($route.fullPath)"
-          />
-        </keep-alive>
-        <router-view v-if="!$route.meta.keepAlive" />
-      </v-container>
-    </v-content>
+    <Header></Header>
     <Menu></Menu>
-  </div>
+    <v-main>
+      <v-divider></v-divider>
+      <keep-alive :max="15">
+        <router-view
+          v-if="$route.meta.keepAlive"
+          :key="decodeURI($route.fullPath)"
+        />
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive" /> </v-main
+  ></v-app>
 </template>
 
 <script>

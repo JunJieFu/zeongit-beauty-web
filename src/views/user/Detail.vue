@@ -43,7 +43,7 @@
         outlined
         rounded
         class="px-6"
-        :to="`/works/${targetId}`"
+        :to="`/works/${realTargetId}`"
         >查看更多</v-btn
       >
     </v-card-actions>
@@ -74,7 +74,7 @@
         outlined
         rounded
         class="px-6"
-        :to="`/collection/${targetId}`"
+        :to="`/collection/${realTargetId}`"
         >查看更多</v-btn
       >
     </v-card-actions>

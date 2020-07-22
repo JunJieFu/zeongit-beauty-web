@@ -28,8 +28,6 @@ Vue.prototype.$constant = constant
 Vue.prototype.$internationalization = internationalization
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
-// Vue.prototype.$confirm = Confirm
-// Vue.prototype.$prompt = Prompt
 Vue.config.productionTip = false
 
 Vue.prototype.$resultNotify = function(result) {

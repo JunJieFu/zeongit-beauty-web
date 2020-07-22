@@ -11,7 +11,6 @@
     <Header></Header>
     <Menu></Menu>
     <v-main>
-      <v-divider></v-divider>
       <keep-alive :max="15">
         <router-view
           v-if="$route.meta.keepAlive"

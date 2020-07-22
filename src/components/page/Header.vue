@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app clipped-left elevate-on-scroll>
+  <v-app-bar app clipped-left hide-on-scroll flat class="header">
     <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
@@ -132,28 +132,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/color";
-.user-menu {
-  max-width: 100%;
-  $size: 380px;
-  width: $size;
-  .head-img-item {
-    $head-size: 100px;
-    .head-img {
-      height: $head-size;
-      width: $head-size;
-      margin: (-$head-size/2) auto 0 auto;
-      border: 3px solid #fff;
-    }
-  }
-  .nickname {
-    color: $font-color-dark;
-    font: 500 16px/22px Google Sans, Roboto, RobotoDraft, Helvetica, Arial,
-      sans-serif;
-  }
-  .introduction {
-    color: $font-color-dark-fade;
-    font: 400 14px/19px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-  }
+@import "src/assets/style/config";
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 </style>

@@ -44,14 +44,13 @@
 import { NotifyViewModel } from "./model"
 let notifyId = 0
 export default {
-  name: "NotifyContent",
   data() {
     return {
       list: []
     }
   },
   created() {
-    window.app.$notify = this.push
+    window.$notify = this.push
   },
   methods: {
     destroyElement(index) {
@@ -72,6 +71,14 @@ export default {
           }
         })
       )
+    },
+    close() {
+      this.visible = false
+      this.closeCallback && this.closeCallback(this)
+    },
+    confirm() {
+      this.visible = false
+      this.confirmCallback && this.confirmCallback(this)
     }
   }
 }

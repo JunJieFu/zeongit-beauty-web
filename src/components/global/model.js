@@ -4,6 +4,7 @@ import {
   mdiAlertOutline,
   mdiCheckCircleOutline
 } from "@mdi/js"
+import { NOOP } from "../../assets/script/constant"
 
 const ICON_MAP = {
   success: mdiCheckCircleOutline,
@@ -14,7 +15,6 @@ const ICON_MAP = {
 
 export class NotifyViewModel {
   /**
-   *
    * @param params {NotifyViewModel}
    */
   constructor(params) {
@@ -34,5 +34,21 @@ export class NotifyViewModel {
         this.visible = false
       }, this.timeout)
     }
+  }
+}
+
+export class ConfirmViewModel {
+  /**
+   * @param params {ConfirmViewModel}
+   */
+  constructor(params) {
+    this.id = params?.id
+    this.visible = params?.visible ?? false
+    this.title = params?.title ?? "提示"
+    this.text = params?.text ?? undefined
+    this.closeText = params?.closeText ?? "取消"
+    this.confirmText = params?.confirmText ?? "确认"
+    this.closeCallback = params?.closeCallback ?? NOOP
+    this.confirmCallback = params?.confirmCallback ?? NOOP
   }
 }

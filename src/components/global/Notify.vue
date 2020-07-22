@@ -81,8 +81,7 @@ export default {
 .notify {
   position: fixed;
   z-index: 999;
-  min-width: 344px;
-  max-width: 672px;
+  width: 350px;
   $list: top, right, bottom, left;
   @each $i in $list {
     &.#{$i} {

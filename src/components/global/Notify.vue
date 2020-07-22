@@ -42,7 +42,7 @@
 
 <script>
 import { NotifyViewModel } from "./model"
-let notifyId = 0
+let id = 0
 export default {
   data() {
     return {
@@ -57,10 +57,10 @@ export default {
       this.list.splice(index, 1)
     },
     /**
-     * @param viewModel {NotifyViewModel}
+     * @param params {NotifyViewModel}
      */
-    push(viewModel) {
-      viewModel.id = notifyId++
+    push(params) {
+      let viewModel = new NotifyViewModel(params, id++)
       this.list.push(
         new Proxy(new NotifyViewModel(viewModel), {
           set(target, key, value) {
@@ -71,14 +71,6 @@ export default {
           }
         })
       )
-    },
-    close() {
-      this.visible = false
-      this.closeCallback && this.closeCallback(this)
-    },
-    confirm() {
-      this.visible = false
-      this.confirmCallback && this.confirmCallback(this)
     }
   }
 }

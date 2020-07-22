@@ -11,7 +11,16 @@
             <v-card-title>
               <span class="headline">{{ item.title }}</span>
             </v-card-title>
-            <v-card-text v-html="item.text"> </v-card-text>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  v-model="item.value"
+                  :placeholder="item.placeholder"
+                  dense
+                  :hide-details="true"
+                ></v-text-field>
+              </v-form>
+            </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="warning" text @click="close(item)">
@@ -29,7 +38,7 @@
 </template>
 
 <script>
-import { ConfirmViewModel } from "./model"
+import { PromptViewModel } from "./model"
 
 let id = 0
 export default {
@@ -39,17 +48,17 @@ export default {
     }
   },
   created() {
-    window.$confirm = this.push
+    window.$prompt = this.push
   },
   methods: {
     destroyElement(index) {
       this.list.splice(index, 1)
     },
     /**
-     * @param params {ConfirmViewModel}
+     * @param params {PromptViewModel}
      */
     push(params) {
-      let viewModel = new ConfirmViewModel(params, id++)
+      let viewModel = new PromptViewModel(params, id++)
       return new Promise((resolve, reject) => {
         viewModel.closeCallback = (...args) => {
           reject(...args)

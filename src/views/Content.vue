@@ -21,6 +21,7 @@
       <router-view v-if="!$route.meta.keepAlive" />
       <notify></notify>
       <confirm></confirm>
+      <prompt></prompt>
     </v-main>
   </v-app>
 </template>

@@ -6,9 +6,9 @@
         :key="item.id"
         @hook:mounted="list[index].visible = true"
       >
-        <div
+        <v-container
           v-show="item.visible"
-          class="pa-2 notify"
+          class="notify"
           :class="{
             top: item.top,
             right: item.right,
@@ -34,7 +34,7 @@
               </v-btn>
             </div>
           </v-alert>
-        </div>
+        </v-container>
       </v-fade-transition>
     </template>
   </div>

@@ -80,6 +80,7 @@
     <header-apps></header-apps>
     <header-settings></header-settings>
     <header-user></header-user>
+    <v-divider class="header-divider"></v-divider>
   </v-app-bar>
 </template>
 
@@ -132,8 +133,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/config";
-.header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.header-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 </style>

@@ -11,7 +11,6 @@ import * as constant from "./assets/script/constant"
 import * as internationalization from "./assets/script/constant/internationalization"
 import filters from "./assets/script/filter"
 import imageUrl from "./assets/script/util/imageUrl"
-// import { Prompt } from "./components/global"
 import GlobalComponents from "./components/global"
 
 Vue.component("sign-in-menu-card", () =>

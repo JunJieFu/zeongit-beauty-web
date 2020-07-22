@@ -16,9 +16,10 @@ const ICON_MAP = {
 export class NotifyViewModel {
   /**
    * @param params {NotifyViewModel}
+   * @param id {Number}
    */
-  constructor(params) {
-    this.id = params?.id
+  constructor(params, id) {
+    this.id = id
     this.top = params?.top ?? true
     this.right = params?.right ?? true
     this.bottom = params?.bottom ?? false
@@ -40,11 +41,31 @@ export class NotifyViewModel {
 export class ConfirmViewModel {
   /**
    * @param params {ConfirmViewModel}
+   * @param id {String}
    */
-  constructor(params) {
-    this.id = params?.id
+  constructor(params, id) {
+    this.id = id
     this.visible = params?.visible ?? false
     this.title = params?.title ?? "提示"
+    this.text = params?.text ?? undefined
+    this.closeText = params?.closeText ?? "取消"
+    this.confirmText = params?.confirmText ?? "确认"
+    this.closeCallback = params?.closeCallback ?? NOOP
+    this.confirmCallback = params?.confirmCallback ?? NOOP
+  }
+}
+
+export class PromptViewModel {
+  /**
+   * @param params {PromptViewModel}
+   * @param id {Number}
+   */
+  constructor(params, id) {
+    this.id = id
+    this.visible = params?.visible ?? false
+    this.title = params?.title ?? "提示"
+    this.value = ""
+    this.placeholder = params?.placeholder ?? "请输入"
     this.text = params?.text ?? undefined
     this.closeText = params?.closeText ?? "取消"
     this.confirmText = params?.confirmText ?? "确认"

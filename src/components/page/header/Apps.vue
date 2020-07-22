@@ -24,12 +24,7 @@
             target="_blank"
             class="d-flex flex-column align-center flex-xl-grow-1 link"
           >
-            <v-img
-              :src="$imageUrl.avatar(info ? info.avatarUrl : undefined)"
-              class="circle"
-              :aspect-ratio="1"
-              width="50"
-            ></v-img>
+            <avatar :info="info" size="50"></avatar>
             <span class="ellipsis font-weight-thin">Zeongit 账号</span>
           </a>
         </v-col>

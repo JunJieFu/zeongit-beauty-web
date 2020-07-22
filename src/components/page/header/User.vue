@@ -11,11 +11,7 @@
             class="ml-2"
           >
             <div>
-              <v-img
-                :src="$imageUrl.avatar(info ? info.avatarUrl : undefined)"
-                width="40"
-                class="circle"
-              />
+              <avatar :info="info" size="40"></avatar>
             </div>
           </v-btn>
         </template>
@@ -32,10 +28,7 @@
       </v-list-item>
       <v-list-item class="head-img-item justify-center">
         <router-link to="/user" class="d-block">
-          <v-img
-            :src="$imageUrl.avatar(info.avatarUrl)"
-            class="head-img circle"
-          />
+          <avatar :info="info" size="100" class="head-img"></avatar>
         </router-link>
       </v-list-item>
       <v-list-item class="justify-center flex-column">
@@ -92,8 +85,6 @@ export default {
   .head-img-item {
     $head-size: 100px;
     .head-img {
-      height: $head-size;
-      width: $head-size;
       margin: (-$head-size/2) auto 0 auto;
     }
   }

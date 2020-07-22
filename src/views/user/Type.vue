@@ -21,15 +21,14 @@
           :sm="6"
           :md="4"
           :lg="4"
-          class="pa-0 "
+          class="pa-0 text-center"
           style="margin-top: -40px"
         >
-          <v-img
-            :src="$imageUrl.avatar(user.avatarUrl)"
-            class="circle elevation-5 mx-auto"
-            :width="$vuetify.breakpoint.xsOnly ? 100 : 130"
-            :aspect-ratio="1"
-          />
+          <avatar
+            :info="user"
+            :size="$vuetify.breakpoint.xsOnly ? 100 : 130"
+            class="elevation-5"
+          ></avatar>
         </v-col>
         <v-col
           :cols="12"

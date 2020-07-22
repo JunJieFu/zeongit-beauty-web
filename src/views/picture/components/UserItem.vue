@@ -1,12 +1,7 @@
 <template>
   <v-card-text class="d-flex align-center">
     <router-link :to="`/user/${user.id}`" class="d-block">
-      <v-img
-        :src="$imageUrl.avatar(user.avatarUrl)"
-        width="45"
-        :aspect-ratio="1"
-        class="circle"
-      ></v-img>
+      <avatar :info="user" size="45"></avatar>
     </router-link>
     <div class="ellipsis flex-grow-1 mx-3">
       {{ user.nickname }}

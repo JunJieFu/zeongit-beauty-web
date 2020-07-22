@@ -7,21 +7,18 @@
           v-for="(item, index) in page.content"
           :key="index"
         >
-          <v-hover>
-            <template v-slot="{ hover }">
-              <v-card
-                :elevation="hover ? 5 : 1"
-                class="d-flex align-center fill-height"
-                :to="`/picture/${item.id}`"
-              >
-                <v-card-text class="pa-0">
-                  <v-img
-                    :src="$imageUrl.picture(item.url, `specifiedWidth`)"
-                  ></v-img>
-                </v-card-text>
-              </v-card>
-            </template>
-          </v-hover>
+          <v-card
+            flat
+            outlined
+            class="d-flex align-center fill-height overflow-hidden"
+            :to="`/picture/${item.id}`"
+          >
+            <v-card-text class="pa-0">
+              <v-img
+                :src="$imageUrl.picture(item.url, `specifiedWidth`)"
+              ></v-img>
+            </v-card-text>
+          </v-card>
         </div>
       </div>
       <v-pagination

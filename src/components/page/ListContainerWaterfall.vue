@@ -13,96 +13,90 @@
         :style="itemStyleList[index]"
         :key="index"
       >
-        <v-hover>
-          <template v-slot="{ hover }">
-            <v-card :elevation="hover ? 5 : 1" :to="`/picture/${item.id}`">
-              <v-card-text class="pa-0">
-                <v-img
-                  :src="$imageUrl.picture(item.url, `specifiedWidth`)"
-                ></v-img>
-              </v-card-text>
-              <!--              <v-card-text class="py-0">-->
-              <!--                <v-chip class="ma-1" x-small close>-->
-              <!--                  标签-->
-              <!--                </v-chip>-->
-              <!--              </v-card-text>-->
-              <!--              <v-card-actions class="pt-0" style="height: 40px;">-->
-              <!--                <v-tooltip bottom>-->
-              <!--                  <template v-slot:activator="{ on }">-->
-              <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-              <!--                      <v-icon dark>mdi-pin-outline</v-icon>-->
-              <!--                    </v-btn>-->
-              <!--                  </template>-->
-              <!--                  <span>置顶</span>-->
-              <!--                </v-tooltip>-->
-              <!--                <v-tooltip bottom>-->
-              <!--                  <template v-slot:activator="{ on }">-->
-              <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-              <!--                      <v-icon dark>mdi-bell-outline</v-icon>-->
-              <!--                    </v-btn>-->
-              <!--                  </template>-->
-              <!--                  <span>提醒我</span>-->
-              <!--                </v-tooltip>-->
-              <!--                <v-tooltip bottom>-->
-              <!--                  <template v-slot:activator="{ on }">-->
-              <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-              <!--                      <v-icon dark>mdi-palette-outline</v-icon>-->
-              <!--                    </v-btn>-->
-              <!--                  </template>-->
-              <!--                  <span>更改颜色</span>-->
-              <!--                </v-tooltip>-->
-              <!--                <v-tooltip bottom>-->
-              <!--                  <template v-slot:activator="{ on }">-->
-              <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-              <!--                      <v-icon dark>mdi-image-outline</v-icon>-->
-              <!--                    </v-btn>-->
-              <!--                  </template>-->
-              <!--                  <span>添加图片</span>-->
-              <!--                </v-tooltip>-->
-              <!--                <v-tooltip bottom>-->
-              <!--                  <template v-slot:activator="{ on }">-->
-              <!--                    <v-btn-->
-              <!--                      style="margin:0 3px"-->
-              <!--                      fab-->
-              <!--                      text-->
-              <!--                      x-small-->
-              <!--                      v-on="on"-->
-              <!--                      @click="show(list)"-->
-              <!--                    >-->
-              <!--                      <v-icon dark>mdi-archive-arrow-down-outline</v-icon>-->
-              <!--                    </v-btn>-->
-              <!--                  </template>-->
-              <!--                  <span>归档</span>-->
-              <!--                </v-tooltip>-->
-              <!--                <v-menu offset-y>-->
-              <!--                  <template v-slot:activator="{ on: onMenu }">-->
-              <!--                    <v-tooltip bottom>-->
-              <!--                      <template v-slot:activator="{ on: onTooltip }">-->
-              <!--                        <v-btn-->
-              <!--                          style="margin:0 3px"-->
-              <!--                          fab-->
-              <!--                          text-->
-              <!--                          x-small-->
-              <!--                          v-on="Object.assign(onTooltip, onMenu)"-->
-              <!--                        >-->
-              <!--                          <v-icon dark>mdi-dots-vertical</v-icon>-->
-              <!--                        </v-btn>-->
-              <!--                      </template>-->
-              <!--                      <span>更多</span>-->
-              <!--                    </v-tooltip>-->
-              <!--                  </template>-->
-              <!--                  <v-list dense>-->
-              <!--                    <v-list-item>-->
-              <!--                      <v-list-item-content>-->
-              <!--                        123-->
-              <!--                      </v-list-item-content>-->
-              <!--                    </v-list-item>-->
-              <!--                  </v-list>-->
-              <!--                </v-menu>-->
-              <!--              </v-card-actions>-->
-            </v-card>
-          </template>
-        </v-hover>
+        <v-card flat class="overflow-hidden" :to="`/picture/${item.id}`">
+          <v-card-text class="pa-0">
+            <v-img :src="$imageUrl.picture(item.url, `specifiedWidth`)"></v-img>
+          </v-card-text>
+          <!--              <v-card-text class="py-0">-->
+          <!--                <v-chip class="ma-1" x-small close>-->
+          <!--                  标签-->
+          <!--                </v-chip>-->
+          <!--              </v-card-text>-->
+          <!--              <v-card-actions class="pt-0" style="height: 40px;">-->
+          <!--                <v-tooltip bottom>-->
+          <!--                  <template v-slot:activator="{ on }">-->
+          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
+          <!--                      <v-icon dark>mdi-pin-outline</v-icon>-->
+          <!--                    </v-btn>-->
+          <!--                  </template>-->
+          <!--                  <span>置顶</span>-->
+          <!--                </v-tooltip>-->
+          <!--                <v-tooltip bottom>-->
+          <!--                  <template v-slot:activator="{ on }">-->
+          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
+          <!--                      <v-icon dark>mdi-bell-outline</v-icon>-->
+          <!--                    </v-btn>-->
+          <!--                  </template>-->
+          <!--                  <span>提醒我</span>-->
+          <!--                </v-tooltip>-->
+          <!--                <v-tooltip bottom>-->
+          <!--                  <template v-slot:activator="{ on }">-->
+          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
+          <!--                      <v-icon dark>mdi-palette-outline</v-icon>-->
+          <!--                    </v-btn>-->
+          <!--                  </template>-->
+          <!--                  <span>更改颜色</span>-->
+          <!--                </v-tooltip>-->
+          <!--                <v-tooltip bottom>-->
+          <!--                  <template v-slot:activator="{ on }">-->
+          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
+          <!--                      <v-icon dark>mdi-image-outline</v-icon>-->
+          <!--                    </v-btn>-->
+          <!--                  </template>-->
+          <!--                  <span>添加图片</span>-->
+          <!--                </v-tooltip>-->
+          <!--                <v-tooltip bottom>-->
+          <!--                  <template v-slot:activator="{ on }">-->
+          <!--                    <v-btn-->
+          <!--                      style="margin:0 3px"-->
+          <!--                      fab-->
+          <!--                      text-->
+          <!--                      x-small-->
+          <!--                      v-on="on"-->
+          <!--                      @click="show(list)"-->
+          <!--                    >-->
+          <!--                      <v-icon dark>mdi-archive-arrow-down-outline</v-icon>-->
+          <!--                    </v-btn>-->
+          <!--                  </template>-->
+          <!--                  <span>归档</span>-->
+          <!--                </v-tooltip>-->
+          <!--                <v-menu offset-y>-->
+          <!--                  <template v-slot:activator="{ on: onMenu }">-->
+          <!--                    <v-tooltip bottom>-->
+          <!--                      <template v-slot:activator="{ on: onTooltip }">-->
+          <!--                        <v-btn-->
+          <!--                          style="margin:0 3px"-->
+          <!--                          fab-->
+          <!--                          text-->
+          <!--                          x-small-->
+          <!--                          v-on="Object.assign(onTooltip, onMenu)"-->
+          <!--                        >-->
+          <!--                          <v-icon dark>mdi-dots-vertical</v-icon>-->
+          <!--                        </v-btn>-->
+          <!--                      </template>-->
+          <!--                      <span>更多</span>-->
+          <!--                    </v-tooltip>-->
+          <!--                  </template>-->
+          <!--                  <v-list dense>-->
+          <!--                    <v-list-item>-->
+          <!--                      <v-list-item-content>-->
+          <!--                        123-->
+          <!--                      </v-list-item-content>-->
+          <!--                    </v-list-item>-->
+          <!--                  </v-list>-->
+          <!--                </v-menu>-->
+          <!--              </v-card-actions>-->
+        </v-card>
       </div>
     </div>
     <div class="mt-12" v-if="!list.length && !loading">

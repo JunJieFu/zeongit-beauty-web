@@ -6,22 +6,18 @@
         v-for="(item, index) in list"
         :key="index"
       >
-        <v-hover>
-          <template v-slot="{ hover }">
-            <v-card
-              :elevation="hover ? 5 : 1"
-              class="d-flex align-center fill-height"
-              :to="`/picture/${item.id}`"
-            >
-              <v-card-text class="pa-0">
-                <v-img
-                  :src="$imageUrl.picture(item.url, `specifiedWidth`)"
-                  :aspect-ratio="1"
-                ></v-img>
-              </v-card-text>
-            </v-card>
-          </template>
-        </v-hover>
+        <v-card
+          flat
+          class="d-flex align-center fill-height overflow-hidden"
+          :to="`/picture/${item.id}`"
+        >
+          <v-card-text class="pa-0">
+            <v-img
+              :src="$imageUrl.picture(item.url, `specifiedWidth`)"
+              :aspect-ratio="1"
+            ></v-img>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
     <div v-else-if="!loading">

@@ -11,7 +11,7 @@ import * as constant from "./assets/script/constant"
 import * as internationalization from "./assets/script/constant/internationalization"
 import filters from "./assets/script/filter"
 import imageUrl from "./assets/script/util/imageUrl"
-import { Notification, Confirm, Prompt } from "./components/global"
+import { Confirm, Prompt } from "./components/global"
 
 Vue.component("sign-in-menu-card", () =>
   import("./components/page/SignInMenuCard")
@@ -26,7 +26,6 @@ Vue.prototype.$constant = constant
 Vue.prototype.$internationalization = internationalization
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
-Vue.prototype.$notify = Notification
 Vue.prototype.$confirm = Confirm
 Vue.prototype.$prompt = Prompt
 Vue.config.productionTip = false

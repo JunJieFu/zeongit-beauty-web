@@ -18,8 +18,10 @@
           :key="decodeURI($route.fullPath)"
         />
       </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive" /> </v-main
-  ></v-app>
+      <router-view v-if="!$route.meta.keepAlive" />
+      <notify-container></notify-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -31,7 +33,8 @@ import { userService } from "../assets/script/service"
 export default {
   components: {
     Header,
-    Menu
+    Menu,
+    "notify-container": () => import("../components/global/Notify")
   },
   computed: {
     ...mapState("menu", ["progress"])

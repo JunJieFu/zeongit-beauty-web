@@ -17,12 +17,12 @@ export default new Vuetify({
     themes: {
       light: {
         primary: "#0B99FF",
-        secondary: "#424242",
-        accent: "#82B1FF",
-        error: "#FF0000",
-        info: "#1976D2",
-        success: "#3CB371",
-        warning: "#FBA207"
+        // secondary: "#424242",
+        // accent: "#82B1FF",
+        // error: "#FF0000",
+        info: "#3399ff"
+        // success: "#3CB371",
+        // warning: "#FBA207"
       }
     }
   }

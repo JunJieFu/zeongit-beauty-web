@@ -1,32 +1,6 @@
 @import "./config";
 @import "./color";
 @import "./mixin";
-* {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  color: inherit;
-  box-sizing: border-box;
-  margin: 0;
-  text-decoration: none;
-  outline: none;
-  border: 0;
-  padding: 0;
-  list-style: none;
-  font-size: inherit;
-  &::-webkit-scrollbar {
-    display: block;
-    width: 6px;
-    height: 6px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $font-color-dark-fade;
-    border-radius: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: $theme-background-color;
-  }
-}
-
-input::-webkit-search-cancel-button {display: none;}
 
 a {
   cursor: pointer;

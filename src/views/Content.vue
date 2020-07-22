@@ -19,7 +19,8 @@
         />
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive" />
-      <notify-container></notify-container>
+      <notify></notify>
+      <confirm></confirm>
     </v-main>
   </v-app>
 </template>
@@ -33,8 +34,7 @@ import { userService } from "../assets/script/service"
 export default {
   components: {
     Header,
-    Menu,
-    "notify-container": () => import("../components/global/Notify")
+    Menu
   },
   computed: {
     ...mapState("menu", ["progress"])

@@ -11,11 +11,14 @@ import * as constant from "./assets/script/constant"
 import * as internationalization from "./assets/script/constant/internationalization"
 import filters from "./assets/script/filter"
 import imageUrl from "./assets/script/util/imageUrl"
-import { Confirm, Prompt } from "./components/global"
+// import { Prompt } from "./components/global"
+import GlobalComponents from "./components/global"
 
 Vue.component("sign-in-menu-card", () =>
   import("./components/page/SignInMenuCard")
 )
+
+Vue.use(GlobalComponents)
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
@@ -26,8 +29,8 @@ Vue.prototype.$constant = constant
 Vue.prototype.$internationalization = internationalization
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
-Vue.prototype.$confirm = Confirm
-Vue.prototype.$prompt = Prompt
+// Vue.prototype.$confirm = Confirm
+// Vue.prototype.$prompt = Prompt
 Vue.config.productionTip = false
 
 Vue.prototype.$resultNotify = function(result) {

@@ -6,11 +6,11 @@
       :width="size"
     />
   </v-avatar>
-  <v-avatar :size="size" v-else-if="info && info.nickname" color="info">
+  <v-avatar :size="size" v-else-if="info && !info.avatarUrl" :color="color">
     <span
       class="white--text headline"
       :style="{ fontSize: size * 0.4 + `px !important` }"
-      >{{ info.nickname.substr(0, 1) }}</span
+      >{{ character }}</span
     >
   </v-avatar>
   <v-avatar :size="size" v-else>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+const avatarColorList = ["accent", "error", "info", "success", "warning"]
 export default {
   props: {
     info: {
@@ -31,6 +32,16 @@ export default {
     size: {
       type: [Number, String],
       default: 50
+    }
+  },
+  computed: {
+    character() {
+      return this.info?.nickname?.substr(0, 1) || ""
+    },
+    color() {
+      const index =
+        (this.info?.nickname?.charCodeAt(0) || 2) % avatarColorList.length
+      return avatarColorList[index]
     }
   }
 }

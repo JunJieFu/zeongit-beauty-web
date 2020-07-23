@@ -36,7 +36,7 @@
           >
             <v-img
               src="../../../assets/image/svg/beauty.svg"
-              class="circle"
+              class="rounded-circle"
               :aspect-ratio="1"
               width="50"
             ></v-img>

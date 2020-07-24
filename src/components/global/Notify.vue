@@ -78,9 +78,11 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../node_modules/vuetify/src/styles/styles";
+@import "src/assets/style/config";
+
 .notify {
   position: fixed;
-  z-index: 999;
+  z-index: $overlay-index !important;
   width: 350px;
   $list: top, right, bottom, left;
   @each $i in $list {

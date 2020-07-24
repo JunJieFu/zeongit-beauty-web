@@ -9,12 +9,16 @@
   </v-btn>
 </template>
 
-<script>
+<script type="text/jsx">
 export default {
   methods: {
     async onClick() {
       await this.$confirm({
-        text: "您确定删除该图片吗？<br />注意：删除后不能恢复！"
+        text: {
+          render(){
+            return (<div>您确定删除该图片吗？<br />注意：删除后不能恢复！</div>)
+          }
+        }
       })
       this.$emit("remove")
     }

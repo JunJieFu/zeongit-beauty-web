@@ -1,11 +1,12 @@
 <template>
-  <v-app>
+  <zg-app>
     <v-progress-linear
       v-show="progress"
       indeterminate
       absolute
       top
       color="primary"
+      class="progress"
       style="z-index: 999"
     ></v-progress-linear>
     <Header></Header>
@@ -18,11 +19,8 @@
         />
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive" />
-      <notify></notify>
-      <confirm></confirm>
-      <prompt></prompt>
     </v-main>
-  </v-app>
+  </zg-app>
 </template>
 
 <script>

@@ -68,9 +68,6 @@
 import { NOOP } from "../../assets/script/constant"
 
 export default {
-  async created() {
-    this.init()
-  },
   props: {
     id: {
       type: [String, null, undefined],

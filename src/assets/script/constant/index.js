@@ -1,4 +1,8 @@
-import { EmptyTipDetail, MenuEnum, SignInTipDetail } from "../model"
+import {
+  EmptyTipDetail,
+  MenuEnum,
+  SignInTipDetail
+} from "@/assets/script/model"
 import {
   mdiHomeOutline,
   mdiFileFindOutline,

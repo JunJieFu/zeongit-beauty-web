@@ -6,8 +6,8 @@
 import axios from "axios"
 import qs from "qs"
 import { Result } from "../model/main"
-import config from "../constant/config"
-axios.defaults.baseURL = config.host
+import { API_HOST } from "../constant/config"
+axios.defaults.baseURL = API_HOST
 export default {
   /**
    * get 请求

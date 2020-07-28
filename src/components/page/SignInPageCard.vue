@@ -13,7 +13,7 @@
         outlined
         color="primary"
         :href="
-          `${$config.accountHost}/signIn?continue=${encodeURIComponent(href)}`
+          `${$config.ACCOUNT_HOST}/signIn?continue=${encodeURIComponent(href)}`
         "
         >登录</v-btn
       >

@@ -3,7 +3,7 @@
     <v-row class="mx-0">
       <v-col :cols="4">
         <a
-          :href="$config.accountHost"
+          :href="$config.ACCOUNT_HOST"
           target="_blank"
           class="d-flex flex-column align-center flex-xl-grow-1 link"
         >
@@ -13,7 +13,7 @@
       </v-col>
       <v-col :cols="4">
         <a
-          :href="$config.beautyHost"
+          :href="$config.BEAUTY_HOST"
           target="_blank"
           class="d-flex flex-column align-center flex-xl-grow-1 link"
         >

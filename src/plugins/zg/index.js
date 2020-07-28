@@ -3,7 +3,7 @@ import filters from "./script/filter"
 import imageUrl from "./script/util/imageUrl"
 import "./style/index.scss"
 import "./style/variables.scss"
-import config from "./script/constant/config"
+import * as config from "./script/constant/config"
 export default {
   install() {
     Vue.component("zg-app", () => import("./components/ZgApp/Index"))

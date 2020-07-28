@@ -1,4 +1,4 @@
-import httpUtil from "../util/http"
+import httpUtil from "@/plugins/zg/script/util/http"
 
 export const userService = {
   getInfo() {

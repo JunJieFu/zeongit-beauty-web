@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { throttle } from "../../assets/script/util/heighten"
+import heightenUtil from "@/plugins/zg/script/util/heighten"
 import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
 import { mapState } from "vuex"
 
@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       style: null,
-      throttle: throttle(this.resize, 16)
+      throttle: heightenUtil.throttle(this.resize, 16)
     }
   },
   computed: {

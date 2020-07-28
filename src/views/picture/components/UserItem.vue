@@ -12,7 +12,7 @@
 
 <script>
 import { mapState } from "vuex"
-import { NOOP } from "../../../assets/script/constant"
+import { NOOP } from "@/plugins/zg/script/constant/main"
 
 export default {
   components: {

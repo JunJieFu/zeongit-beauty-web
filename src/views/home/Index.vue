@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { Pageable } from "../../assets/script/model"
+import { Pageable } from "@/plugins/zg/script/model/main"
 import { pictureService } from "../../assets/script/service"
 import { mapState } from "vuex"
 

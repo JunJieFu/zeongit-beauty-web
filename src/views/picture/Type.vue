@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { NOOP } from "../../assets/script/constant"
+import { NOOP } from "@/plugins/zg/script/constant/main"
 
 export default {
   props: {
@@ -81,7 +81,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "src/assets/style/config";
+@import "src/plugins/zg/style/config";
 .page {
   max-width: $page-size;
 }

@@ -59,7 +59,7 @@
 <script>
 import { mapState } from "vuex"
 import jsCookie from "js-cookie"
-import config from "../../../assets/script/constant/config"
+import config from "@/plugins/zg/script/constant/config"
 export default {
   computed: {
     ...mapState("user", ["info"])
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/style/color";
+@import "src/plugins/zg/style/color";
 .user-menu {
   max-width: 100%;
   $size: 380px;

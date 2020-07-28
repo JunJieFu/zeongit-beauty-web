@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import { NotifyViewModel } from "./model"
+import { NotifyViewModel } from "../../script/model/viewModel"
+
 let id = 0
 export default {
   data() {
@@ -77,8 +78,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../node_modules/vuetify/src/styles/styles";
-@import "src/assets/style/config";
+@import "~vuetify/src/styles/styles";
+@import "../../style/config";
 
 .notify {
   position: fixed;

@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
 import zhHans from "vuetify/es5/locale/zh-Hans"
-import storageUtil from "../assets/script/util/storage"
+import storageUtil from "@/plugins/zg/script/util/storage"
 Vue.use(Vuetify)
 
 export default new Vuetify({

@@ -6,8 +6,7 @@
       absolute
       top
       color="primary"
-      class="progress"
-      style="z-index: 999"
+      class="global-progress"
     ></v-progress-linear>
     <zg-header></zg-header>
     <zg-menu></zg-menu>
@@ -47,4 +46,10 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "src/plugins/zg/style/config";
+
+.global-progress {
+  z-index: $overlay-index !important;
+}
+</style>

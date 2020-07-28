@@ -75,7 +75,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import { userService } from "../../assets/script/service"
+import { userService } from "@/assets/script/service"
 
 export default {
   props: {
@@ -85,7 +85,7 @@ export default {
     }
   },
   components: {
-    "follow-icon-btn": () => import("../../components/btn/FollowIconBtn"),
+    "follow-icon-btn": () => import("@/components/btn/FollowIconBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn")
   },

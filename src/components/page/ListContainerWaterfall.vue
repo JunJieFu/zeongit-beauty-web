@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
+import { LIST_GAP, LIST_ITEM_WIDTH } from "@/assets/script/constant"
 import heightenUtil from "@/plugins/zg/script/util/heighten"
 import aliveMixin from "@/plugins/zg/script/mixin/alive"
 import { mapState } from "vuex"

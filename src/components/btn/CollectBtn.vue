@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import { NOOP } from "@/plugins/zg/script/constant/main"
 import { mapState } from "vuex"
-import { collectionService } from "../../assets/script/service"
+import { NOOP } from "@/plugins/zg/script/constant/main"
+import { collectionService } from "@/assets/script/service"
 
 export default {
   props: {

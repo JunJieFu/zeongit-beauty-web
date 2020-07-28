@@ -63,12 +63,12 @@
 
 <script>
 import { Pageable } from "@/plugins/zg/script/model/main"
-import { pictureService } from "../../assets/script/service"
+import { pictureService } from "@/assets/script/service"
 import { mapState } from "vuex"
 
 export default {
   components: {
-    "list-container": () => import("../../components/page/ListContainer")
+    "list-container": () => import("@/components/page/ListContainer")
   },
   created() {
     this.init()

@@ -37,7 +37,7 @@
 
 <script>
 import heightenUtil from "@/plugins/zg/script/util/heighten"
-import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
+import { LIST_GAP, LIST_ITEM_WIDTH } from "@/assets/script/constant"
 import { mapState } from "vuex"
 
 export default {

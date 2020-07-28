@@ -13,7 +13,7 @@
 <script>
 export default {
   components: {
-    "tips-page-card": () => import("../../components/page/TipsPageCard")
+    "tips-page-card": () => import("@/components/page/TipsPageCard")
   }
 }
 </script>

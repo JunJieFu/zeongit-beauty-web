@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { footprintService } from "../../assets/script/service"
+import { footprintService } from "@/assets/script/service"
 import { Pageable } from "@/plugins/zg/script/model/main"
 import { mapState } from "vuex"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
@@ -70,10 +70,10 @@ export default {
     ...mapState("menu", ["mode"])
   },
   components: {
-    "corner-buttons": () => import("../../components/page/CornerButtons"),
-    "tips-page-card": () => import("../../components/page/TipsPageCard"),
+    "corner-buttons": () => import("@/components/page/CornerButtons"),
+    "tips-page-card": () => import("@/components/page/TipsPageCard"),
     "user-list-container-normal": () =>
-      import("../../components/page/UserListContainerNormal")
+      import("@/components/page/UserListContainerNormal")
   },
   methods: {
     async init() {

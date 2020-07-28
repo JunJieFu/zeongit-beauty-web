@@ -27,7 +27,7 @@ import {
   CORNER_BUTTONS_GAP,
   DEFAULT_BTN_HEIGHT,
   SMALL_BTN_HEIGHT
-} from "../../assets/script/constant"
+} from "@/assets/script/constant"
 
 export default {
   props: {

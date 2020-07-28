@@ -36,7 +36,7 @@
 <script>
 import { NOOP } from "@/plugins/zg/script/constant/main"
 import { mapState } from "vuex"
-import { userService } from "../../assets/script/service"
+import { userService } from "@/assets/script/service"
 
 export default {
   props: {

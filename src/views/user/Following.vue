@@ -28,7 +28,7 @@
 
 <script>
 import { mapState } from "vuex"
-import { userService } from "../../assets/script/service"
+import { userService } from "@/assets/script/service"
 import { Pageable } from "@/plugins/zg/script/model/main"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
 
@@ -38,10 +38,10 @@ export default {
     this.init()
   },
   components: {
-    "corner-buttons": () => import("../../components/page/CornerButtons"),
-    "tips-page-card": () => import("../../components/page/TipsPageCard"),
+    "corner-buttons": () => import("@/components/page/CornerButtons"),
+    "tips-page-card": () => import("@/components/page/TipsPageCard"),
     "user-list-container-normal": () =>
-      import("../../components/page/UserListContainerNormal")
+      import("@/components/page/UserListContainerNormal")
   },
   props: {
     targetId: {

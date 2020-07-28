@@ -35,7 +35,7 @@ export default {
     }
   },
   components: {
-    "sign-in-page-card": () => import("../../components/page/SignInPageCard")
+    "sign-in-page-card": () => import("@/components/page/SignInPageCard")
   }
 }
 </script>

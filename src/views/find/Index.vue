@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { pictureService } from "@/assets/script/service"
 import { Pageable } from "@/plugins/zg/script/model/main"
 import { mapState } from "vuex"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
@@ -62,11 +62,11 @@ export default {
   },
   components: {
     "list-container-waterfall": () =>
-      import("../../components/page/ListContainerWaterfall"),
+      import("@/components/page/ListContainerWaterfall"),
     "list-container-normal": () =>
-      import("../../components/page/ListContainerNormal"),
-    "tips-page-card": () => import("../../components/page/TipsPageCard"),
-    "corner-buttons": () => import("../../components/page/CornerButtons")
+      import("@/components/page/ListContainerNormal"),
+    "tips-page-card": () => import("@/components/page/TipsPageCard"),
+    "corner-buttons": () => import("@/components/page/CornerButtons")
   },
   methods: {
     async init() {

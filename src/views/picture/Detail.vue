@@ -134,16 +134,16 @@
 
 <script>
 import { NOOP } from "@/plugins/zg/script/constant/main"
-import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
+import { DETAIL_INFO_WIDTH } from "@/assets/script/constant"
 import { mapMutations, mapState } from "vuex"
-import { footprintService } from "../../assets/script/service"
+import { footprintService } from "@/assets/script/service"
 
 export default {
   components: {
-    "corner-buttons": () => import("../../components/page/CornerButtons"),
+    "corner-buttons": () => import("@/components/page/CornerButtons"),
     "user-item": () => import("./components/UserItem"),
     "comment-btn": () => import("./components/CommentBtn"),
-    "collect-btn": () => import("../../components/btn/CollectBtn"),
+    "collect-btn": () => import("@/components/btn/CollectBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn"),
     "remove-btn": () => import("./components/RemoveBtn"),

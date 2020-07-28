@@ -87,14 +87,14 @@ import {
   collectionService,
   worksService,
   tagService
-} from "../../assets/script/service"
+} from "@/assets/script/service"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
 import { Pageable } from "@/plugins/zg/script/model/main"
 export default {
   mixins: [alivePageMixin],
   components: {
-    "tips-page-card": () => import("../../components/page/TipsPageCard"),
-    "list-container": () => import("../../components/page/ListContainer")
+    "tips-page-card": () => import("@/components/page/TipsPageCard"),
+    "list-container": () => import("@/components/page/ListContainer")
   },
   async created() {
     this.init()

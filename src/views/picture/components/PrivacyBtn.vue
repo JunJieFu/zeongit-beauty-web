@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { pictureService } from "../../../assets/script/service"
+import { pictureService } from "@/assets/script/service"
 
 export default {
   props: {

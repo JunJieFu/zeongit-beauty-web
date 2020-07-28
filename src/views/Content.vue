@@ -9,8 +9,8 @@
       class="progress"
       style="z-index: 999"
     ></v-progress-linear>
-    <Header></Header>
-    <Menu></Menu>
+    <zg-header></zg-header>
+    <zg-menu></zg-menu>
     <v-main>
       <keep-alive :max="15">
         <router-view
@@ -25,14 +25,12 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import Menu from "../components/page/Menu"
-import Header from "../components/page/Header"
-import { userService } from "../assets/script/service"
+import { userService } from "@/assets/script/service"
 
 export default {
   components: {
-    Header,
-    Menu
+    "zg-header": () => import("@/components/page/Header"),
+    "zg-menu": () => import("@/components/page/Menu")
   },
   computed: {
     ...mapState("menu", ["progress"])

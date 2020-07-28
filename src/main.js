@@ -18,7 +18,7 @@ Vue.prototype.$constant = constant
 Vue.prototype.$internationalization = internationalization
 
 Vue.component("sign-in-menu-card", () =>
-  import("./components/page/SignInMenuCard")
+  import("@/components/page/SignInMenuCard")
 )
 
 Vue.config.productionTip = false

@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import { pictureService } from "../../assets/script/service"
+import { pictureService } from "@/assets/script/service"
 import { mapMutations, mapState } from "vuex"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
 export default {
   mixins: [alivePageMixin],
   components: {
-    "tips-page-card": () => import("../../components/page/TipsPageCard")
+    "tips-page-card": () => import("@/components/page/TipsPageCard")
   },
   props: {
     id: {

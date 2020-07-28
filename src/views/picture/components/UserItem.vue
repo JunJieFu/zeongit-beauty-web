@@ -16,7 +16,7 @@ import { NOOP } from "@/plugins/zg/script/constant/main"
 
 export default {
   components: {
-    "follow-btn": () => import("../../../components/btn/FollowBtn")
+    "follow-btn": () => import("@/components/btn/FollowBtn")
   },
   props: {
     user: {

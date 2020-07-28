@@ -45,7 +45,7 @@ import { mapState } from "vuex"
 
 export default {
   components: {
-    "sign-in-menu-card": () => import("../../../components/page/SignInMenuCard")
+    "sign-in-menu-card": () => import("@/components/page/SignInMenuCard")
   },
   computed: {
     ...mapState("user", ["info"])

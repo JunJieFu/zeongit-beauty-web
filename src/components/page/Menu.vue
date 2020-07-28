@@ -51,8 +51,8 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import { MENU_LIST_CONSTANT } from "../../assets/script/constant"
-import { tagService } from "../../assets/script/service"
+import { MENU_LIST_CONSTANT } from "@/assets/script/constant"
+import { tagService } from "@/assets/script/service"
 
 export default {
   data() {

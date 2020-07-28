@@ -1,4 +1,9 @@
-import config from "../constant/config"
+import {
+  QINIU_PICTURE,
+  QINIU_AVATAR,
+  QINIU_BACKGROUND,
+  QINIU_SEPARATOR
+} from "../constant/config"
 export default {
   PICTURE_TYPE: [
     null,
@@ -19,9 +24,9 @@ export default {
     if (url) {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
-        return `${config.qiniuImg}/${url}${config.qiniuSeparator}${type}`
+        return `${QINIU_PICTURE}/${url}${QINIU_SEPARATOR}${type}`
       } else {
-        return `${config.qiniuImg}/${url}`
+        return `${QINIU_PICTURE}/${url}`
       }
     } else {
       return require("../../image/default_picture.svg")
@@ -36,10 +41,9 @@ export default {
         const proportion = opposite ? width / height : height / width
         const prefix = proportion >= 1 ? "specifiedHeight" : "specifiedWidth"
         if (size === 240) size = ""
-        return `${config.qiniuImg}/${url}${config.qiniuSeparator}${prefix +
-          size}`
+        return `${QINIU_PICTURE}/${url}${QINIU_SEPARATOR}${prefix + size}`
       } else {
-        return `${config.qiniuImg}/${url}`
+        return `${QINIU_PICTURE}/${url}`
       }
     } else {
       return require("../../image/default_picture.svg")
@@ -66,9 +70,9 @@ export default {
     if (url) {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
-        return `${config.qiniuHead}/${url}${config.qiniuSeparator}${type}`
+        return `${QINIU_AVATAR}/${url}${QINIU_SEPARATOR}${type}`
       } else {
-        return `${config.qiniuHead}/${url}`
+        return `${QINIU_AVATAR}/${url}`
       }
     } else {
       return require("../../image/default_avatar.svg")
@@ -88,12 +92,12 @@ export default {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
         if (is) {
-          return `${config.qiniuBack}/${url}?${type}`
+          return `${QINIU_BACKGROUND}/${url}?${type}`
         } else {
-          return `${config.qiniuBack}/${url}${config.qiniuSeparator}${type}`
+          return `${QINIU_BACKGROUND}/${url}${QINIU_SEPARATOR}${type}`
         }
       } else {
-        return `${config.qiniuBack}/${url}`
+        return `${QINIU_BACKGROUND}/${url}`
       }
     } else {
       return require("../../image/default_picture.svg")

@@ -39,7 +39,7 @@
       </v-list-item>
       <v-divider></v-divider>
       <v-list-item class="justify-center py-5">
-        <v-btn outlined color="primary" :href="$config.accountHost"
+        <v-btn outlined color="primary" :href="$config.ACCOUNT_HOST"
           >管理我的账号</v-btn
         >
       </v-list-item>
@@ -59,7 +59,7 @@
 <script>
 import { mapState } from "vuex"
 import jsCookie from "js-cookie"
-import config from "@/plugins/zg/script/constant/config"
+import { DOMAIN } from "@/plugins/zg/script/constant/config"
 export default {
   computed: {
     ...mapState("user", ["info"])
@@ -68,7 +68,7 @@ export default {
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
       jsCookie.remove("token", {
-        domain: config.domain
+        domain: DOMAIN
       })
       location.reload()
     }

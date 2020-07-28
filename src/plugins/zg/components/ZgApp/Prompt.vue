@@ -7,18 +7,20 @@
         @hook:mounted="list[index].visible = true"
       >
         <v-overlay :dark="false" v-show="item.visible" class="overlay">
-          <v-container class="confirm">
+          <v-container class="prompt">
             <v-card width="100%">
               <v-card-title>
                 <span class="headline">{{ item.title }}</span>
               </v-card-title>
               <v-card-text>
-                <template v-if="typeof item.text == 'object'">
-                  <component :is="item.text"></component>
-                </template>
-                <template v-else>
-                  {{ item.text }}
-                </template>
+                <v-form>
+                  <v-text-field
+                    v-model="item.value"
+                    :placeholder="item.placeholder"
+                    dense
+                    :hide-details="true"
+                  ></v-text-field>
+                </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -38,7 +40,7 @@
 </template>
 
 <script>
-import { ConfirmViewModel } from "./model"
+import { PromptViewModel } from "../../script/model/viewModel"
 
 let id = 0
 export default {
@@ -48,17 +50,17 @@ export default {
     }
   },
   created() {
-    window.$confirm = this.push
+    window.$prompt = this.push
   },
   methods: {
     destroyElement(index) {
       this.list.splice(index, 1)
     },
     /**
-     * @param params {ConfirmViewModel}
+     * @param params {PromptViewModel}
      */
     push(params) {
-      let viewModel = new ConfirmViewModel(params, id++)
+      let viewModel = new PromptViewModel(params, id++)
       return new Promise((resolve, reject) => {
         viewModel.closeCallback = (...args) => {
           reject(...args)
@@ -82,17 +84,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "node_modules/vuetify/src/styles/styles";
-@import "src/assets/style/config";
+@import "~vuetify/src/styles/styles";
+@import "../../style/config";
 
 .overlay {
   z-index: $overlay-index !important;
 }
-.confirm {
+
+.prompt {
   width: 350px;
 }
+
 @media #{map-get($display-breakpoints, 'xs-only')} {
-  .confirm {
+  .prompt {
     min-width: 100% !important;
   }
 }

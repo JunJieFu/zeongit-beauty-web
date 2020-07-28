@@ -4,7 +4,7 @@ import {
   mdiAlertOutline,
   mdiCheckCircleOutline
 } from "@mdi/js"
-import { NOOP } from "../../assets/script/constant"
+import { NOOP } from "../constant/main"
 
 const ICON_MAP = {
   success: mdiCheckCircleOutline,

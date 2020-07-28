@@ -39,9 +39,9 @@
 
 <script>
 import { collectionService } from "../../assets/script/service"
-import { Pageable } from "../../assets/script/model"
+import { Pageable } from "@/plugins/zg/script/model/main"
 import { mapState } from "vuex"
-import alivePageMixin from "../../assets/script/mixin/alivePage"
+import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
 
 export default {
   mixins: [alivePageMixin],

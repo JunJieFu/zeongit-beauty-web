@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { NOOP } from "../../assets/script/constant"
+import { NOOP } from "@/plugins/zg/script/constant/main"
 import { mapState } from "vuex"
 import { collectionService } from "../../assets/script/service"
 

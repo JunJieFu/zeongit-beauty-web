@@ -16,35 +16,7 @@
         <span>应用</span>
       </v-tooltip>
     </template>
-    <v-card class="iframe-menu">
-      <v-row class="mx-0">
-        <v-col :cols="4">
-          <a
-            :href="$config.accountHost"
-            target="_blank"
-            class="d-flex flex-column align-center flex-xl-grow-1 link"
-          >
-            <avatar :info="info" size="50"></avatar>
-            <span class="ellipsis font-weight-thin">Zeongit 账号</span>
-          </a>
-        </v-col>
-        <v-col :cols="4">
-          <a
-            :href="$config.beautyHost"
-            target="_blank"
-            class="d-flex flex-column align-center flex-xl-grow-1 link"
-          >
-            <v-img
-              src="../../../assets/image/svg/beauty.svg"
-              class="rounded-circle"
-              :aspect-ratio="1"
-              width="50"
-            ></v-img>
-            <span class="ellipsis font-weight-thin">Beauty</span>
-          </a>
-        </v-col>
-      </v-row>
-    </v-card>
+    <apps-card :info="info"></apps-card>
   </v-menu>
 </template>
 
@@ -52,6 +24,9 @@
 import { mapState } from "vuex"
 
 export default {
+  components: {
+    "apps-card": () => import("@/plugins/zg/components/AppsCard/Index")
+  },
   computed: {
     ...mapState("user", ["info"])
   }
@@ -59,7 +34,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/style/color";
+@import "src/plugins/zg/style/color";
 .iframe-menu {
   max-width: 100%;
   $size: 380px;

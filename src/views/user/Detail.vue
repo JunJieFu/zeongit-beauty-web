@@ -88,8 +88,8 @@ import {
   worksService,
   tagService
 } from "../../assets/script/service"
-import alivePageMixin from "../../assets/script/mixin/alivePage"
-import { Pageable } from "../../assets/script/model"
+import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
+import { Pageable } from "@/plugins/zg/script/model/main"
 export default {
   mixins: [alivePageMixin],
   components: {

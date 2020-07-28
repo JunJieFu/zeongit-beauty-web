@@ -107,8 +107,8 @@
 
 <script>
 import { LIST_GAP, LIST_ITEM_WIDTH } from "../../assets/script/constant"
-import { throttle } from "../../assets/script/util/heighten"
-import aliveMixin from "../../assets/script/mixin/alive"
+import heightenUtil from "@/plugins/zg/script/util/heighten"
+import aliveMixin from "@/plugins/zg/script/mixin/alive"
 import { mapState } from "vuex"
 
 export default {
@@ -138,7 +138,7 @@ export default {
       height: 0,
       transition: false,
       itemStyleList: [],
-      throttle: throttle(this.resize, 16)
+      throttle: heightenUtil.throttle(this.resize, 16)
     }
   },
   watch: {

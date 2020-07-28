@@ -24,7 +24,7 @@ export default {
         return `${config.qiniuImg}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   pictureByObject({ url, height, width }, size, opposite = false) {
@@ -42,11 +42,11 @@ export default {
         return `${config.qiniuImg}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   pictureLazy(unknown, type, opposite = false) {
-    let src = require("../../image/svg/default-picture.svg")
+    let src = require("../../image/default_picture.svg")
     if (typeof unknown === "string") {
       src = this.picture(unknown, type)
     } else if (typeof unknown === "object") {
@@ -56,8 +56,8 @@ export default {
     }
     return {
       src,
-      error: require("../../image/svg/default-picture.svg"),
-      loading: require("../../image/svg/default-picture.svg")
+      error: require("../../image/default_picture.svg"),
+      loading: require("../../image/default_picture.svg")
     }
   },
   avatar(url, type) {
@@ -71,14 +71,14 @@ export default {
         return `${config.qiniuHead}/${url}`
       }
     } else {
-      return require("../../../assets/image/svg/default-avatar.svg")
+      return require("../../image/default_avatar.svg")
     }
   },
   avatarLazy(url, type) {
     return {
       src: this.avatar(url, type),
-      error: require("../../../assets/image/svg/default-avatar.svg"),
-      loading: require("../../../assets/image/svg/default-avatar.svg")
+      error: require("../../image/default_avatar.svg"),
+      loading: require("../../image/default_avatar.svg")
     }
   },
   background(url, type, is) {
@@ -96,14 +96,14 @@ export default {
         return `${config.qiniuBack}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   backgroundLazy(url, type, is) {
     return {
       src: this.background(url, type, is),
-      error: require("../../image/svg/default-picture.svg"),
-      loading: require("../../image/svg/default-picture.svg")
+      error: require("../../image/default_picture.svg"),
+      loading: require("../../image/default_picture.svg")
     }
   }
 }

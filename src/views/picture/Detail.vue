@@ -133,7 +133,8 @@
 </template>
 
 <script>
-import { DETAIL_INFO_WIDTH, NOOP } from "../../assets/script/constant"
+import { NOOP } from "@/plugins/zg/script/constant/main"
+import { DETAIL_INFO_WIDTH } from "../../assets/script/constant"
 import { mapMutations, mapState } from "vuex"
 import { footprintService } from "../../assets/script/service"
 
@@ -197,7 +198,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/config";
+@import "src/plugins/zg/style/config";
 .page {
   max-width: $page-size;
 }

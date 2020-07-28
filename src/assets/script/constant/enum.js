@@ -1,11 +1,5 @@
-function enumProxy(object) {
-  const o = {}
-  Object.keys(object).forEach((key) => {
-    o[key] = { key, value: object[key] }
-  })
-  return o
-}
-
+import heighten from "@/plugins/zg/script/util/heighten"
+const { enumProxy } = heighten
 export default {
   VerificationCodeOperation: enumProxy({
     REGISTER: "注册账号",

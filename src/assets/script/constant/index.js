@@ -27,8 +27,6 @@ export const MENU_LIST_CONSTANT = [
   new MenuEnum("上传", "/upload", mdiUploadOutline)
 ]
 
-export const NOOP = () => {}
-
 export const LIST_GAP = 12
 export const LIST_ITEM_WIDTH = 256
 

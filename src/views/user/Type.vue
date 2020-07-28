@@ -130,7 +130,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/config";
+@import "src/plugins/zg/style/config";
 .page {
   max-width: $page-size;
 }

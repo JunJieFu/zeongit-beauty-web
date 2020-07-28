@@ -17,7 +17,7 @@
 <script>
 import { pictureService } from "../../assets/script/service"
 import { mapMutations, mapState } from "vuex"
-import alivePageMixin from "../../assets/script/mixin/alivePage"
+import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
 export default {
   mixins: [alivePageMixin],
   components: {

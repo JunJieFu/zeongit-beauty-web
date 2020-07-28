@@ -22,7 +22,6 @@ Vue.component("sign-in-menu-card", () =>
 )
 
 Vue.config.productionTip = false
-
 window.app = new Vue({
   router,
   store,

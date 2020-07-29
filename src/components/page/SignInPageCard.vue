@@ -15,7 +15,7 @@
         :href="
           `${$config.ACCOUNT_HOST}/signIn?continue=${encodeURIComponent(href)}`
         "
-        >登录</v-btn
+        >{{ $vuetify.lang.t(`$vuetify.signInTip.signIn`) }}</v-btn
       >
     </v-card-actions>
   </v-card>

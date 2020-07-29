@@ -1,7 +1,9 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
 import zhHans from "vuetify/es5/locale/zh-Hans"
+import ja from "vuetify/es5/locale/ja"
 import storageUtil from "@/plugins/zg/script/util/storage"
+import i18n from "@/plugins/i18n"
 Vue.use(Vuetify)
 
 export default new Vuetify({
@@ -9,8 +11,9 @@ export default new Vuetify({
     iconfont: "mdiSvg"
   },
   lang: {
-    locales: { zhHans },
-    current: "zhHans"
+    locales: { zhHans, ja },
+    current: "zhHans",
+    t: (key, ...params) => i18n.t(key, params)
   },
   theme: {
     dark: storageUtil.localGet("beauty::menu::dark", false),

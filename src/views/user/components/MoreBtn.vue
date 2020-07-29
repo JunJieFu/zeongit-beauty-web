@@ -33,8 +33,8 @@
       </v-list-item>
     </v-list>
     <sign-in-menu-card
-      :title="$internationalization.MORE_SIGN_IN_TITLE"
-      :text="$internationalization.MORE_SIGN_IN_TEXT"
+      :title="$vuetify.lang.t('$vuetify.signInTip.title.moreBtn')"
+      :text="$vuetify.lang.t('$vuetify.signInTip.text.moreBtn')"
       v-else
     ></sign-in-menu-card>
   </v-menu>

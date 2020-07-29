@@ -8,8 +8,8 @@
       >
     </template>
     <sign-in-menu-card
-      :title="$internationalization.FOLLOW_SIGN_IN_TITLE"
-      :text="$internationalization.FOLLOW_SIGN_IN_TEXT"
+      :title="$vuetify.lang.t('$vuetify.signInTip.title.followBtn')"
+      :text="$vuetify.lang.t('$vuetify.signInTip.text.followBtn')"
     ></sign-in-menu-card>
   </v-menu>
 </template>

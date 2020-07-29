@@ -11,15 +11,9 @@
       <v-row class="ma-0" justify="center" align="center">
         <v-col cols="12" sm="7" md="5" lg="4" xl="3">
           <tips-page-card
-            :icon="$constant.EMPTY_TIP_DETAIL_LIST.search.icon"
-            :title="
-              $internationalization[
-                $constant.EMPTY_TIP_DETAIL_LIST.search.title
-              ]
-            "
-            :text="
-              $internationalization[$constant.EMPTY_TIP_DETAIL_LIST.search.text]
-            "
+            :icon="$constant.EMPTY_TIP_ICON.search"
+            :title="$vuetify.lang.t('$vuetify.emptyTip.title.search')"
+            :text="$vuetify.lang.t('$vuetify.emptyTip.text.search')"
           ></tips-page-card>
         </v-col>
       </v-row>

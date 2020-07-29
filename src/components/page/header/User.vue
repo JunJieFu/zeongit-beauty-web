@@ -49,8 +49,8 @@
       </v-list-item>
     </v-list>
     <sign-in-menu-card
-      :title="$internationalization.USER_HOME_SIGN_IN_TITLE"
-      :text="$internationalization.USER_HOME_SIGN_IN_TEXT"
+      :title="$vuetify.lang.t('$vuetify.signInTip.title.user')"
+      :text="$vuetify.lang.t('$vuetify.signInTip.text.user')"
       v-else
     ></sign-in-menu-card>
   </v-menu>

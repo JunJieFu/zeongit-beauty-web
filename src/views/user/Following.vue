@@ -11,12 +11,8 @@
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
             <tips-page-card
-              :icon="$constant.EMPTY_TIP_DETAIL_LIST.following.icon"
-              :title="
-                $internationalization[
-                  $constant.EMPTY_TIP_DETAIL_LIST.following.title
-                ]
-              "
+              :icon="$constant.EMPTY_TIP_ICON.following"
+              :title="$vuetify.lang.t('$vuetify.emptyTip.title.following')"
             ></tips-page-card>
           </v-col>
         </v-row>

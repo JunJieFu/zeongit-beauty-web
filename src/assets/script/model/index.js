@@ -19,12 +19,12 @@ export class EmptyTipDetail {
 export class MenuEnum {
   /**
    * 菜单枚举
-   * @param {String}label
+   * @param {String}i18nKey
    * @param {String}path
    * @param {String}icon
    */
-  constructor(label, path, icon) {
-    this.label = label
+  constructor(i18nKey, path, icon) {
+    this.i18nKey = i18nKey
     this.path = path
     this.icon = icon
   }

@@ -11,23 +11,13 @@
       <v-row class="ma-0" justify="center" align="center">
         <v-col cols="12" sm="7" md="5" lg="4" xl="3">
           <tips-page-card
-            :icon="$constant.EMPTY_TIP_DETAIL_LIST.followingNew.icon"
-            :title="
-              $internationalization[
-                $constant.EMPTY_TIP_DETAIL_LIST.followingNew.title
-              ]
-            "
-            :text="
-              $internationalization[
-                $constant.EMPTY_TIP_DETAIL_LIST.followingNew.text
-              ]
-            "
+            :icon="$constant.EMPTY_TIP_ICON.followingNew"
+            :title="$vuetify.lang.t('$vuetify.emptyTip.title.followingNew')"
+            :text="$vuetify.lang.t('$vuetify.emptyTip.text.followingNew')"
             :btn-desc="
-              $internationalization[
-                $constant.EMPTY_TIP_DETAIL_LIST.followingNew.btnDesc
-              ]
+              $vuetify.lang.t('$vuetify.emptyTip.btnDesc.followingNew')
             "
-            :to="$constant.EMPTY_TIP_DETAIL_LIST.followingNew.to"
+            to="/find"
           ></tips-page-card>
         </v-col>
       </v-row>

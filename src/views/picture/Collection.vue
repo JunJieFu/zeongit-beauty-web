@@ -11,23 +11,17 @@
         <v-row class="ma-0" justify="center" align="center">
           <v-col cols="12" sm="7" md="5" lg="4" xl="3" class="pa-0">
             <tips-page-card
-              :icon="$constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.icon"
+              :icon="$constant.EMPTY_TIP_ICON.pictureCollection"
               :title="
-                $internationalization[
-                  $constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.title
-                ]
+                $vuetify.lang.t('$vuetify.emptyTip.title.pictureCollection')
               "
               :text="
-                $internationalization[
-                  $constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.text
-                ]
+                $vuetify.lang.t('$vuetify.emptyTip.text.pictureCollection')
               "
               :btn-desc="
-                $internationalization[
-                  $constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.btnDesc
-                ]
+                $vuetify.lang.t('$vuetify.emptyTip.btnDesc.pictureCollection')
               "
-              :to="$constant.EMPTY_TIP_DETAIL_LIST.pictureCollection.to + id"
+              :to="`/picture/${id}`"
             ></tips-page-card>
           </v-col>
         </v-row>

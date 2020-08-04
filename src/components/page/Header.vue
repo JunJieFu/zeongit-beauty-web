@@ -17,7 +17,7 @@
       v-show="!searchShow && $vuetify.breakpoint.mdAndUp"
       style="line-height: 1.5em"
     >
-      ZeonGit Beauty
+      Zeongit Beauty
     </router-link>
     <v-text-field
       v-show="$vuetify.breakpoint.mdAndUp || searchShow"

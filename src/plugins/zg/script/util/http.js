@@ -1,3 +1,4 @@
+import jsCookie from "js-cookie"
 /**
  * http请求的工具类
  *
@@ -6,7 +7,7 @@
 import axios from "axios"
 import qs from "qs"
 import { Result } from "../model/main"
-import { API_HOST } from "../constant/config"
+import { API_HOST, DOMAIN } from "../constant/config"
 axios.defaults.baseURL = API_HOST
 export default {
   /**
@@ -21,6 +22,7 @@ export default {
       const response = await axios.get(url, {
         params
       })
+      this._handleToken(response)
       result = response.data
     } catch (e) {
       result = await new Result(500, e, "服务器错误")
@@ -46,10 +48,24 @@ export default {
               arrayFormat: "repeat"
             })
       )
+      this._handleToken(response)
       result = response.data
     } catch (e) {
       result = await new Result(500, e, "服务器错误")
     }
     return result
+  },
+
+  _handleToken(response = {}) {
+    const headers = response.headers || {}
+    if (headers.token) {
+      jsCookie.set("token", headers.token, { expires: 30, domain: DOMAIN })
+    }
+    if (response.data.status === 401) {
+      jsCookie.remove("token", {
+        domain: DOMAIN
+      })
+      location.reload()
+    }
   }
 }

@@ -38,6 +38,21 @@ export class NotifyViewModel {
   }
 }
 
+export class AlertViewModel {
+  /**
+   * @param params {AlertViewModel}
+   * @param id {String}
+   */
+  constructor(params, id) {
+    this.id = id
+    this.visible = params?.visible ?? false
+    this.title = params?.title ?? "提示"
+    this.text = params?.text ?? undefined
+    this.confirmText = params?.confirmText ?? "确认"
+    this.confirmCallback = params?.confirmCallback ?? NOOP
+  }
+}
+
 export class ConfirmViewModel {
   /**
    * @param params {ConfirmViewModel}

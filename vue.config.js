@@ -26,7 +26,7 @@ module.exports = {
     proxy: {
       "/api": {
         // 目标 API 地址
-        target: "http://beauty.secdra.com/",
+        target: "http://beauty.zeongit.cn/",
         // 如果要代理 websockets
         ws: true,
         secure: false,

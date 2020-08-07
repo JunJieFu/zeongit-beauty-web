@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <alert></alert>
     <notify></notify>
     <confirm></confirm>
     <prompt></prompt>
@@ -11,6 +12,7 @@
 export default {
   components: {
     notify: () => import("./Notify"),
+    alert: () => import("./Alert"),
     confirm: () => import("./Confirm"),
     prompt: () => import("./Prompt")
   }

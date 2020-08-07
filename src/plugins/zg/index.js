@@ -8,14 +8,17 @@ export default {
   install() {
     Vue.component("zg-app", () => import("./components/ZgApp/Index"))
     Vue.component("avatar", () => import("./components/Avatar/Index"))
+    Vue.prototype.$alert = function(...args) {
+      return window.$alert(...args)
+    }
     Vue.prototype.$confirm = function(...args) {
       return window.$confirm(...args)
     }
-    Vue.prototype.$notify = function(...args) {
-      return window.$notify(...args)
-    }
     Vue.prototype.$prompt = function(...args) {
       return window.$prompt(...args)
+    }
+    Vue.prototype.$notify = function(...args) {
+      return window.$notify(...args)
     }
     Vue.prototype.$config = config
     Vue.prototype.$imageUrl = imageUrl

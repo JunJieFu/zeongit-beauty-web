@@ -65,7 +65,7 @@ export default {
       jsCookie.remove("token", {
         domain: DOMAIN
       })
-      location.reload()
+      window?.signInExceptionCallback()
     }
   }
 }

@@ -171,9 +171,13 @@ export default {
         colAmount = sourceColAmount
       }
       let heightList =
-        this.list.map(
-          (item) => (item.height / item.width) * (defaultWidth - defaultGap)
-        ) || []
+        this.list.map((item) => {
+          let aspectRatio = 0.5
+          if (item.height && item.width) {
+            aspectRatio = item.height / item.width
+          }
+          return aspectRatio * (defaultWidth - defaultGap)
+        }) || []
       let styleList = []
       const columnHeightList = new Array(colAmount).fill(0)
       for (let i = 0; i < heightList.length; i++) {

@@ -1,7 +1,12 @@
 <template>
   <div v-if="loading"></div>
   <div v-else>
-    <v-row class="ma-0" justify="center" align="center" v-if="status !== 200">
+    <v-row
+      class="ma-0"
+      justify="center"
+      align="center"
+      v-if="status !== constant.SUCCESS"
+    >
       <v-col cols="12" sm="7" md="5" lg="4" xl="3">
         <tips-page-card
           icon="mdi-image-outline"
@@ -18,6 +23,7 @@
 import { pictureService } from "@/assets/script/service"
 import { mapMutations, mapState } from "vuex"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
+import constant from "@/plugins/zg/script/constant/main"
 export default {
   mixins: [alivePageMixin],
   components: {
@@ -31,6 +37,7 @@ export default {
   },
   data() {
     return {
+      constant,
       loading: true,
       picture: null,
       message: "",
@@ -58,7 +65,7 @@ export default {
       this.picture = result.data
       this.status = result.status
       this.message = result.message
-      if (this.status === 200) {
+      if (this.status === constant.SUCCESS) {
         this.MAddPictureMap(this.picture)
       }
     }

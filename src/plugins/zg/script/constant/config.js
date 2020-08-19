@@ -20,3 +20,20 @@ export const QINIU_AVATAR = "http://secdrahead.secdra.com"
 export const QINIU_BACKGROUND = "http://secdraback.secdra.com"
 
 export const QINIU_SEPARATOR = "-"
+
+export const QINIU_UPLOAD_ADDRESS =
+  process.env.NODE_ENV === "development"
+    ? "http://upload-z2.qiniup.com"
+    : "http://upload-z2.qiniup.com"
+
+export default {
+  DOMAIN,
+  API_HOST,
+  ACCOUNT_HOST,
+  BEAUTY_HOST,
+  QINIU_PICTURE,
+  QINIU_AVATAR,
+  QINIU_BACKGROUND,
+  QINIU_SEPARATOR,
+  QINIU_UPLOAD_ADDRESS
+}

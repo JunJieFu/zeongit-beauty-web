@@ -7,7 +7,7 @@
         @hook:mounted="list[index].visible = true"
       >
         <v-overlay :dark="false" v-show="item.visible" class="overlay">
-          <v-container class="prompt">
+          <v-container class="alert">
             <v-card width="100%">
               <v-card-title>
                 <span class="headline">{{ item.title }}</span>
@@ -91,12 +91,12 @@ export default {
   z-index: $overlay-index !important;
 }
 
-.prompt {
-  width: 350px;
+.alert {
+  width: $alert-width;
 }
 
 @media #{map-get($display-breakpoints, 'xs-only')} {
-  .prompt {
+  .alert {
     min-width: 100% !important;
   }
 }

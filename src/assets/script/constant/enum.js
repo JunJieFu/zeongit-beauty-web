@@ -25,6 +25,10 @@ export default {
     STRANGE: "未关注",
     SElF: "自己"
   }),
+  BlockState: enumProxy({
+    NORMAL: "正常",
+    SHIELD: "屏蔽"
+  }),
   ListMode: enumProxy({
     WATERFALL: "瀑布流",
     NORMAL: "正常"

@@ -29,7 +29,7 @@
             </v-list-item-content>
           </v-list-item>
         </template>
-        <block :picture="picture"></block>
+        <black-hole :picture="picture"></black-hole>
       </v-dialog>
       <v-list-item>
         <v-list-item-content>
@@ -58,7 +58,7 @@ export default {
   },
   components: {
     "sign-in-menu-card": () => import("@/components/page/SignInMenuCard"),
-    "block": () => import("./Block"),
+    "black-hole": () => import("./BlackHole"),
   },
   computed: {
     ...mapState("user", ["info"])

@@ -46,6 +46,7 @@ export const MAX_KEEP_ALIVE_PAGE = 15
 
 export const MENU_LIST_WIDTH = "160"
 export const SETTINGS_DIALOG_MAX_WIDTH = "280"
+export const BLOCK_DIALOG_MAX_WIDTH = "680"
 
 export const SIGN_IN_TIP_ICON = {
   user: mdiAccountOutline,

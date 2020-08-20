@@ -36,8 +36,8 @@
         <v-card-text class="text-right">
           <comment-btn></comment-btn>
           <collect-btn :picture="picture" @collect="collect"></collect-btn>
-          <share-btn></share-btn>
-          <more-btn></more-btn>
+          <share-btn :picture="picture"></share-btn>
+          <more-btn :picture="picture"></more-btn>
         </v-card-text>
         <v-divider class="hidden-sm-and-up"></v-divider>
       </v-card>
@@ -94,40 +94,11 @@
       </v-card>
     </div>
     <corner-buttons>
-      <v-speed-dial
-        v-model="settingsVisible"
-        direction="left"
-        transition="scale-transition"
+      <corner-speed-dial
+        :picture="picture"
+        @privacy="privacy"
         v-if="picture && info && picture.user.id === info.id"
-      >
-        <template v-slot:activator>
-          <v-tooltip top :disabled="$isMobile">
-            <template v-slot:activator="{ on }">
-              <v-btn
-                v-on="on"
-                v-model="settingsVisible"
-                fab
-                :small="$vuetify.breakpoint.xsOnly"
-              >
-                <v-fab-transition>
-                  <v-icon style="position: absolute" v-show="settingsVisible"
-                    >mdi-close</v-icon
-                  >
-                </v-fab-transition>
-                <v-fab-transition>
-                  <v-icon style="position: absolute" v-show="!settingsVisible"
-                    >mdi-cog-outline</v-icon
-                  >
-                </v-fab-transition>
-              </v-btn>
-            </template>
-            <span>设置</span>
-          </v-tooltip>
-        </template>
-        <remove-btn></remove-btn>
-        <privacy-btn :picture="picture" @privacy="privacy"></privacy-btn>
-        <edit-btn></edit-btn>
-      </v-speed-dial>
+      ></corner-speed-dial>
     </corner-buttons>
   </div>
 </template>
@@ -146,9 +117,10 @@ export default {
     "collect-btn": () => import("@/components/btn/CollectBtn"),
     "share-btn": () => import("./components/ShareBtn"),
     "more-btn": () => import("./components/MoreBtn"),
-    "remove-btn": () => import("./components/RemoveBtn"),
-    "privacy-btn": () => import("./components/PrivacyBtn"),
-    "edit-btn": () => import("./components/EditBtn")
+    "corner-speed-dial": () => import("./components/CornerSpeedDial")
+    // "remove-btn": () => import("./components/RemoveBtn"),
+    // "privacy-btn": () => import("./components/PrivacyBtn"),
+    // "edit-btn": () => import("./components/EditBtn")
   },
   props: {
     id: {

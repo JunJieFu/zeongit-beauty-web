@@ -102,7 +102,8 @@ export default {
     ...mapState("user", ["info"]),
     ...mapState("alive", ["userMap"]),
     self() {
-      return !this.targetId || this.info?.id === this.targetId
+      const targetId = parseInt(this.targetId)
+      return !targetId || this.info?.id === targetId
     }
   },
   watch: {

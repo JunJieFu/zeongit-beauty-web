@@ -23,7 +23,7 @@
     >
       <v-list-item>
         <v-list-item-content>
-          加入黑名单
+          屏蔽
         </v-list-item-content>
       </v-list-item>
       <v-list-item>

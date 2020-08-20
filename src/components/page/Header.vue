@@ -6,7 +6,7 @@
           :small="$vuetify.breakpoint.xsOnly"
           @click="collapse = !collapse"
           v-on="on"
-          v-show="!searchShow || $vuetify.breakpoint.mdAndUp"
+          v-show="!searchVisible || $vuetify.breakpoint.mdAndUp"
         />
       </template>
       <span>主菜单</span>
@@ -14,13 +14,13 @@
     <router-link
       to="/"
       class="title mx-4"
-      v-show="!searchShow && $vuetify.breakpoint.mdAndUp"
+      v-show="!searchVisible && $vuetify.breakpoint.mdAndUp"
       style="line-height: 1.5em"
     >
       Zeongit Beauty
     </router-link>
     <v-text-field
-      v-show="$vuetify.breakpoint.mdAndUp || searchShow"
+      v-show="$vuetify.breakpoint.mdAndUp || searchVisible"
       solo
       hide-details
       clearable
@@ -40,7 +40,7 @@
           class="ml-4"
           v-on="on"
           v-show="$vuetify.breakpoint.smAndDown"
-          @click="searchShow = !searchShow"
+          @click="searchVisible = !searchVisible"
         >
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
@@ -93,7 +93,7 @@ export default {
     "header-user": () => import("./header/User")
   },
   data() {
-    return { keyword: "", searchShow: false }
+    return { keyword: "", searchVisible: false }
   },
   watch: {
     $route: {
@@ -122,7 +122,7 @@ export default {
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     search() {
-      this.searchShow = false
+      this.searchVisible = false
       this.$router.push(`/search/${encodeURIComponent(this.keyword)}`)
     },
     refresh() {

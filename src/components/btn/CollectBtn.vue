@@ -31,14 +31,13 @@
 
 <script>
 import { mapState } from "vuex"
-import { NOOP } from "@/plugins/zg/script/constant/main"
 import { collectionService } from "@/assets/script/service"
 
 export default {
   props: {
     picture: {
-      type: Object,
-      default: NOOP
+      type: [Object],
+      required: true
     }
   },
   components: {

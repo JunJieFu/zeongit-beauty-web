@@ -1,5 +1,6 @@
+<!--这里因为用在v-speed-dial上，所以逻辑不能在这里实现，逻辑移到上层代码，这里只作点击-->
 <template>
-  <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click.stop="onClick">
+  <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click="$emit('click')">
     <v-tooltip top :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-icon color="error" v-on="on">mdi-delete-outline</v-icon>
@@ -10,20 +11,7 @@
 </template>
 
 <script type="text/jsx">
-export default {
-  methods: {
-    async onClick() {
-      await this.$confirm({
-        text: {
-          render(){
-            return (<div>您确定删除该图片吗？<br />注意：删除后不能恢复！</div>)
-          }
-        }
-      })
-      this.$emit("remove")
-    }
-  }
-}
+export default {}
 </script>
 
 <style scoped></style>

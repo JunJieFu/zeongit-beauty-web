@@ -68,7 +68,8 @@ export default {
       return this.targetId || this.info?.id
     },
     self() {
-      return !this.targetId || this.info?.id === this.targetId
+      const targetId = parseInt(this.targetId)
+      return !targetId || this.info?.id === targetId
     }
   },
   methods: {

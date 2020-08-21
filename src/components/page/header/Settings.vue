@@ -79,6 +79,9 @@
       <v-list-item to="/feedback">
         反馈
       </v-list-item>
+      <v-list-item to="/blackHole">
+        屏蔽设置
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>

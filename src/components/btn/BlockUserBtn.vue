@@ -44,7 +44,7 @@ export default {
     async block() {
       const result = await userBlackHoleService.block(this.user.id)
       await this.$resultNotify(result)
-      this.$emit("block", result.data)
+      this.$emit("block", { detail: this.user, state: result.data })
     }
   }
 }

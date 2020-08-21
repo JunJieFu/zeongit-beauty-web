@@ -46,10 +46,9 @@
 </template>
 
 <script type="text/jsx">
-import { mapState } from "vuex"
-import { pictureService } from "@/assets/script/service"
+  import { mapState } from "vuex"
 
-export default {
+  export default {
   props: {
     picture: {
       type: [Object],
@@ -62,21 +61,6 @@ export default {
   },
   computed: {
     ...mapState("user", ["info"])
-  },
-  methods: {
-    async saveBlacklist() {
-      console.log(await pictureService.getBlock(this.picture.id))
-      // await this.$confirm({
-      //   text: {
-      //     render(){
-      //       return (<div>您确定把该图片放进黑名单吗？<br />注意：进入黑名单的图片不再出现在搜索和推荐中！</div>)
-      //     }
-      //   }
-      // })
-      // const result = await pictureBlackHoleService.save(this.picture.id)
-      // await this.$resultNotify(result )
-      // this.$notify({text:"操作成功",color:"success"})
-    }
   }
 }
 </script>

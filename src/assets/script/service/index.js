@@ -48,9 +48,6 @@ export const pictureService = {
     let _ = Object.assign({ targetId }, pageable)
     _.page--
     return httpUtil.get("/picture/pagingByFollowing", _)
-  },
-  getBlock(id) {
-    return httpUtil.get("/picture/getBlock", { id })
   }
 }
 
@@ -107,6 +104,9 @@ export const userBlackHoleService = {
   block(targetId) {
     return httpUtil.post("/userBlackHole/block", { targetId })
   },
+  get(targetId) {
+    return httpUtil.get("/userBlackHole/get", { targetId })
+  },
   paging(pageable) {
     let _ = Object.assign({}, pageable)
     _.page--
@@ -118,6 +118,9 @@ export const pictureBlackHoleService = {
   block(targetId) {
     return httpUtil.post("/pictureBlackHole/block", { targetId })
   },
+  get(targetId) {
+    return httpUtil.get("/pictureBlackHole/get", { targetId })
+  },
   paging(pageable) {
     let _ = Object.assign({}, pageable)
     _.page--
@@ -126,12 +129,12 @@ export const pictureBlackHoleService = {
 }
 
 export const tagBlackHoleService = {
-  block(tag) {
-    return httpUtil.post("/tagBlackHole/block", { tag })
+  block(name) {
+    return httpUtil.post("/tagBlackHole/block", { name })
   },
   paging(pageable) {
     let _ = Object.assign({}, pageable)
     _.page--
-    return httpUtil.get("/userBlackHole/paging", _)
+    return httpUtil.get("/tagBlackHole/paging", _)
   }
 }

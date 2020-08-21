@@ -111,6 +111,9 @@ import { mapMutations, mapState } from "vuex"
 import { footprintService } from "@/assets/script/service"
 
 export default {
+  created() {
+    this.saveFootprint()
+  },
   components: {
     "corner-buttons": () => import("@/components/page/CornerButtons"),
     "user-item": () => import("./components/UserItem"),

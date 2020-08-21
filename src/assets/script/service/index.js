@@ -109,6 +109,12 @@ export const feedbackService = {
   }
 }
 
+export const complaintService = {
+  save(body) {
+    return httpUtil.post("/complaint/save", body)
+  }
+}
+
 export const userBlackHoleService = {
   block(targetId) {
     return httpUtil.post("/userBlackHole/block", { targetId })

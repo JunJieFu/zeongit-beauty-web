@@ -15,6 +15,11 @@ export default [
         component: () => import("../Type"),
         children: [
           {
+            path: "/picture/:id/complaint/",
+            props: true,
+            component: () => import("../Complaint")
+          },
+          {
             path: "/picture/:id/footprint/:page?",
             props: true,
             component: () => import("../Footprint")

@@ -31,7 +31,7 @@
         </template>
         <black-hole :picture="picture"></black-hole>
       </v-dialog>
-      <v-list-item>
+      <v-list-item :to="`/picture/${picture.id}/complaint`">
         <v-list-item-content>
           举报
         </v-list-item-content>

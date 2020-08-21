@@ -71,6 +71,7 @@ export default {
         this.loading = true
         const result = await feedbackService.save(this.form)
         this.loading = false
+        await this.$resultNotify(result)
         this.$notify({ text: "提交成功", color: "success" })
         this.$emit("success", result.data)
       }

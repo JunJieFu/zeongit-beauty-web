@@ -39,6 +39,9 @@ export const pictureService = {
   hide(id) {
     return httpUtil.post("/picture/hide", { id })
   },
+  modified(picture) {
+    return httpUtil.post("/picture/modified", picture)
+  },
   pagingRecommendById(pageable, id) {
     let _ = Object.assign({ id }, pageable)
     _.page--
@@ -97,6 +100,12 @@ export const tagService = {
   },
   listTagFrequencyByUserId(targetId) {
     return httpUtil.get("/tag/listTagFrequencyByUserId", { targetId })
+  }
+}
+
+export const feedbackService = {
+  save(body) {
+    return httpUtil.post("/feedback/save", body)
   }
 }
 

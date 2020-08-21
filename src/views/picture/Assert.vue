@@ -15,7 +15,7 @@
         ></tips-page-card>
       </v-col>
     </v-row>
-    <router-view v-else :picture="picture" />
+    <router-view v-else :picture="picture" @modified="picture = $event" />
   </div>
 </template>
 

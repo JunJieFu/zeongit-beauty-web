@@ -13,11 +13,11 @@ export const BEAUTY_HOST =
     ? "http://localhost:12181"
     : "http://beauty.zeongit.cn"
 
-export const QINIU_PICTURE = "http://secdraimg.secdra.com"
+export const QINIU_PICTURE = "http://beauty.picture.zeongit.cn"
 
-export const QINIU_AVATAR = "http://secdrahead.secdra.com"
+export const QINIU_AVATAR = "http://avatar.zeongit.cn"
 
-export const QINIU_BACKGROUND = "http://secdraback.secdra.com"
+export const QINIU_BACKGROUND = "http://background.zeongit.cn"
 
 export const QINIU_SEPARATOR = "-"
 

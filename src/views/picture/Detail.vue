@@ -97,6 +97,7 @@
       <corner-speed-dial
         :picture="picture"
         @privacy="privacy"
+        @modified="$emit('modified', $event)"
         v-if="picture && info && picture.user.id === info.id"
       ></corner-speed-dial>
     </corner-buttons>

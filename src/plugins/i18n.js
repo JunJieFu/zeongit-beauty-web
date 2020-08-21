@@ -26,6 +26,7 @@ const messages = {
           follower: "喜欢您的作品的人",
           following: "ta的作品吸引了你",
           upload: "您有新的作品",
+          blackHole: "您想进行定制化推荐",
           collectBtn: "喜欢这张绘画？",
           followBtn: "想要关注这个画师？",
           moreBtn: "需要更多操作？"
@@ -39,6 +40,7 @@ const messages = {
           follower: "请先登录，才能查看到您的粉丝。",
           following: "请先登录，才能查看到您的关注。",
           upload: "请先登录，才能让别人欣赏到你的新作品。",
+          blackHole: "请先登录，才能让系统更好地向您推荐相关作品。",
           collectBtn: "请先登录，然后才能把这张绘画添加到收藏夹。",
           followBtn: "请先登录，然后才能成为该画师的粉丝。",
           moreBtn: "请先登录，才能获得更多操作。"
@@ -57,7 +59,9 @@ const messages = {
           pictureFootprint: "图片没有任何足迹",
           pictureCollection: "图片没有任何收藏",
           follower: "没有粉丝",
-          following: "没有关注"
+          following: "没有关注",
+          blackHoleUser: "没有屏蔽用户",
+          blackHoleTag: "没有屏蔽标签"
         },
         text: {
           find: "难道是系统出现什么问题了。",

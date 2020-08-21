@@ -42,9 +42,9 @@ export default {
   },
   methods: {
     async block() {
-      const result = await tagBlackHoleService.block(this.tag.tag)
+      const result = await tagBlackHoleService.block(this.tag.name)
       await this.$resultNotify(result)
-      this.$emit("block", result.data)
+      this.$emit("block", { detail: this.tag, state: result.data })
     }
   }
 }

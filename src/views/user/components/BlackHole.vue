@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { pictureBlackHoleService } from "@/assets/script/service"
+import { userBlackHoleService } from "@/assets/script/service"
 
 export default {
   components: {
@@ -57,7 +57,7 @@ export default {
     "block-tag-btn": () => import("@/components/btn/BlockTagBtn")
   },
   props: {
-    picture: {
+    user: {
       type: [Object],
       required: true
     }
@@ -74,12 +74,13 @@ export default {
   methods: {
     async get() {
       this.loading = true
-      const result = await pictureBlackHoleService.get(this.picture.id)
+      const result = await userBlackHoleService.get(this.user.id)
       this.loading = false
       await this.$resultNotify(result)
       this.blackHole = result.data
     },
     blockUser({ state }) {
+      console.log(state)
       this.blackHole.user.state = state
     },
     blockTag({ state }, index) {

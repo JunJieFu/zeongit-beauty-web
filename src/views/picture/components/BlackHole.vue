@@ -50,6 +50,7 @@
 
 <script>
 import { pictureBlackHoleService } from "@/assets/script/service"
+import heightenUtil from "@/plugins/zg/script/util/heighten"
 
 export default {
   components: {
@@ -74,6 +75,8 @@ export default {
   methods: {
     async get() {
       this.loading = true
+      //避免过快导致闪动
+      await heightenUtil.sleep(500)
       const result = await pictureBlackHoleService.get(this.picture.id)
       this.loading = false
       await this.$resultNotify(result)

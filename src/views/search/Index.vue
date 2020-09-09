@@ -34,7 +34,7 @@ export default {
       type: [String, Number],
       default: 1
     },
-    keyword: {
+    tagList: {
       type: [String, undefined],
       default: undefined
     }
@@ -66,7 +66,7 @@ export default {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.page, this.keyword)
+      await this.paging(this.page, this.tagList)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -74,27 +74,32 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.keyword)
+        this.paging(page, this.tagList)
       } else {
-        this.$router.push(`/search/${encodeURIComponent(this.keyword)}/${page}`)
+        this.$router.push(`/search/${encodeURIComponent(this.tagList)}/${page}`)
       }
     },
-    async paging(pageIndex, keyword = this.keyword) {
+    async paging(pageIndex, tagList = this.tagList) {
       if (
         this.loading ||
         (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
-      if (keyword !== this.keyword) {
+      if (tagList !== this.tagList) {
         window.scrollTo(0, 0)
       }
       this.pageable.page = parseInt(pageIndex || 1) || 1
       this.loading = true
-      const result = await pictureService.paging(this.pageable, keyword)
+      try {
+        tagList = JSON.parse(tagList)
+      } catch (e) {
+        tagList = [tagList]
+      }
+      const result = await pictureService.paging(this.pageable, tagList)
       this.loading = false
       await this.$resultNotify(result)
-      if (keyword !== this.keyword) {
+      if (tagList !== this.tagList) {
         this.page2d = []
       }
       const page = result.data

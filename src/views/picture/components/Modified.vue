@@ -33,6 +33,7 @@
               multiple
               outlined
               dense
+              append-icon=""
             >
               <template v-slot:selection="{ attrs, item }">
                 <v-chip

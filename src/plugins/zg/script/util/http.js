@@ -21,7 +21,12 @@ export default {
     let result = null
     try {
       const response = await axios.get(url, {
-        params
+        params,
+        paramsSerializer: (params) => {
+          return qs.stringify(params, {
+            arrayFormat: "repeat"
+          })
+        }
       })
       this._handleToken(response)
       result = response.data

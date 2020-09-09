@@ -1,6 +1,6 @@
 export default [
   {
-    path: "/search/:keyword/:page?",
+    path: "/search/:tagList/:page?",
     meta: {
       keepAlive: true
     },

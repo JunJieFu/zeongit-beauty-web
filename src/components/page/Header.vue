@@ -22,6 +22,7 @@
     <v-combobox
       class="search-combobox"
       v-model="tagList"
+      :search-input.sync="searchInput"
       v-show="$vuetify.breakpoint.mdAndUp || searchVisible"
       chips
       clearable
@@ -31,6 +32,7 @@
       multiple
       append-icon=""
       prepend-inner-icon="mdi-magnify"
+      @keydown.enter="searchKeydown"
       @click:prepend-inner="search"
     >
       <template v-slot:selection="{ attrs, item }">
@@ -106,7 +108,7 @@ export default {
     "header-user": () => import("./header/User")
   },
   data() {
-    return { tagList: [], searchVisible: false }
+    return { searchInput: null, tagList: [], searchVisible: false }
   },
   watch: {
     $route: {
@@ -150,8 +152,13 @@ export default {
     removeTag(name) {
       this.tagList.splice(this.tagList.indexOf(name), 1)
     },
-    close() {
+    closeSearchVisible() {
       this.searchVisible = false
+    },
+    searchKeydown() {
+      if ([null, undefined, ""].includes(this.searchInput)) {
+        this.search()
+      }
     }
   }
 }

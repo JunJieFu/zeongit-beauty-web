@@ -15,6 +15,11 @@ export default {
     PUBLIC: "公开",
     PRIVATE: "隐藏"
   }),
+  AspectRatio: enumProxy({
+    HORIZONTAL: "横图",
+    VERTICAL: "竖图",
+    SQUARE: "方图"
+  }),
   CollectState: enumProxy({
     CONCERNED: "已关注",
     STRANGE: "未关注",

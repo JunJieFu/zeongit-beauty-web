@@ -34,6 +34,7 @@
       prepend-inner-icon="mdi-magnify"
       @keydown.enter="searchKeydown"
       @click:prepend-inner="search"
+      style="max-width: 700px"
     >
       <template v-slot:selection="{ attrs, item }">
         <v-chip v-bind="attrs" close small @click:close="removeTag(item)">

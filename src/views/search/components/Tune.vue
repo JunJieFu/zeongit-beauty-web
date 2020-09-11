@@ -44,6 +44,7 @@
               :start-date.sync="form.startDate"
               :end-date.sync="form.endDate"
               no-title
+              :max="new Date().toISOString().substr(0, 10)"
             >
               <template v-slot="{ on, date }">
                 <v-text-field

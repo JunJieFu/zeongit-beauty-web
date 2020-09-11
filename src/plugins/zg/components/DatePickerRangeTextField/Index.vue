@@ -5,20 +5,16 @@
     </template>
     <v-date-picker
       v-model="normalizedDate"
-      @input="change"
       :no-title="noTitle"
       :max="max"
       :min="min"
+      range
     ></v-date-picker>
   </v-menu>
 </template>
 
 <script>
 export default {
-  model: {
-    prop: "date",
-    event: "change"
-  },
   props: {
     max: {
       default: undefined,
@@ -32,21 +28,39 @@ export default {
       default: false,
       type: Boolean
     },
-    date: {
+    startDate: {
+      default: undefined,
+      type: [Date, Number, String]
+    },
+    endDate: {
       default: undefined,
       type: [Date, Number, String]
     }
   },
   data() {
     return {
-      show: false,
-      normalizedDate: this.date
+      show: false
     }
   },
-  methods: {
-    change() {
-      this.show = false
-      this.$emit("change", this.normalizedDate)
+  computed: {
+    normalizedDate: {
+      get() {
+        let result = []
+        if (this.startDate) {
+          result.push(this.startDate)
+          if (this.endDate) {
+            result.push(this.endDate)
+          }
+        }
+        return result
+      },
+      set(value) {
+        if (value.length === 2) {
+          this.show = false
+        }
+        this.$emit("update:startDate", value[0])
+        this.$emit("update:endDate", value[1])
+      }
     }
   }
 }

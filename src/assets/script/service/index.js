@@ -28,8 +28,13 @@ export const pictureService = {
     _.page--
     return httpUtil.get("/picture/pagingByRecommend", _)
   },
-  paging(pageable, tagList) {
-    let _ = Object.assign({ tagList }, pageable)
+  paging(pageable, tagList, query) {
+    try {
+      tagList = JSON.parse(tagList)
+    } catch (e) {
+      tagList = [tagList]
+    }
+    let _ = Object.assign({ tagList }, pageable, query)
     _.page--
     return httpUtil.get("/picture/paging", _)
   },

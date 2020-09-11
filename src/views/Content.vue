@@ -46,7 +46,7 @@ export default {
   methods: {
     ...mapMutations("user", ["MSetInfo"]),
     closeSearch() {
-      this.$refs.header.close()
+      this.$refs.header.closeSearchVisible()
     }
   }
 }

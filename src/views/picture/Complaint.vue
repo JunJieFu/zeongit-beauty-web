@@ -1,5 +1,5 @@
-<template
-  ><div>
+<template>
+  <div>
     <v-card-title>
       举报该图片
     </v-card-title>

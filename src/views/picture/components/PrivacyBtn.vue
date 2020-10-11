@@ -1,5 +1,6 @@
+<!--这里因为用在v-speed-dial上，所以逻辑不能在这里实现，逻辑移到上层代码，这里只作点击-->
 <template>
-  <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click.stop="onClick">
+  <v-btn fab :small="$vuetify.breakpoint.xsOnly" @click="$emit('click')">
     <v-tooltip top :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-fab-transition>
@@ -27,8 +28,6 @@
 </template>
 
 <script>
-import { pictureService } from "@/assets/script/service"
-
 export default {
   props: {
     picture: {
@@ -41,14 +40,6 @@ export default {
       if (this.picture.privacy === this.$enum.PrivacyState.PUBLIC.key)
         return this.$enum.PrivacyState.PRIVATE.value
       else return this.$enum.PrivacyState.PUBLIC.value
-    }
-  },
-  methods: {
-    async onClick() {
-      await this.$confirm({ text: `您确定${this.privacyValue}该图片吗？` })
-      const result = await pictureService.hide(this.picture.id)
-      await this.$resultNotify(result)
-      this.$emit("privacy", { detail: this.picture, privacy: result.data })
     }
   }
 }

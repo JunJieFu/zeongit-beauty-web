@@ -25,10 +25,10 @@
           class="mr-2 my-1"
           small
           v-for="item in tagList"
-          :key="item"
-          :to="`/search/${encodeURIComponent(item)}`"
+          :key="item.name"
+          :to="`/search/${encodeURIComponent(item.name)}`"
         >
-          {{ item }}
+          {{ item.name }}
         </v-chip>
       </v-list-item>
     </v-list>

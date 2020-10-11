@@ -3,7 +3,13 @@
     <template v-slot:activator="{ on }">
       <slot :on="on" :date="normalizedDate"></slot>
     </template>
-    <v-date-picker v-model="normalizedDate" @change="change"></v-date-picker>
+    <v-date-picker
+      v-model="normalizedDate"
+      @input="change"
+      :no-title="noTitle"
+      :max="max"
+      :min="min"
+    ></v-date-picker>
   </v-menu>
 </template>
 
@@ -14,10 +20,21 @@ export default {
     event: "change"
   },
   props: {
+    max: {
+      default: undefined,
+      type: [String]
+    },
+    min: {
+      default: undefined,
+      type: [String]
+    },
+    noTitle: {
+      default: false,
+      type: Boolean
+    },
     date: {
-      default: "",
-      // eslint-disable-next-line vue/require-prop-type-constructor
-      type: Date | Number | String
+      default: undefined,
+      type: [Date, Number, String]
     }
   },
   data() {

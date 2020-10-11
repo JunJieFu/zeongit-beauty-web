@@ -7,7 +7,7 @@
         @hook:mounted="list[index].visible = true"
       >
         <v-overlay :dark="false" v-show="item.visible" class="overlay">
-          <v-container class="confirm">
+          <v-container class="alert">
             <v-card width="100%">
               <v-card-title>
                 <span class="headline">{{ item.title }}</span>
@@ -81,11 +81,11 @@ export default {
 .overlay {
   z-index: $overlay-index !important;
 }
-.confirm {
-  width: 350px;
+.alert {
+  width: $alert-width;
 }
 @media #{map-get($display-breakpoints, 'xs-only')} {
-  .confirm {
+  .alert {
     min-width: 100% !important;
   }
 }

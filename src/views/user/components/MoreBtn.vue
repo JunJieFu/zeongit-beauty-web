@@ -21,11 +21,16 @@
       :width="$constant.MENU_LIST_WIDTH"
       v-if="info"
     >
-      <v-list-item>
-        <v-list-item-content>
-          加入黑名单
-        </v-list-item-content>
-      </v-list-item>
+      <v-dialog :max-width="$constant.BLOCK_DIALOG_MAX_WIDTH">
+        <template v-slot:activator="{ on }">
+          <v-list-item v-on="on">
+            <v-list-item-content>
+              屏蔽
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <black-hole :user="user"></black-hole>
+      </v-dialog>
       <v-list-item>
         <v-list-item-content>
           举报
@@ -45,7 +50,14 @@ import { mapState } from "vuex"
 
 export default {
   components: {
-    "sign-in-menu-card": () => import("@/components/page/SignInMenuCard")
+    "sign-in-menu-card": () => import("@/components/page/SignInMenuCard"),
+    "black-hole": () => import("./BlackHole")
+  },
+  props: {
+    user: {
+      type: [Object],
+      required: true
+    }
   },
   computed: {
     ...mapState("user", ["info"])

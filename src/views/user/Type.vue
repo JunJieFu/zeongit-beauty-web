@@ -58,7 +58,7 @@
           @follow="follow"
         ></follow-icon-btn>
         <share-btn></share-btn>
-        <more-btn v-if="!self"></more-btn>
+        <more-btn v-if="!self" :user="user"></more-btn>
       </v-card-title>
       <v-tabs class="mt-4" v-model="type">
         <v-tab :to="`/user${targetId ? '/' + targetId : ''}`">主页</v-tab>
@@ -102,7 +102,8 @@ export default {
     ...mapState("user", ["info"]),
     ...mapState("alive", ["userMap"]),
     self() {
-      return !this.targetId || this.info?.id === this.targetId
+      const targetId = parseInt(this.targetId)
+      return !targetId || this.info?.id === targetId
     }
   },
   watch: {

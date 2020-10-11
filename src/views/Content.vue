@@ -8,17 +8,19 @@
       color="primary"
       class="global-progress"
     ></v-progress-linear>
-    <zg-header></zg-header>
+    <zg-header ref="header"></zg-header>
     <zg-menu></zg-menu>
-    <v-main>
-      <keep-alive :max="15">
-        <router-view
-          v-if="$route.meta.keepAlive"
-          :key="decodeURI($route.fullPath)"
-        />
-      </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive" />
-    </v-main>
+    <div @click.stop="closeSearch">
+      <v-main>
+        <keep-alive :max="15">
+          <router-view
+            v-if="$route.meta.keepAlive"
+            :key="decodeURI($route.fullPath)"
+          />
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive" />
+      </v-main>
+    </div>
   </zg-app>
 </template>
 
@@ -42,7 +44,10 @@ export default {
     })
   },
   methods: {
-    ...mapMutations("user", ["MSetInfo"])
+    ...mapMutations("user", ["MSetInfo"]),
+    closeSearch() {
+      this.$refs.header.closeSearchVisible()
+    }
   }
 }
 </script>

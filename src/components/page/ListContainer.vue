@@ -15,7 +15,15 @@
             <v-img
               :src="$imageUrl.picture(item.url, `specifiedWidth`)"
               :aspect-ratio="1"
-            ></v-img>
+            >
+              <template v-slot:placeholder>
+                <v-skeleton-loader
+                  type="image"
+                  height="100%"
+                  width="100%"
+                ></v-skeleton-loader>
+              </template>
+            </v-img>
           </v-card-text>
         </v-card>
       </div>

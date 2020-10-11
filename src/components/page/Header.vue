@@ -6,7 +6,7 @@
           :small="$vuetify.breakpoint.xsOnly"
           @click="collapse = !collapse"
           v-on="on"
-          v-show="!searchShow || $vuetify.breakpoint.mdAndUp"
+          v-show="!searchVisible || $vuetify.breakpoint.mdAndUp"
         />
       </template>
       <span>主菜单</span>
@@ -14,23 +14,36 @@
     <router-link
       to="/"
       class="title mx-4"
-      v-show="!searchShow && $vuetify.breakpoint.mdAndUp"
+      v-show="!searchVisible && $vuetify.breakpoint.mdAndUp"
       style="line-height: 1.5em"
     >
       Zeongit Beauty
     </router-link>
-    <v-text-field
-      v-show="$vuetify.breakpoint.mdAndUp || searchShow"
+    <v-combobox
+      class="search-combobox"
+      v-model="tagList"
+      :search-input.sync="searchInput"
+      v-show="$vuetify.breakpoint.mdAndUp || searchVisible"
+      chips
+      clearable
+      label="搜索"
       solo
       hide-details
-      clearable
+      multiple
+      append-icon=""
       prepend-inner-icon="mdi-magnify"
-      label="搜索"
-      v-model="keyword"
+      @keydown.enter="searchKeydown"
       @click:prepend-inner="search"
-      @keyup.enter="search"
-    />
-    <v-spacer />
+      style="max-width: 700px"
+    >
+      <template v-slot:selection="{ attrs, item }">
+        <v-chip v-bind="attrs" close small @click:close="removeTag(item)">
+          <strong>{{ item }}</strong>
+        </v-chip>
+      </template>
+    </v-combobox>
+
+    <v-spacer v-show="!searchVisible" />
     <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-btn
@@ -39,8 +52,8 @@
           :small="$vuetify.breakpoint.xsOnly"
           class="ml-4"
           v-on="on"
-          v-show="$vuetify.breakpoint.smAndDown"
-          @click="searchShow = !searchShow"
+          v-show="!searchVisible && $vuetify.breakpoint.smAndDown"
+          @click.stop="searchVisible = !searchVisible"
         >
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
@@ -56,36 +69,39 @@
           class="ml-2"
           v-on="on"
           @click="refresh"
-          v-show="refreshFunction"
+          v-show="!searchVisible && refreshFunction"
         >
           <v-icon>mdi-refresh</v-icon>
         </v-btn>
       </template>
       <span>刷新</span>
     </v-tooltip>
-    <v-tooltip bottom :disabled="$isMobile">
-      <template v-slot:activator="{ on }">
-        <v-btn
-          depressed
-          icon
-          :small="$vuetify.breakpoint.xsOnly"
-          class="ml-2"
-          v-on="on"
-        >
-          <v-icon>mdi-bell-outline</v-icon>
-        </v-btn>
-      </template>
-      <span>消息</span>
-    </v-tooltip>
-    <header-apps></header-apps>
-    <header-settings></header-settings>
-    <header-user></header-user>
+    <template v-if="!searchVisible">
+      <v-tooltip bottom :disabled="$isMobile">
+        <template v-slot:activator="{ on }">
+          <v-btn
+            depressed
+            icon
+            :small="$vuetify.breakpoint.xsOnly"
+            class="ml-2"
+            v-on="on"
+          >
+            <v-icon>mdi-bell-outline</v-icon>
+          </v-btn>
+        </template>
+        <span>消息</span>
+      </v-tooltip>
+      <header-apps></header-apps>
+      <header-settings></header-settings>
+      <header-user></header-user>
+    </template>
     <v-divider class="header-divider"></v-divider>
   </v-app-bar>
 </template>
 
 <script>
 import { mapMutations, mapState } from "vuex"
+
 export default {
   components: {
     "header-settings": () => import("./header/Settings"),
@@ -93,15 +109,19 @@ export default {
     "header-user": () => import("./header/User")
   },
   data() {
-    return { keyword: "", searchShow: false }
+    return { searchInput: null, tagList: [], searchVisible: false }
   },
   watch: {
     $route: {
       handler(nweValue) {
         if (nweValue.fullPath.indexOf("/search") !== -1) {
-          this.keyword = nweValue.params.keyword
+          try {
+            this.tagList = JSON.parse(nweValue.params.tagList)
+          } catch (e) {
+            this.tagList = [nweValue.params.tagList]
+          }
         } else {
-          this.keyword = ""
+          this.tagList = []
         }
       },
       immediate: true
@@ -122,11 +142,24 @@ export default {
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     search() {
-      this.searchShow = false
-      this.$router.push(`/search/${encodeURIComponent(this.keyword)}`)
+      this.searchVisible = false
+      this.$router.push(
+        `/search/${encodeURIComponent(JSON.stringify(this.tagList))}`
+      )
     },
     refresh() {
       this.refreshFunction && this.refreshFunction()
+    },
+    removeTag(name) {
+      this.tagList.splice(this.tagList.indexOf(name), 1)
+    },
+    closeSearchVisible() {
+      this.searchVisible = false
+    },
+    searchKeydown() {
+      if ([null, undefined, ""].includes(this.searchInput)) {
+        this.search()
+      }
     }
   }
 }
@@ -138,5 +171,18 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+}
+.search-combobox::v-deep {
+  .v-select__selections {
+    white-space: nowrap;
+    overflow: auto;
+    display: block;
+    line-height: 42px;
+  }
+  .v-select__selections {
+    input {
+      width: 64px;
+    }
+  }
 }
 </style>

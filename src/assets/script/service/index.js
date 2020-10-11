@@ -28,8 +28,13 @@ export const pictureService = {
     _.page--
     return httpUtil.get("/picture/pagingByRecommend", _)
   },
-  paging(pageable, tagList) {
-    let _ = Object.assign({ tagList }, pageable)
+  paging(pageable, tagList, query) {
+    try {
+      tagList = JSON.parse(tagList)
+    } catch (e) {
+      tagList = [tagList]
+    }
+    let _ = Object.assign({ tagList }, pageable, query)
     _.page--
     return httpUtil.get("/picture/paging", _)
   },
@@ -38,6 +43,9 @@ export const pictureService = {
   },
   hide(id) {
     return httpUtil.post("/picture/hide", { id })
+  },
+  modified(picture) {
+    return httpUtil.post("/picture/modified", picture)
   },
   pagingRecommendById(pageable, id) {
     let _ = Object.assign({ id }, pageable)
@@ -97,5 +105,56 @@ export const tagService = {
   },
   listTagFrequencyByUserId(targetId) {
     return httpUtil.get("/tag/listTagFrequencyByUserId", { targetId })
+  }
+}
+
+export const feedbackService = {
+  save(body) {
+    return httpUtil.post("/feedback/save", body)
+  }
+}
+
+export const complaintService = {
+  save(body) {
+    return httpUtil.post("/complaint/save", body)
+  }
+}
+
+export const userBlackHoleService = {
+  block(targetId) {
+    return httpUtil.post("/userBlackHole/block", { targetId })
+  },
+  get(targetId) {
+    return httpUtil.get("/userBlackHole/get", { targetId })
+  },
+  paging(pageable) {
+    let _ = Object.assign({}, pageable)
+    _.page--
+    return httpUtil.get("/userBlackHole/paging", _)
+  }
+}
+
+export const pictureBlackHoleService = {
+  block(targetId) {
+    return httpUtil.post("/pictureBlackHole/block", { targetId })
+  },
+  get(targetId) {
+    return httpUtil.get("/pictureBlackHole/get", { targetId })
+  },
+  paging(pageable) {
+    let _ = Object.assign({}, pageable)
+    _.page--
+    return httpUtil.get("/pictureBlackHole/paging", _)
+  }
+}
+
+export const tagBlackHoleService = {
+  block(name) {
+    return httpUtil.post("/tagBlackHole/block", { name })
+  },
+  paging(pageable) {
+    let _ = Object.assign({}, pageable)
+    _.page--
+    return httpUtil.get("/tagBlackHole/paging", _)
   }
 }

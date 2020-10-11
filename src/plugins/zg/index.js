@@ -3,7 +3,9 @@ import filters from "./script/filter"
 import imageUrl from "./script/util/imageUrl"
 import "./style/index.scss"
 import "./style/variables.scss"
-import * as config from "./script/constant/config"
+import config from "./script/constant/config"
+import constant from "./script/constant/main"
+
 export default {
   install() {
     Vue.component("zg-app", () => import("./components/ZgApp/Index"))
@@ -28,7 +30,7 @@ export default {
     Vue.prototype.$filter = filters
     Vue.prototype.$resultNotify = function(result) {
       return new Promise((resolve, reject) => {
-        if (result?.status !== 200) {
+        if (result?.status !== constant.SUCCESS) {
           window.app.$notify({
             text: result?.message || "服务器错误",
             color: "error"

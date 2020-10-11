@@ -14,9 +14,14 @@
             :to="`/picture/${item.id}`"
           >
             <v-card-text class="pa-0">
-              <v-img
-                :src="$imageUrl.picture(item.url, `specifiedWidth`)"
-              ></v-img>
+              <v-img :src="$imageUrl.picture(item.url, `specifiedWidth`)">
+                <template v-slot:placeholder>
+                  <v-skeleton-loader
+                    type="image"
+                    :height="(cardWidth * item.height) / item.width"
+                  ></v-skeleton-loader>
+                </template>
+              </v-img>
             </v-card-text>
           </v-card>
         </div>
@@ -67,6 +72,7 @@ export default {
   data() {
     return {
       style: null,
+      cardWidth: 0,
       throttle: heightenUtil.throttle(this.resize, 16)
     }
   },
@@ -91,7 +97,7 @@ export default {
       else {
         colAmount = sourceColAmount
       }
-
+      this.cardWidth = defaultWidth - defaultGap
       this.style = {
         gridTemplateColumns: `repeat(${colAmount},${defaultWidth -
           defaultGap}px)`,

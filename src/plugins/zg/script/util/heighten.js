@@ -79,5 +79,15 @@ export default {
       o[key] = { key, value: object[key] }
     })
     return o
+  },
+  /**
+   * 沉睡
+   * @param wait {Number}
+   * @returns {Promise<unknown>}
+   */
+  sleep(wait) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, wait)
+    })
   }
 }

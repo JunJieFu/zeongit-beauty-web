@@ -15,87 +15,15 @@
       >
         <v-card flat class="overflow-hidden" :to="`/picture/${item.id}`">
           <v-card-text class="pa-0">
-            <v-img :src="$imageUrl.picture(item.url, `specifiedWidth`)"></v-img>
+            <v-img :src="$imageUrl.picture(item.url, `specifiedWidth`)">
+              <template v-slot:placeholder>
+                <v-skeleton-loader
+                  type="image"
+                  :height="(cardWidth * item.height) / item.width"
+                ></v-skeleton-loader>
+              </template>
+            </v-img>
           </v-card-text>
-          <!--              <v-card-text class="py-0">-->
-          <!--                <v-chip class="ma-1" x-small close>-->
-          <!--                  标签-->
-          <!--                </v-chip>-->
-          <!--              </v-card-text>-->
-          <!--              <v-card-actions class="pt-0" style="height: 40px;">-->
-          <!--                <v-tooltip bottom>-->
-          <!--                  <template v-slot:activator="{ on }">-->
-          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-          <!--                      <v-icon dark>mdi-pin-outline</v-icon>-->
-          <!--                    </v-btn>-->
-          <!--                  </template>-->
-          <!--                  <span>置顶</span>-->
-          <!--                </v-tooltip>-->
-          <!--                <v-tooltip bottom>-->
-          <!--                  <template v-slot:activator="{ on }">-->
-          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-          <!--                      <v-icon dark>mdi-bell-outline</v-icon>-->
-          <!--                    </v-btn>-->
-          <!--                  </template>-->
-          <!--                  <span>提醒我</span>-->
-          <!--                </v-tooltip>-->
-          <!--                <v-tooltip bottom>-->
-          <!--                  <template v-slot:activator="{ on }">-->
-          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-          <!--                      <v-icon dark>mdi-palette-outline</v-icon>-->
-          <!--                    </v-btn>-->
-          <!--                  </template>-->
-          <!--                  <span>更改颜色</span>-->
-          <!--                </v-tooltip>-->
-          <!--                <v-tooltip bottom>-->
-          <!--                  <template v-slot:activator="{ on }">-->
-          <!--                    <v-btn style="margin:0 3px" fab text x-small v-on="on">-->
-          <!--                      <v-icon dark>mdi-image-outline</v-icon>-->
-          <!--                    </v-btn>-->
-          <!--                  </template>-->
-          <!--                  <span>添加图片</span>-->
-          <!--                </v-tooltip>-->
-          <!--                <v-tooltip bottom>-->
-          <!--                  <template v-slot:activator="{ on }">-->
-          <!--                    <v-btn-->
-          <!--                      style="margin:0 3px"-->
-          <!--                      fab-->
-          <!--                      text-->
-          <!--                      x-small-->
-          <!--                      v-on="on"-->
-          <!--                      @click="show(list)"-->
-          <!--                    >-->
-          <!--                      <v-icon dark>mdi-archive-arrow-down-outline</v-icon>-->
-          <!--                    </v-btn>-->
-          <!--                  </template>-->
-          <!--                  <span>归档</span>-->
-          <!--                </v-tooltip>-->
-          <!--                <v-menu offset-y>-->
-          <!--                  <template v-slot:activator="{ on: onMenu }">-->
-          <!--                    <v-tooltip bottom>-->
-          <!--                      <template v-slot:activator="{ on: onTooltip }">-->
-          <!--                        <v-btn-->
-          <!--                          style="margin:0 3px"-->
-          <!--                          fab-->
-          <!--                          text-->
-          <!--                          x-small-->
-          <!--                          v-on="Object.assign(onTooltip, onMenu)"-->
-          <!--                        >-->
-          <!--                          <v-icon dark>mdi-dots-vertical</v-icon>-->
-          <!--                        </v-btn>-->
-          <!--                      </template>-->
-          <!--                      <span>更多</span>-->
-          <!--                    </v-tooltip>-->
-          <!--                  </template>-->
-          <!--                  <v-list dense>-->
-          <!--                    <v-list-item>-->
-          <!--                      <v-list-item-content>-->
-          <!--                        123-->
-          <!--                      </v-list-item-content>-->
-          <!--                    </v-list-item>-->
-          <!--                  </v-list>-->
-          <!--                </v-menu>-->
-          <!--              </v-card-actions>-->
         </v-card>
       </div>
     </div>
@@ -136,6 +64,7 @@ export default {
     return {
       width: 0,
       height: 0,
+      cardWidth: 0,
       transition: false,
       itemStyleList: [],
       throttle: heightenUtil.throttle(this.resize, 16)
@@ -171,9 +100,13 @@ export default {
         colAmount = sourceColAmount
       }
       let heightList =
-        this.list.map(
-          (item) => (item.height / item.width) * (defaultWidth - defaultGap)
-        ) || []
+        this.list.map((item) => {
+          let aspectRatio = 0.5
+          if (item.height && item.width) {
+            aspectRatio = item.height / item.width
+          }
+          return aspectRatio * (defaultWidth - defaultGap)
+        }) || []
       let styleList = []
       const columnHeightList = new Array(colAmount).fill(0)
       for (let i = 0; i < heightList.length; i++) {
@@ -191,6 +124,7 @@ export default {
       this.itemStyleList = styleList
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
+      this.cardWidth = defaultWidth - defaultGap
       if (
         elHeight &&
         window.innerHeight >= elHeight &&

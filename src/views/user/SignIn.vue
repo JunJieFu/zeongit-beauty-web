@@ -1,5 +1,5 @@
 <template>
-  <v-row class="ma-0" justify="center" align="center" v-if="signInShow">
+  <v-row class="ma-0" justify="center" align="center" v-if="signInVisible">
     <v-col cols="12" sm="7" md="5" lg="4" xl="3">
       <sign-in-page-card
         :icon="$constant.SIGN_IN_TIP_ICON[type]"
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapState("user", ["info"]),
-    signInShow() {
+    signInVisible() {
       return !(this.info || this.targetId)
     },
     type() {

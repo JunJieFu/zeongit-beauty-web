@@ -7,6 +7,7 @@ import search from "@/views/search/script/router"
 import picture from "@/views/picture/script/router"
 import user from "@/views/user/script/router"
 import feedback from "@/views/feedback/script/router"
+import blackHole from "@/views/blackhole/script/router"
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +21,8 @@ const routes = [
       ...search,
       ...picture,
       ...user,
-      ...feedback
+      ...feedback,
+      ...blackHole
     ]
   },
   {

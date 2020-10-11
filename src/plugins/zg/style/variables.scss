@@ -41,3 +41,11 @@
     }
   }
 }
+
+.v-skeleton-loader__image {
+  height: 100%;
+}
+
+.v-application--is-ltr .v-chip .v-chip__close.v-icon.v-icon--right{
+  margin-right: 0;
+}

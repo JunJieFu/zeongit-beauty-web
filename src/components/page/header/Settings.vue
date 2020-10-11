@@ -1,5 +1,5 @@
 <template>
-  <v-menu offset-y v-model="menuShow">
+  <v-menu offset-y v-model="menuVisible">
     <template v-slot:activator="{ on: menu }">
       <v-tooltip bottom :disabled="$isMobile">
         <template v-slot:activator="{ on: tooltip }">
@@ -22,7 +22,7 @@
       :width="$constant.MENU_LIST_WIDTH"
     >
       <v-dialog
-        v-model="modeDialogShow"
+        v-model="modeDialogVisible"
         :max-width="$constant.SETTINGS_DIALOG_MAX_WIDTH"
       >
         <template v-slot:activator="{ on: mode }">
@@ -50,7 +50,7 @@
         </v-card>
       </v-dialog>
       <v-dialog
-        v-model="darkDialogShow"
+        v-model="darkDialogVisible"
         :max-width="$constant.SETTINGS_DIALOG_MAX_WIDTH"
       >
         <template v-slot:activator="{ on: mode }">
@@ -79,6 +79,9 @@
       <v-list-item to="/feedback">
         反馈
       </v-list-item>
+      <v-list-item to="/blackHole">
+        屏蔽设置
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>
@@ -89,17 +92,17 @@ import { mapMutations } from "vuex"
 export default {
   data() {
     return {
-      menuShow: false,
-      modeDialogShow: false,
-      darkDialogShow: false
+      menuVisible: false,
+      modeDialogVisible: false,
+      darkDialogVisible: false
     }
   },
   watch: {
-    modeDialogShow(newVal) {
-      if (newVal) this.menuShow = false
+    modeDialogVisible(newVal) {
+      if (newVal) this.menuVisible = false
     },
-    darkDialogShow(newVal) {
-      if (newVal) this.menuShow = false
+    darkDialogVisible(newVal) {
+      if (newVal) this.menuVisible = false
     }
   },
   computed: {
@@ -109,7 +112,7 @@ export default {
       },
       set(val) {
         this.MUpdateMode(val)
-        this.modeDialogShow = false
+        this.modeDialogVisible = false
       }
     },
     dark: {
@@ -118,7 +121,7 @@ export default {
       },
       set(val) {
         this.MUpdateDark(val)
-        this.darkDialogShow = false
+        this.darkDialogVisible = false
       }
     }
   },

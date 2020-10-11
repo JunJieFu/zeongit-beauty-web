@@ -18,7 +18,20 @@
         </v-col>
       </v-row>
     </component>
-    <corner-buttons> </corner-buttons>
+    <corner-buttons>
+      <v-dialog :max-width="450" v-model="queryDialogVisible">
+        <template v-slot:activator="{ on }">
+          <v-btn fab :small="$vuetify.breakpoint.xsOnly" v-on="on">
+            <v-icon>mdi-tune</v-icon>
+          </v-btn>
+        </template>
+        <tune
+          :input="form"
+          @query="query"
+          @close="queryDialogVisible = false"
+        ></tune>
+      </v-dialog>
+    </corner-buttons>
   </div>
 </template>
 
@@ -27,6 +40,8 @@ import { pictureService } from "@/assets/script/service"
 import { Pageable } from "@/plugins/zg/script/model/main"
 import { mapState } from "vuex"
 import alivePageMixin from "@/plugins/zg/script/mixin/alivePage"
+import * as qs from "qs"
+import { QueryForm } from "@/views/search/script/model"
 
 export default {
   props: {
@@ -34,7 +49,7 @@ export default {
       type: [String, Number],
       default: 1
     },
-    keyword: {
+    tagList: {
       type: [String, undefined],
       default: undefined
     }
@@ -48,7 +63,9 @@ export default {
       loading: false,
       pageable: new Pageable(),
       page2d: [],
-      currPage: null
+      currPage: null,
+      queryDialogVisible: false,
+      form: new QueryForm(this.$route.query)
     }
   },
   computed: {
@@ -60,13 +77,14 @@ export default {
     "list-container-normal": () =>
       import("@/components/page/ListContainerNormal"),
     "tips-page-card": () => import("@/components/page/TipsPageCard"),
-    "corner-buttons": () => import("@/components/page/CornerButtons")
+    "corner-buttons": () => import("@/components/page/CornerButtons"),
+    tune: () => import("./components/Tune")
   },
   methods: {
     async init() {
       window.scrollTo(0, 0)
       this.MUpdateProgress(true)
-      await this.paging(this.page, this.keyword)
+      await this.paging(this.page, this.tagList)
       this.MUpdateProgress(false)
     },
     changePage(page) {
@@ -74,27 +92,35 @@ export default {
         return
       }
       if (this.mode === this.$enum.ListMode.WATERFALL.key) {
-        this.paging(page, this.keyword)
+        this.paging(page, this.tagList)
       } else {
-        this.$router.push(`/search/${encodeURIComponent(this.keyword)}/${page}`)
+        this.$router.push(
+          `/search/${encodeURIComponent(this.tagList)}/${page}?${qs.stringify(
+            this.form
+          )}`
+        )
       }
     },
-    async paging(pageIndex, keyword = this.keyword) {
+    async paging(pageIndex, tagList = this.tagList) {
       if (
         this.loading ||
         (this.currPage?.last && this.currPage.number <= pageIndex - 1)
       ) {
         return
       }
-      if (keyword !== this.keyword) {
+      this.pageable.page = parseInt(pageIndex || 1) || 1
+      if (tagList !== this.tagList || this.pageable.page === 1) {
         window.scrollTo(0, 0)
       }
-      this.pageable.page = parseInt(pageIndex || 1) || 1
       this.loading = true
-      const result = await pictureService.paging(this.pageable, keyword)
+      const result = await pictureService.paging(
+        this.pageable,
+        tagList,
+        this.form
+      )
       this.loading = false
       await this.$resultNotify(result)
-      if (keyword !== this.keyword) {
+      if (tagList !== this.tagList || this.pageable.page === 1) {
         this.page2d = []
       }
       const page = result.data
@@ -102,6 +128,10 @@ export default {
       this.page2d.length = this.pageable.page
       //由于是数组必须用set
       this.$set(this.page2d, page.number, page)
+    },
+    query(form) {
+      this.form = form
+      this.changePage(0)
     }
   }
 }

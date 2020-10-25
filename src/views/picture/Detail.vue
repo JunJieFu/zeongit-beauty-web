@@ -1,4 +1,4 @@
-<template>
+阅读<template>
   <div
     class="page mx-auto d-flex"
     :class="{
@@ -72,9 +72,7 @@
             </span>
           </p>
         </v-card-subtitle>
-        <v-card-text>
-          {{ picture.introduction }}
-        </v-card-text>
+        <v-card-text v-html="picture.introduction"> </v-card-text>
         <template v-if="picture.tagList.length">
           <v-divider></v-divider>
           <v-card-text>

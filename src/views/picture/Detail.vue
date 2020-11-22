@@ -1,4 +1,4 @@
-阅读<template>
+<template>
   <div
     class="page mx-auto d-flex"
     :class="{

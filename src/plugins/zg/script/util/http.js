@@ -9,6 +9,7 @@ import qs from "qs"
 import { Result } from "../model/main"
 import { API_HOST, DOMAIN } from "../constant/config"
 import constant from "../constant/main"
+
 axios.defaults.baseURL = API_HOST
 export default {
   /**
@@ -21,6 +22,9 @@ export default {
     let result = null
     try {
       const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${jsCookie.get("token")}`
+        },
         params,
         paramsSerializer: (params) => {
           return qs.stringify(params, {
@@ -28,7 +32,6 @@ export default {
           })
         }
       })
-      this._handleToken(response)
       result = response.data
     } catch (e) {
       result = await new Result(constant.PROGRAM, e, "服务器错误")
@@ -48,15 +51,16 @@ export default {
     try {
       const response = await axios.post(
         url,
-        type === "json"
-          ? body
-          : qs.stringify(body, {
-              arrayFormat: "repeat"
-            })
+        type === "json" ? body : qs.stringify(body, { arrayFormat: "repeat" }),
+        {
+          headers: {
+            Authorization: `Bearer ${jsCookie.get("token")}`
+          }
+        }
       )
-      this._handleToken(response)
       result = response.data
     } catch (e) {
+      console.log(e.message)
       result = await new Result(constant.PROGRAM, e, "服务器错误")
     }
     return result

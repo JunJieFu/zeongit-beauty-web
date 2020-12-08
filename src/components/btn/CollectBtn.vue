@@ -11,11 +11,7 @@
             @click="onClick"
             class="mx-2"
           >
-            <v-icon
-              color="error"
-              v-if="picture.focus === $enum.CollectState.CONCERNED.key"
-              >mdi-star</v-icon
-            >
+            <v-icon color="error" v-if="picture.focus === 0">mdi-star </v-icon>
             <v-icon v-else>mdi-star-outline</v-icon>
           </v-btn>
         </template>

@@ -16,13 +16,13 @@
             >
               <v-fab-transition>
                 <v-icon style="position: absolute" v-show="settingsVisible"
-                  >mdi-close</v-icon
-                >
+                  >mdi-close
+                </v-icon>
               </v-fab-transition>
               <v-fab-transition>
                 <v-icon style="position: absolute" v-show="!settingsVisible"
-                  >mdi-cog-outline</v-icon
-                >
+                  >mdi-cog-outline
+                </v-icon>
               </v-fab-transition>
             </v-btn>
           </template>
@@ -49,14 +49,14 @@
 </template>
 
 <script type="text/jsx">
-import { pictureService } from "@/assets/script/service"
+import { pictureService } from "@/assets/script/service";
 
 export default {
   components: {
     "remove-btn": () => import("./RemoveBtn"),
     "privacy-btn": () => import("./PrivacyBtn"),
     "edit-btn": () => import("./EditBtn"),
-    "modified": () => import("./Modified"),
+    "modified": () => import("./Modified")
   },
   props: {
     picture: {
@@ -67,22 +67,22 @@ export default {
   data() {
     return {
       settingsVisible: false,
-      modifiedDialogVisible:false
-    }
+      modifiedDialogVisible: false
+    };
   },
   computed: {
     privacyValue() {
-      if (this.picture.privacy === this.$enum.PrivacyState.PUBLIC.key)
-        return this.$enum.PrivacyState.PRIVATE.value
-      else return this.$enum.PrivacyState.PUBLIC.value
+      if (this.picture.privacy === 0)
+        return 1;
+      else return 2;
     }
   },
   methods: {
     async privacy() {
-      await this.$confirm({ text: `您确定${this.privacyValue}该图片吗？` })
-      const result = await pictureService.hide(this.picture.id)
-      await this.$resultNotify(result)
-      this.$emit("privacy", { detail: this.picture, privacy: result.data })
+      await this.$confirm({ text: `您确定${this.privacyValue}该图片吗？` });
+      const result = await pictureService.hide(this.picture.id);
+      await this.$resultNotify(result);
+      this.$emit("privacy", { detail: this.picture, privacy: result.data });
     },
     async remove() {
       await this.$confirm({
@@ -94,18 +94,18 @@ export default {
                 <br />
                 注意：删除后不能恢复！
               </div>
-            )
+            );
           }
         }
-      })
-      this.$emit("remove")
+      });
+      this.$emit("remove");
     },
-    modified($event){
-      this.modifiedDialogVisible = false
-      this.$emit('modified', $event)
+    modified($event) {
+      this.modifiedDialogVisible = false;
+      this.$emit("modified", $event);
     }
   }
-}
+};
 </script>
 
 <style scoped></style>

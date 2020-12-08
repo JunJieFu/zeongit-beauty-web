@@ -14,7 +14,7 @@ module.exports = {
     proxy: {
       "/api": {
         // 目标 API 地址
-        target: "http://localhost:12081/",
+        target: "http://localhost:9100/",
         // 如果要代理 websockets
         ws: true,
         secure: false,

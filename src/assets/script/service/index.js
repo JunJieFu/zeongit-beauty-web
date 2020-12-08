@@ -25,7 +25,6 @@ export const userService = {
 export const pictureService = {
   pagingByRecommend(pageable) {
     let _ = Object.assign({}, pageable)
-    _.page--
     return httpUtil.get("/picture/pagingByRecommend", _)
   },
   paging(pageable, tagList, query) {
@@ -35,7 +34,6 @@ export const pictureService = {
       tagList = [tagList]
     }
     let _ = Object.assign({ tagList }, pageable, query)
-    _.page--
     return httpUtil.get("/picture/paging", _)
   },
   get(id) {
@@ -49,12 +47,10 @@ export const pictureService = {
   },
   pagingRecommendById(pageable, id) {
     let _ = Object.assign({ id }, pageable)
-    _.page--
     return httpUtil.get("/picture/pagingRecommendById", _)
   },
   pagingByFollowing(pageable, targetId) {
     let _ = Object.assign({ targetId }, pageable)
-    _.page--
     return httpUtil.get("/picture/pagingByFollowing", _)
   }
 }

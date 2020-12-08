@@ -129,9 +129,9 @@ export default {
         elHeight &&
         window.innerHeight >= elHeight &&
         this.page &&
-        !this.page.last
+        this.page.meta.currentPage !== this.page.meta.totalPages
       ) {
-        this.$emit("change", this.page?.number + 2)
+        this.$emit("change", this.page?.currentPage + 2)
       }
     },
     // eslint-disable-next-line no-unused-vars
@@ -142,7 +142,7 @@ export default {
       const scrollBottom =
         documentElement.scrollHeight - scrollTop - documentElement.clientHeight
       if (scrollBottom < 300 && this.page) {
-        this.$emit("change", this.page?.number + 2)
+        this.$emit("change", this.page?.currentPage + 2)
       }
     }
   }

@@ -1,10 +1,10 @@
 <template>
   <div ref="page" class="list-container ma-1" v-resize="throttle">
-    <template v-if="page && page.content.length">
+    <template v-if="page && page.items.length">
       <div class="list-content" :style="style">
         <div
           class="list-item transition"
-          v-for="(item, index) in page.content"
+          v-for="(item, index) in page.items"
           :key="index"
         >
           <v-card
@@ -28,7 +28,7 @@
       </div>
       <v-pagination
         :value="pageable.page"
-        :length="page.totalPages"
+        :length="page.meta.totalPages"
         :total-visible="7"
         @input="change"
         class="mt-4"

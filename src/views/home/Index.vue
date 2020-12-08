@@ -93,16 +93,16 @@ export default {
     async pagingByFollowing() {
       if (this.info) {
         const result = await pictureService.pagingByFollowing(this.pageable)
-        this.followingPictureList = result?.data?.content || []
+        this.followingPictureList = result?.data?.items || []
       }
     },
     async pagingByRecommend() {
       const result = await pictureService.pagingByRecommend(this.pageable)
-      this.findList = result?.data?.content || []
+      this.findList = result?.data?.items || []
     },
     async paging() {
       const result = await pictureService.paging(this.pageable)
-      this.newList = result?.data?.content || []
+      this.newList = result?.data?.items || []
     }
   }
 }

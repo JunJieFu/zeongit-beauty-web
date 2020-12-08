@@ -7,19 +7,19 @@
           <v-icon
             color="warning"
             style="position: absolute"
-            v-show="picture.privacy === $enum.PrivacyState.PUBLIC.key"
+            v-show="picture.privacy === 0"
             v-on="on"
-            >mdi-eye-off-outline</v-icon
-          >
+            >mdi-eye-off-outline
+          </v-icon>
         </v-fab-transition>
         <v-fab-transition>
           <v-icon
             color="warning"
             style="position: absolute"
-            v-show="picture.privacy === $enum.PrivacyState.PRIVATE.key"
+            v-show="picture.privacy === 1"
             v-on="on"
-            >mdi-eye-outline</v-icon
-          >
+            >mdi-eye-outline
+          </v-icon>
         </v-fab-transition>
       </template>
       <span>{{ privacyValue }}图片</span>
@@ -37,9 +37,8 @@ export default {
   },
   computed: {
     privacyValue() {
-      if (this.picture.privacy === this.$enum.PrivacyState.PUBLIC.key)
-        return this.$enum.PrivacyState.PRIVATE.value
-      else return this.$enum.PrivacyState.PUBLIC.value
+      if (this.picture.privacy === 0) return 1
+      else return 0
     }
   }
 }

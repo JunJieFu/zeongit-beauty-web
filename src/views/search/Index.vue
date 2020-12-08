@@ -2,7 +2,7 @@
   <div>
     <component
       :is="$enum.ListModeComponentName[mode].value"
-      :list="page2d.map((it) => it.content).flat()"
+      :list="page2d.map((it) => it.items).flat()"
       :page="currPage"
       :pageable="pageable"
       :loading="loading"
@@ -127,7 +127,7 @@ export default {
       this.currPage = result.data
       this.page2d.length = this.pageable.page
       //由于是数组必须用set
-      this.$set(this.page2d, page.number, page)
+      this.$set(this.page2d, page.meta.currentPage, page)
     },
     query(form) {
       this.form = form

@@ -72,7 +72,7 @@
             </span>
           </p>
         </v-card-subtitle>
-        <v-card-text v-html="picture.introduction"> </v-card-text>
+        <v-card-text v-html="picture.introduction"></v-card-text>
         <template v-if="picture.tagList.length">
           <v-divider></v-divider>
           <v-card-text>
@@ -173,6 +173,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "src/plugins/zg/style/config";
+
 .page {
   max-width: $page-size;
 }

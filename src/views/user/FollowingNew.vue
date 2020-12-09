@@ -1,7 +1,7 @@
 <template>
   <div>
     <component
-      :is="$enum.ListModeComponentName[mode].value"
+      :is="$enum.ListModeComponentName[mode]"
       :list="page2d.map((it) => it.items).flat()"
       :page="currPage"
       :pageable="pageable"
@@ -81,7 +81,7 @@ export default {
       if (this.pageable.page === page) {
         return
       }
-      if (this.mode === this.$enum.ListMode.WATERFALL.key) {
+      if (this.mode === 0) {
         this.paging(page, this.realTargetId)
       } else {
         this.$router.push(

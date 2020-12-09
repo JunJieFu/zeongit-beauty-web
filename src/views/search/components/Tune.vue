@@ -30,7 +30,7 @@
           <v-col cols="12" class="py-0">
             <v-select
               v-model="form.aspectRatio"
-              :items="Object.values($enum.AspectRatio)"
+              :items="$enum.AspectRatio.map((it, i) => ({ key: i, value: it }))"
               item-text="value"
               item-value="key"
               label="纵横比"

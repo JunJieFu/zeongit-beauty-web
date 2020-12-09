@@ -39,10 +39,10 @@
               <v-row>
                 <v-col
                   :cols="12"
-                  v-for="item in $enum.ListMode"
-                  :key="item.key"
+                  v-for="(item, key) in $enum.ListMode"
+                  :key="key"
                 >
-                  <v-radio :label="item.value" :value="item.key"></v-radio>
+                  <v-radio :label="item" :value="key"></v-radio>
                 </v-col>
               </v-row>
             </v-radio-group>

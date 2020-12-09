@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(0, 16, "lastModifiedDate,desc"),
+      pageable: new Pageable(0, 16, "updateDate,desc"),
       currPage: null
     }
   },
@@ -102,7 +102,7 @@ export default {
       this.currPage = result.data
     },
     follow({ detail, focus }) {
-      let row = this.currPage.content.find((it) => it.id === detail.id)
+      let row = this.currPage.items.find((it) => it.id === detail.id)
       row.focus = focus
     }
   }

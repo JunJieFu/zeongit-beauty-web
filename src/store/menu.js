@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
-import _enum from "@/assets/script/constant/enum"
 import storageUtil from "@/plugins/zg/script/util/storage"
+
 Vue.use(Vuex)
 
 export default {
@@ -9,10 +9,7 @@ export default {
   state: {
     collapse: storageUtil.localGet("beauty::menu::collapse", false),
     progress: false,
-    mode: storageUtil.localGet(
-      "beauty::menu::mode",
-      _enum.ListMode.WATERFALL.key
-    ),
+    mode: storageUtil.localGet("beauty::menu::mode", 0),
     dark: storageUtil.localGet("beauty::menu::dark", false)
   },
   mutations: {

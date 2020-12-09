@@ -3,18 +3,12 @@
     <v-tooltip top :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-fab-transition>
-          <v-icon
-            style="position: absolute"
-            v-show="user.state === $enum.BlockState.NORMAL.key"
-            v-on="on"
+          <v-icon style="position: absolute" v-show="user.state === 0" v-on="on"
             >mdi-eye-off-outline</v-icon
           >
         </v-fab-transition>
         <v-fab-transition>
-          <v-icon
-            style="position: absolute"
-            v-show="user.state === $enum.BlockState.SHIELD.key"
-            v-on="on"
+          <v-icon style="position: absolute" v-show="user.state === 1" v-on="on"
             >mdi-eye-outline</v-icon
           >
         </v-fab-transition>
@@ -36,7 +30,7 @@ export default {
   },
   computed: {
     blockValue() {
-      if (this.user.state === this.$enum.BlockState.NORMAL.key) return "屏蔽"
+      if (this.user.state === 1) return "屏蔽"
       else return "解锁"
     }
   },

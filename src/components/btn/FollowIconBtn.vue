@@ -11,19 +11,11 @@
             @click="onClick"
             class="mx-2"
           >
-            <v-icon
-              color="error"
-              v-if="user.focus === $enum.FollowState.CONCERNED.key"
-              >mdi-star</v-icon
-            >
+            <v-icon color="error" v-if="user.focus === 1">mdi-star</v-icon>
             <v-icon v-else>mdi-star-outline</v-icon>
           </v-btn>
         </template>
-        <span>
-          {{
-            user.focus === $enum.FollowState.CONCERNED.key ? `已关注` : `关注`
-          }}</span
-        >
+        <span> {{ user.focus === 1 ? `已关注` : `关注` }}</span>
       </v-tooltip>
     </template>
     <sign-in-menu-card

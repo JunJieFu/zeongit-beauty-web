@@ -2,9 +2,7 @@
   <v-menu offset-y :disabled="!!info">
     <template v-slot:activator="{ on: onMenu }">
       <v-btn color="primary" depressed v-on="onMenu" @click="onClick">
-        {{
-          user.focus === $enum.FollowState.CONCERNED.key ? `已关注` : `关注`
-        }}</v-btn
+        {{ user.focus === 1 ? `已关注` : `关注` }}</v-btn
       >
     </template>
     <sign-in-menu-card

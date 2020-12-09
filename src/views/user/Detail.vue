@@ -132,13 +132,13 @@ export default {
       this.worksLoading = true
       const result = await worksService.paging(this.pageable, id)
       this.worksLoading = false
-      this.worksList = result?.data?.content || []
+      this.worksList = result.data?.items || []
     },
     async pagingCollection(id) {
       this.collectionLoading = true
       const result = await collectionService.paging(this.pageable, id)
       this.collectionLoading = false
-      this.collectionList = result?.data?.content || []
+      this.collectionList = result.data?.items || []
     }
   }
 }

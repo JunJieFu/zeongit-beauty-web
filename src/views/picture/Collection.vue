@@ -107,7 +107,7 @@ export default {
       this.currPage = result.data
     },
     follow({ detail, focus }) {
-      let row = this.currPage.content.find((it) => it.id === detail.id)
+      let row = this.currPage.items.find((it) => it.id === detail.id)
       row.focus = focus
     }
   }

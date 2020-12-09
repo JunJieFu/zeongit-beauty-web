@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="mt-12" v-if="!list.length && !loading">
-      <slot> </slot>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -129,9 +129,9 @@ export default {
         elHeight &&
         window.innerHeight >= elHeight &&
         this.page &&
-        this.page.meta.currentPage !== this.page.meta.totalPages
+        this.page.meta.currentPage > this.page.meta.totalPages
       ) {
-        this.$emit("change", this.page?.currentPage + 2)
+        this.$emit("change", this.page?.meta.currentPage + 1)
       }
     },
     // eslint-disable-next-line no-unused-vars
@@ -142,7 +142,7 @@ export default {
       const scrollBottom =
         documentElement.scrollHeight - scrollTop - documentElement.clientHeight
       if (scrollBottom < 300 && this.page) {
-        this.$emit("change", this.page?.currentPage + 2)
+        this.$emit("change", this.page?.meta.currentPage + 1)
       }
     }
   }
@@ -154,12 +154,14 @@ export default {
   .list-content {
     margin: auto;
     position: relative;
+
     .list-item {
       &.transition {
         transition-property: opacity, transform;
         transition-duration: 0.2s;
         opacity: 1;
       }
+
       opacity: 0;
       position: absolute;
     }

@@ -88,6 +88,7 @@ export default {
       this.MUpdateProgress(false)
     },
     changePage(page) {
+      console.log(123)
       if (this.pageable.page === page) {
         return
       }

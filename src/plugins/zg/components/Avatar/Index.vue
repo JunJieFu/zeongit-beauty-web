@@ -1,12 +1,12 @@
 <template>
-  <v-avatar :size="size" v-if="info && info.avatarUrl">
+  <v-avatar :size="size" v-if="info && info.avatar">
     <v-img
-      :src="$imageUrl.avatar(info.avatarUrl, type)"
+      :src="$imageUrl.avatar(info.avatar, type)"
       :aspect-ratio="1"
       :width="size"
     />
   </v-avatar>
-  <v-avatar :size="size" v-else-if="info && !info.avatarUrl" :color="color">
+  <v-avatar :size="size" v-else-if="info && !info.avatar" :color="color">
     <span
       class="white--text headline"
       :style="{ fontSize: size * 0.4 + `px !important` }"

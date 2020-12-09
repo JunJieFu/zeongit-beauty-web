@@ -125,12 +125,10 @@ export default {
       this.width = colAmount * defaultWidth + `px`
       this.height = Math.max.apply(null, columnHeightList) + `px`
       this.cardWidth = defaultWidth - defaultGap
-      if (
-        elHeight &&
-        window.innerHeight >= elHeight &&
-        this.page &&
-        this.page.meta.currentPage > this.page.meta.totalPages
-      ) {
+      const last =
+        this.currPage &&
+        this.currPage.meta.totalPages <= this.currPage?.meta.currentPage
+      if (elHeight && window.innerHeight >= elHeight && this.page && !last) {
         this.$emit("change", this.page?.meta.currentPage + 1)
       }
     },

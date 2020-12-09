@@ -83,7 +83,7 @@ export default {
       this.currPage = result.data
     },
     block({ detail, state }) {
-      let row = this.currPage.content.find((it) => it.id === detail.id)
+      let row = this.currPage.items.find((it) => it.id === detail.id)
       row.state = state
     }
   }

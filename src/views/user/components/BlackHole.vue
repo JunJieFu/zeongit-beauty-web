@@ -83,7 +83,6 @@ export default {
       this.blackHole = result.data
     },
     blockUser({ state }) {
-      console.log(state)
       this.blackHole.user.state = state
     },
     blockTag({ state }, index) {

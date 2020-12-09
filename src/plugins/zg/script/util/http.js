@@ -60,7 +60,6 @@ export default {
       )
       result = response.data
     } catch (e) {
-      console.log(e.message)
       result = await new Result(constant.PROGRAM, e, "服务器错误")
     }
     return result

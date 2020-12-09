@@ -101,7 +101,7 @@ export default {
       this.$refs.form.validate()
       if (this.formValid) {
         this.loading = true
-        const result = await pictureService.modified(this.form)
+        const result = await pictureService.update(this.form)
         this.loading = false
         this.$notify({ text: "修改成功", color: "success" })
         this.$emit("success", result.data)

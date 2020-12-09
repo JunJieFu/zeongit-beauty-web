@@ -69,9 +69,12 @@ export default {
       }
     },
     async paging(pageIndex) {
+      const last =
+        this.currPage &&
+        this.currPage.meta.totalPages <= this.currPage?.meta.currentPage
       if (
         this.loading ||
-        (this.currPage?.last && this.currPage.number <= pageIndex - 1)
+        (last && this.currPage?.meta.currentPage <= pageIndex)
       ) {
         return
       }

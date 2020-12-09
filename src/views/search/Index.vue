@@ -108,7 +108,7 @@ export default {
 
       if (
         this.loading ||
-        (last && this.currPage?.meta.currentPage <= pageIndex - 1)
+        (last && this.currPage?.meta.currentPage <= pageIndex)
       ) {
         return
       }

@@ -40,8 +40,8 @@ export const pictureService = {
   hide(id) {
     return httpUtil.post("/picture/hide", { id })
   },
-  modified(picture) {
-    return httpUtil.post("/picture/modified", picture)
+  update(picture) {
+    return httpUtil.post("/picture/update", picture)
   },
   pagingRecommendById(pageable, id) {
     let _ = Object.assign({ id }, pageable)
@@ -136,8 +136,8 @@ export const pictureBlackHoleService = {
 }
 
 export const tagBlackHoleService = {
-  block(name) {
-    return httpUtil.post("/tagBlackHole/block", { name })
+  block(tag) {
+    return httpUtil.post("/tagBlackHole/block", { tag })
   },
   paging(pageable) {
     let _ = Object.assign({}, pageable)

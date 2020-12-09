@@ -9,7 +9,9 @@ export default {
   },
   mutations: {
     MSetInfo(state, info) {
-      state.info = info
+      if (info.id) {
+        state.info = info
+      }
     }
   },
   actions: {}

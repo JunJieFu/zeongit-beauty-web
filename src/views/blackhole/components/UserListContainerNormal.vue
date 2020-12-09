@@ -1,7 +1,7 @@
 <template>
-  <div v-if="page && page.content.length">
+  <div v-if="page && page.items.length">
     <v-list class="py-0">
-      <div v-for="item in page.content" :key="item.id">
+      <div v-for="item in page.items" :key="item.id">
         <v-list-item class="py-3">
           <router-link class="d-block" :to="`/user/${item.id}`">
             <avatar
@@ -25,7 +25,7 @@
     </v-list>
     <v-pagination
       :value="pageable.page"
-      :length="page.totalPages"
+      :length="page.meta.totalPages"
       :total-visible="7"
       @input="change"
       class="mt-4"

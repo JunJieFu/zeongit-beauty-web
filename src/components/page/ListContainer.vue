@@ -13,7 +13,12 @@
         >
           <v-card-text class="pa-0">
             <v-img
-              :src="$imageUrl.picture(item.url, `specifiedWidth`)"
+              :src="
+                $imageUrl.picture(
+                  item.url,
+                  item.aspectRatio ? `specifiedWidth` : `specifiedHeight`
+                )
+              "
               :aspect-ratio="1"
             >
               <template v-slot:placeholder>
@@ -86,6 +91,7 @@ export default {
   .list-content {
     display: grid;
     justify-content: center;
+
     .item-card {
       height: 100%;
       display: flex;

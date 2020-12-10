@@ -11,29 +11,29 @@ module.exports = {
   transpileDependencies: ["vuetify"],
   devServer: {
     port: 12181, // 端口
-    proxy: {
-      "/api": {
-        // 目标 API 地址
-        target: "http://localhost:9100/",
-        // 如果要代理 websockets
-        ws: true,
-        secure: false,
-        // 将主机标头的原点更改为目标URL
-        changeOrigin: true,
-        pathRewrite: { "^/api": "/" }
-      }
-    }
     // proxy: {
     //   "/api": {
     //     // 目标 API 地址
-    //     target: "http://beauty.secdra.com/",
+    //     target: "http://localhost:9100/",
     //     // 如果要代理 websockets
     //     ws: true,
     //     secure: false,
     //     // 将主机标头的原点更改为目标URL
     //     changeOrigin: true,
-    //     pathRewrite: { "^/api": "/api" }
+    //     pathRewrite: { "^/api": "/" }
     //   }
     // }
+    proxy: {
+      "/api": {
+        // 目标 API 地址
+        target: "http://beauty.zeongit.cn/",
+        // 如果要代理 websockets
+        ws: true,
+        secure: false,
+        // 将主机标头的原点更改为目标URL
+        changeOrigin: true,
+        pathRewrite: { "^/api": "/api" }
+      }
+    }
   }
 }

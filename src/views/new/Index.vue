@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       loading: false,
-      pageable: new Pageable(),
+      pageable: new Pageable(1, 16, "updateDate,desc"),
       page2d: [],
       currPage: null
     }

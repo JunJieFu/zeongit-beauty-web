@@ -2,7 +2,7 @@
   <div>
     <component
       :is="$enum.ListModeComponentName[mode]"
-      :list="page2d.map((it) => it.items).flat()"
+      :list="page2d.map((it) => it.items.map((item) => item.picture)).flat()"
       :page="currPage"
       :pageable="pageable"
       :loading="loading"

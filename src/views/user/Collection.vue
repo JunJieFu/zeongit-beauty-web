@@ -2,7 +2,7 @@
   <div>
     <component
       :is="$enum.ListModeComponentName[mode]"
-      :list="page2d.map((it) => it.items.map((item) => item.picture)).flat()"
+      :list="page2d.map((it) => it.items).flat()"
       :page="currPage"
       :pageable="pageable"
       :loading="loading"
@@ -83,7 +83,7 @@ export default {
         this.paging(page, this.realTargetId)
       } else {
         this.$router.push(
-          `/works/${encodeURIComponent(this.realTargetId)}/${page}`
+          `/collection/${encodeURIComponent(this.realTargetId)}/${page}`
         )
       }
     },
@@ -109,8 +109,15 @@ export default {
       if (targetId !== this.realTargetId) {
         this.page2d = []
       }
-      const page = result.data
-      this.currPage = result.data
+      //临时处理
+      const data = {
+        meta: result.data.meta,
+        items: result.data.items.map(
+          (item) => item.picture ?? { id: item.pictureId }
+        )
+      }
+      const page = data
+      this.currPage = data
       this.page2d.length = this.pageable.page
       //由于是数组必须用set
       this.$set(this.page2d, page.meta.currentPage, page)

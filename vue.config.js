@@ -10,27 +10,27 @@ module.exports = {
   },
   transpileDependencies: ["vuetify"],
   devServer: {
-    port: 12181, // ç«¯å£
+    port: 12181, // ¶Ë¿Ú
     proxy: {
       "/api": {
-        // ç›®æ ‡ API åœ°å€
+        // Ä¿±ê API µØÖ·
         target: "http://47.107.181.201:8081/",
-        // å¦‚æœè¦ä»£ç† websockets
+        // Èç¹ûÒª´úÀí websockets
         ws: true,
         secure: false,
-        // å°†ä¸»æœºæ ‡å¤´çš„åŸç‚¹æ›´æ”¹ä¸ºç›®æ ‡URL
+        // ½«Ö÷»ú±êÍ·µÄÔ­µã¸ü¸ÄÎªÄ¿±êURL
         changeOrigin: true,
         pathRewrite: { "^/api": "/" }
       }
     }
     // proxy: {
     //   "/api": {
-    //     // ç›®æ ‡ API åœ°å€
+    //     // Ä¿±ê API µØÖ·
     //     target: "http://beauty.zeongit.cn/",
-    //     // å¦‚æœè¦ä»£ç† websockets
+    //     // Èç¹ûÒª´úÀí websockets
     //     ws: true,
     //     secure: false,
-    //     // å°†ä¸»æœºæ ‡å¤´çš„åŸç‚¹æ›´æ”¹ä¸ºç›®æ ‡URL
+    //     // ½«Ö÷»ú±êÍ·µÄÔ­µã¸ü¸ÄÎªÄ¿±êURL
     //     changeOrigin: true,
     //     pathRewrite: { "^/api": "/api" }
     //   }
